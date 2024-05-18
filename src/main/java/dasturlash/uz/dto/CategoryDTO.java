@@ -9,11 +9,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-@Getter
-@Setter
 
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RegionDTO {
+public class CategoryDTO {
     private Integer id;
     private Integer orderNumber;
     private String nameUz;

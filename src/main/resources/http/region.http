@@ -3,12 +3,12 @@ POST localhost:8080//region/created
 Content-Type: application/json
 
 {
-  "order_number": 3,
-  "name_uz": "Samarqand",
-  "name_ru": "Самарканд",
-  "name_en": "Samarkand",
+  "orderNumber": 4,
+  "nameUz": "Samarqand",
+  "nameRu": "Самарканд",
+  "nameEn": "Samarkand",
   "visible": true,
-  "created_date": "2024-05-15"
+  "createdDate": "2024-05-15"
 }
 
 ### Put Region example server
@@ -16,9 +16,9 @@ PUT localhost:8080/region/update/3
 Content-Type: application/json
 
 {
-  "name_uz": "Samarqand",
-  "name_ru": "Самарканд",
-  "name_en": "Samarkand"
+  "nameUz": "Samarqand",
+  "nameRu": "Самарканд",
+  "nameEn": "Samarkand"
 }
 ### Delete Region example server
 DELETE localhost:8080/region/delete/3
@@ -27,4 +27,4 @@ DELETE localhost:8080/region/delete/3
 GET localhost:8080/region/RegionAll
 
 ### GetByLanguage example server
-GET localhost:8080/region/GetByLanguage/name_en
+GET localhost:8080/region/GetByLanguage/nameRu

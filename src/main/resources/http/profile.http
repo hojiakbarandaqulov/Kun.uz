@@ -1,0 +1,13 @@
+### Post Profile to example server
+POST localhost:8080//profile/created
+Content-Type: application/json
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "email": "alish@gmail.com",
+  "phone": "993333233",
+  "password": "1234",
+  "status": "ACTIVE",
+  "role": "MODERATOR"
+}

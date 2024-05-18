@@ -8,9 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RegionRepository extends JpaRepository<RegionEntity,Integer>{
-    @Query("from RegionEntity where lower(name_en) like :language or lower(name_ru) like :language or lower(name_uz) like :language ")
-    RegionEntity findLanguage(@Param("language")  String language);
-
     @Query(value = "select * from region ", nativeQuery = true)
     List<RegionEntity> findByLanguage(Object language);
  /*   @Query(value = "select * from region where name_uz=:language", nativeQuery = true)

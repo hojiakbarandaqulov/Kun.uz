@@ -4,7 +4,8 @@ import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.TypesDTO;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.entity.TypesEntity;
-import dasturlash.uz.enumLanguage.Language;
+import dasturlash.uz.enums.Language;
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.repository.RegionRepository;
 import dasturlash.uz.repository.TypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,9 @@ public class TypesService {
     @Autowired
     private TypesRepository typesRepository;
 
-    private String nameUz = String.valueOf(Language.name_uz);
-    private String nameRu = String.valueOf(Language.name_ru);
-    private String nameEn = String.valueOf(Language.name_en);
+    private String nameUz = String.valueOf(Language.nameUz);
+    private String nameRu = String.valueOf(Language.nameRu);
+    private String nameEn = String.valueOf(Language.nameEn);
 
     public TypesDTO create(TypesDTO typesDTO) {
         TypesEntity typesEntity = new TypesEntity();

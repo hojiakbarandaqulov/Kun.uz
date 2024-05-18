@@ -1,8 +1,8 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.RegionLanguage;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.entity.RegionEntity;
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,19 +14,19 @@ import java.util.List;
 public class RegionService {
     @Autowired
     private RegionRepository regionRepository;
-    private String nameUz = String.valueOf(RegionLanguage.name_uz);
-    private String nameRu = String.valueOf(RegionLanguage.name_ru);
-    private String nameEn = String.valueOf(RegionLanguage.name_en);
+    private String nameUz = String.valueOf(Language.nameUz);
+    private String nameRu = String.valueOf(Language.nameRu);
+    private String nameEn = String.valueOf(Language.nameEn);
 
     public RegionDTO create(RegionDTO regionDTO) {
         RegionEntity regionEntity = new RegionEntity();
 
-        regionEntity.setOrder_number(regionDTO.getOrder_number());
-        regionEntity.setName_uz(regionDTO.getName_uz());
-        regionEntity.setName_ru(regionDTO.getName_ru());
-        regionEntity.setName_en(regionDTO.getName_en());
+        regionEntity.setOrderNumber(regionDTO.getOrderNumber());
+        regionEntity.setNameUz(regionDTO.getNameUz());
+        regionEntity.setNameRu(regionDTO.getNameRu());
+        regionEntity.setNameEn(regionDTO.getNameEn());
         regionEntity.setVisible(regionDTO.getVisible());
-        regionEntity.setCreated_date(regionDTO.getCreated_date());
+        regionEntity.setCreatedDate(regionDTO.getCreatedDate());
         regionRepository.save(regionEntity);
         regionDTO.setId(regionEntity.getId());
         return regionDTO;
@@ -34,9 +34,9 @@ public class RegionService {
 
     public Boolean update(Integer id, RegionDTO dto) {
         RegionEntity entity = get(id);
-        entity.setName_uz(dto.getName_uz());
-        entity.setName_ru(dto.getName_ru());
-        entity.setName_en(dto.getName_en());
+        entity.setNameUz(dto.getNameUz());
+        entity.setNameRu(dto.getNameRu());
+        entity.setNameEn(dto.getNameEn());
         regionRepository.save(entity);
         return true;
     }
@@ -57,11 +57,11 @@ public class RegionService {
         for (RegionEntity region : entity) {
             RegionDTO regionDTO = new RegionDTO();
             regionDTO.setId(region.getId());
-            regionDTO.setName_uz(region.getName_uz());
-            regionDTO.setName_ru(region.getName_ru());
-            regionDTO.setName_en(region.getName_en());
+            regionDTO.setNameUz(region.getNameUz());
+            regionDTO.setNameRu(region.getNameRu());
+            regionDTO.setNameEn(region.getNameEn());
             regionDTO.setVisible(regionDTO.getVisible());
-            regionDTO.setCreated_date(region.getCreated_date());
+            regionDTO.setCreatedDate(region.getCreatedDate());
             dtoList.add(regionDTO);
         }
         return dtoList;
@@ -77,39 +77,22 @@ public class RegionService {
         List<RegionDTO> dtoList = new LinkedList<>();
         for (RegionEntity region : entity) {
             RegionDTO regionDTO = new RegionDTO();
-           /* switch (language) {
-                case nameUz:
-                    regionDTO.setId(region.getId());
-                    regionDTO.setName_uz(region.getName_uz());
-                    dtoList.add(regionDTO);
-                    break;
-                case nameRu:
-                    regionDTO.setId(region.getId());
-                    regionDTO.setName_ru(region.getName_ru());
-                    dtoList.add(regionDTO);
-                    break;
-                case nameEn:
-                    regionDTO.setId(region.getId());
-                    regionDTO.setName_en(region.getName_en());
-                    dtoList.add(regionDTO);
-                    break;
-                default:
-                    return null;
-            }*/
-            if (language.equals(nameUz)){
+            if (language.equals(nameUz)) {
                 regionDTO.setId(region.getId());
-                regionDTO.setName_uz(region.getName_uz());
+                regionDTO.setNameUz(region.getNameUz());
                 dtoList.add(regionDTO);
-            } else if (language.equals(nameRu)) {
+            }
+            if (language.equals(nameRu)) {
                 regionDTO.setId(region.getId());
-                regionDTO.setName_ru(region.getName_ru());
+                regionDTO.setNameRu(region.getNameRu());
                 dtoList.add(regionDTO);
-            } else if (language.equals(nameEn)) {
+            }
+            if (language.equals(nameEn)) {
                 regionDTO.setId(region.getId());
-                regionDTO.setName_en(region.getName_en());
+                regionDTO.setNameEn(region.getNameEn());
                 dtoList.add(regionDTO);
             }
         }
-        return dtoList;
+            return dtoList;
+        }
     }
-}

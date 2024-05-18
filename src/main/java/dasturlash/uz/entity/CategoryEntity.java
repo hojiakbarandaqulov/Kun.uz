@@ -1,18 +1,19 @@
 package dasturlash.uz.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 
-@Getter
 @Setter
+@Getter
 
 @Entity
-@Table(name = "region")
-public class RegionEntity {
+@Table(name = "category")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
