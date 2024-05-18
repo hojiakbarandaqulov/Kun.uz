@@ -24,7 +24,7 @@ public class TypesEntity {
     @Column(name = "name_en")
     private String nameEn;
     @Column(name = "visible")
-    private Boolean visible;
+    private Boolean visible=Boolean.TRUE;
     @Column(name = "created_date")
-    private LocalDate createdDate;
+    private LocalDate createdDate=LocalDate.now();
 }

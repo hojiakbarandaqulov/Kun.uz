@@ -1,29 +1,29 @@
 ### Post Type to example server
-POST localhost:8080//types/created
+POST localhost:8080/types/created
 Content-Type: application/json
 
 {
-  "order_number": 4,
-  "name_uz": "Энергетика ",
+  "orderNumber": 4,
+  "name_uz": "Energetika ",
   "name_ru": "Первый шаг к реформе энергетики был сделан?",
   "name_en": "The first step towards energy reform was taken?"
 }
 
 ### Put Type example server
-PUT localhost:8080/types/update/4
+PUT localhost:8080/types/update/3
 Content-Type: application/json
 
 {
-  "order_number": 4,
+  "order_number": 3,
   "name_uz": "Энергетика ",
   "name_ru": "Первый шаг к реформе энергетики был сделан?",
   "name_en": "The first step towards energy reform was taken?"
 }
 ### Delete Type example server
-DELETE localhost:8080/types/delete/4
+DELETE localhost:8080/types/delete/2
 
 ### Get all Type example server
 GET localhost:8080/types/TypeAllPagination?page=1&size=3
 
 ### GetByLanguage example server
-GET localhost:8080/types/GetByLanguage/name_en
+GET localhost:8080/types/GetByLanguage

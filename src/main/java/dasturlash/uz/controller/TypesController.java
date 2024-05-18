@@ -1,10 +1,14 @@
 package dasturlash.uz.controller;
 
+import dasturlash.uz.dto.TypesCreatedDto;
 import dasturlash.uz.dto.TypesDTO;
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.service.RegionService;
 import dasturlash.uz.service.TypesService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +21,13 @@ public class TypesController {
     private TypesService typesService;
 
     @PostMapping("/created")
-    public ResponseEntity<TypesDTO> create(@RequestBody TypesDTO typesDTO){
-        TypesDTO response=typesService.create(typesDTO);
+    public ResponseEntity<TypesDTO> create(@Valid @RequestBody TypesCreatedDto dto){
+        TypesDTO response=typesService.create(dto);
         return ResponseEntity.ok().body(response);
     }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable ("id") Integer id, @RequestBody TypesDTO dto){
+    public ResponseEntity<Boolean> update(@PathVariable ("id") Integer id, @Valid @RequestBody TypesDTO dto){
         typesService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
@@ -40,8 +45,9 @@ public class TypesController {
         return ResponseEntity.ok().body(typeList);
     }
 
-    @GetMapping("/GetByLanguage/{language}")
-    public List<TypesDTO> getByLanguage(/*@RequestHeader(HttpHeaders.ACCEPT_LANGUAGE) String language,*/ @PathVariable String language){
+    @GetMapping("/GetByLanguage")
+    public List<TypesDTO> getByLanguage(@RequestHeader(value ="Accept-Language", defaultValue = "UZ") Language language){
         return typesService.getByLanguage(language);
     }
+
 }
