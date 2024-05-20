@@ -1,9 +1,9 @@
 ### Post Type to example server
-POST localhost:8080//types/created
+POST localhost:8080/types/created
 Content-Type: application/json
 
 {
-  "order_number": 4,
+  "orderNumber": 3,
   "name_uz": "Энергетика ",
   "name_ru": "Первый шаг к реформе энергетики был сделан?",
   "name_en": "The first step towards energy reform was taken?"
@@ -23,7 +23,7 @@ Content-Type: application/json
 DELETE localhost:8080/types/delete/5
 
 ### Get all Type example server
-GET localhost:8080/types/TypeAllPagination?page=1&size=3
+GET localhost:8080/types/typeAllPagination?page=1&size=3
 
 ### GetByLanguage example server
-GET localhost:8080/types/GetByLanguage/nameEn
+GET localhost:8080/types/language

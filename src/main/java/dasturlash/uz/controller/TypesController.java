@@ -26,6 +26,7 @@ public class TypesController {
         return ResponseEntity.ok().body(response);
     }
 
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Boolean> update(@PathVariable ("id") Integer id, @Valid @RequestBody TypesDTO dto){
         typesService.update(id, dto);
@@ -38,16 +39,16 @@ public class TypesController {
         return ResponseEntity.ok().body(true);
     }
 
-    @GetMapping("/TypeAllPagination")
+    @GetMapping("/typeAllPagination")
     public  ResponseEntity<PageImpl<TypesDTO>>getAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "size", defaultValue = "10") int size){
         PageImpl<TypesDTO> typeList=typesService.getAllPagination(page-1,size);
         return ResponseEntity.ok().body(typeList);
     }
 
-    @GetMapping("/GetByLanguage")
+    @GetMapping("/language")
     public List<TypesDTO> getByLanguage(@RequestHeader(value ="Accept-Language", defaultValue = "UZ") Language language){
-        return typesService.getByLanguage(language);
+        return typesService.getAllByLang(language);
     }
 
 }

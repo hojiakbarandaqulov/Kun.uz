@@ -42,7 +42,7 @@ public class RegionController {
         return ResponseEntity.ok().body(true);
     }
 
-    @GetMapping("/RegionAll")
+    @GetMapping("/regionAll")
     public ResponseEntity<List<RegionDTO>> all() {
         return ResponseEntity.ok().body(regionService.getAll());
     }
@@ -51,7 +51,7 @@ public class RegionController {
     @GetMapping("/lang")
     public ResponseEntity<List<RegionDTO>> getAllByLang(
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language lang) {
-        List<RegionDTO> regionDTOList = regionService.getAllByLanguage(lang);
+        List<RegionDTO> regionDTOList = regionService.getAllByLang(lang);
         return ResponseEntity.ok().body(regionDTOList);
     }
 
