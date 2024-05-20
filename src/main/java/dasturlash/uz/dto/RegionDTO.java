@@ -19,6 +19,7 @@ public class RegionDTO {
     private String nameUz;
     private String nameRu;
     private String nameEn;
+    private String name;
     private Boolean visible;
     private LocalDate createdDate;
 }

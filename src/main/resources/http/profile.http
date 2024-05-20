@@ -1,5 +1,5 @@
 ### Post Profile to example server
-POST localhost:8080//profile/created
+POST localhost:8080/profile/create
 Content-Type: application/json
 
 {
@@ -11,3 +11,22 @@ Content-Type: application/json
   "status": "ACTIVE",
   "role": "MODERATOR"
 }
+
+### Put Profile to example server
+PUT localhost:8080/profile/update/4
+Content-Type: application/json
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "email": "alish@gmail.com",
+  "phone": "993333233",
+  "password": "1234",
+  "status": "ACTIVE",
+  "role": "MODERATOR"
+}
+### Get all Profile to example server
+GET localhost:8080/profile/profilePagination?page=1&size=3
+
+### Delete ById Profile to example server
+DELETE localhost:8080/profile/delete/4

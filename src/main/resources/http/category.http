@@ -1,17 +1,16 @@
 ### Post Region to example server
-POST localhost:8080//category/created
+POST localhost:8080//category/create
 Content-Type: application/json
-#
 
 {
-  "orderNumber": 4,
+  "orderNumber": 8,
   "nameUz": "AUDIO",
   "nameRu": "АУДИО",
   "nameEn": "AUDIO"
 }
 
 ### Put Region example server
-PUT localhost:8080/category/update/4
+PUT localhost:8080/category/update/6
 Content-Type: application/json
 
 {
@@ -21,10 +20,10 @@ Content-Type: application/json
   "nameEn": "AUDIO"
 }
 ### Delete Region example server
-DELETE localhost:8080/category/delete/4
+DELETE localhost:8080/category/delete/6
 
 ### Get all Region example server
-GET localhost:8080/category/RegionAll
+GET localhost:8080/category/all
 
 ### GetByLanguage example server
-GET localhost:8080/category/GetByLanguage/nameEn
+GET localhost:8080/category/lang
