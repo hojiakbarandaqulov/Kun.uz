@@ -1,12 +1,10 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.CategoryCreateDTO;
 import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.entity.CategoryEntity;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.Language;
-import dasturlash.uz.mapper.CategoryMapper;
 import dasturlash.uz.repository.CategoryRepository;
 import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,11 @@ import java.util.List;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
-    public CategoryDTO create(CategoryCreateDTO categoryDTO) {
+    private String nameUz = String.valueOf(Language.nameUz);
+    private String nameRu = String.valueOf(Language.nameRu);
+    private String nameEn = String.valueOf(Language.nameEn);
+
+    public CategoryDTO create(CategoryDTO categoryDTO) {
         CategoryEntity categoryEntity = new CategoryEntity();
 
         categoryEntity.setOrderNumber(categoryDTO.getOrderNumber());
@@ -27,20 +29,23 @@ public class CategoryService {
         categoryEntity.setNameRu(categoryDTO.getNameRu());
         categoryEntity.setNameEn(categoryDTO.getNameEn());
         categoryRepository.save(categoryEntity);
-        return toCategoryDTO(categoryEntity);
-    }
-
-    public CategoryDTO toCategoryDTO(CategoryEntity categoryEntity) {
-        CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setId(categoryEntity.getId());
-        categoryDTO.setOrderNumber(categoryEntity.getOrderNumber());
-        categoryDTO.setNameUz(categoryDTO.getNameUz());
-        categoryDTO.setNameRu(categoryEntity.getNameRu());
-        categoryDTO.setNameEn(categoryDTO.getNameEn());
-        categoryDTO.setVisible(categoryEntity.getVisible());
-        categoryDTO.setCreatedDate(categoryEntity.getCreatedDate());
         return categoryDTO;
     }
+   /* public RegionDTO create(RegionDTO regionDTO) {
+        RegionEntity regionEntity = new RegionEntity();
+
+        regionEntity.setOrderNumber(regionDTO.getOrderNumber());
+        regionEntity.setNameUz(regionDTO.getNameUz());
+        regionEntity.setNameRu(regionDTO.getNameRu());
+        regionEntity.setNameEn(regionDTO.getNameEn());
+        regionEntity.setVisible(regionDTO.getVisible());
+        regionEntity.setCreatedDate(regionDTO.getCreatedDate());
+        regionRepository.save(regionEntity);
+        regionDTO.setId(regionEntity.getId());
+        return regionDTO;
+    }*/
+
     public Boolean update(Integer id, CategoryDTO dto) {
         CategoryEntity entity = get(id);
         entity.setNameUz(dto.getNameUz());
@@ -55,7 +60,8 @@ public class CategoryService {
     }
 
     public Boolean delete(Integer id) {
-        categoryRepository.deleteById(id);
+        CategoryEntity entity = get(id);
+        categoryRepository.delete(entity);
         return true;
     }
 
@@ -63,21 +69,23 @@ public class CategoryService {
         Iterable<CategoryEntity> entity = categoryRepository.findAll();
         List<CategoryDTO> dtoList = new LinkedList<>();
         for (CategoryEntity region : entity) {
-            dtoList.add(toCategoryDTO(region));
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.setId(region.getId());
+            categoryDTO.setNameUz(region.getNameUz());
+            categoryDTO.setNameRu(region.getNameRu());
+            categoryDTO.setNameEn(region.getNameEn());
+            categoryDTO.setVisible(categoryDTO.getVisible());
+            categoryDTO.setCreatedDate(region.getCreatedDate());
+            dtoList.add(categoryDTO);
         }
         return dtoList;
     }
-    /*   public List<CategoryDTO> getByLanguage(Language language) {
-           Iterable<CategoryEntity> entity = categoryRepository.findByLanguage(language);
-           List<CategoryDTO> dtoList = new LinkedList<>();
-           for (CategoryEntity region : entity) {
-               CategoryDTO categoryDTO = new CategoryDTO();
-               switch (language){
-                   case uz -> categoryDTO.setNameUz(region.getNameUz());
-                   case ru -> categoryDTO.setNameRu(region.getNameRu());
-                   case en -> categoryDTO.setNameEn(region.getNameEn());
-               }
-              *//* if (language.equals(nameUz)) {
+    public List<CategoryDTO> getByLanguage(String language) {
+        Iterable<CategoryEntity> entity = categoryRepository.findByLanguage(language);
+        List<CategoryDTO> dtoList = new LinkedList<>();
+        for (CategoryEntity region : entity) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            if (language.equals(nameUz)) {
                 categoryDTO.setId(region.getId());
                 categoryDTO.setNameUz(region.getNameUz());
                 dtoList.add(categoryDTO);
@@ -91,19 +99,9 @@ public class CategoryService {
                 categoryDTO.setId(region.getId());
                 categoryDTO.setNameEn(region.getNameEn());
                 dtoList.add(categoryDTO);
-            }*//*
+            }
         }
-        return dtoList;*/
-    public List<CategoryDTO> getAllByLanguage(Language language) {
-        List<CategoryMapper> categoryMapperList = categoryRepository.findByLanguage(language.name());
-        List<CategoryDTO> categoryList = new LinkedList<>();
-        for (CategoryMapper entity : categoryMapperList) {
-            CategoryDTO categoryDTO = new CategoryDTO();
-            categoryDTO.setId(entity.getId());
-            categoryDTO.setName(entity.getName());
-            categoryList.add(categoryDTO);
-        }
-        return categoryList;
+        return dtoList;
     }
-}
 
+}

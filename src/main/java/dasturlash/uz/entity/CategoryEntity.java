@@ -26,7 +26,7 @@ public class CategoryEntity {
     @Column(name = "name_en")
     private String nameEn;
     @Column(name = "visible")
-    private Boolean visible=Boolean.TRUE;
+    private Boolean visible;
     @Column(name = "created_date")
-    private LocalDate createdDate=LocalDate.now();
+    private LocalDate createdDate;
 }
