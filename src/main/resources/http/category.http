@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Put Region example server
-PUT localhost:8080/category/update/6
+PUT localhost:8080/category/update/9
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
   "nameEn": "AUDIO"
 }
 ### Delete Region example server
-DELETE localhost:8080/category/delete/6
+DELETE localhost:8080/category/delete/10
 
 ### Get all Region example server
 GET localhost:8080/category/all

@@ -1,5 +1,5 @@
 ### Post Region to example server
-POST localhost:8080//region/created
+POST localhost:8080//region/create
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### Put Region example server
-PUT localhost:8080/region/update/14
+PUT localhost:8080/region/update/1
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
   "nameEn": "Samarkand"
 }
 ### Delete Region example server
-DELETE localhost:8080/region/delete/14
+DELETE localhost:8080/region/delete/1
 
 ### Get all Region example server
 GET localhost:8080/region/regionAll

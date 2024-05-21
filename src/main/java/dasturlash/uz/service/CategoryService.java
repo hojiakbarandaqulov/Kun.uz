@@ -28,6 +28,7 @@ public class CategoryService {
         categoryEntity.setNameRu(categoryDTO.getNameRu());
         categoryEntity.setNameEn(categoryDTO.getNameEn());
         categoryRepository.save(categoryEntity);
+
         return categoryToDTO(categoryEntity);
     }
 

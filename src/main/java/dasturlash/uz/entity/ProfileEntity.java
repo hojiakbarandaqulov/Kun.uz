@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 
@@ -26,16 +28,16 @@ public class ProfileEntity {
     private String phone;
     @Column(name = "password")
     private String password;
-    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private ProfileStatus status;
     @Enumerated(EnumType.STRING)
+    private ProfileStatus status;
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private ProfileRole role;
     @Column(name = "visible")
-    private Boolean visible;
+    private Boolean visible=Boolean.TRUE;
     @Column(name = "created_date")
-    private LocalDate createdDate;
+    private LocalDateTime createdDate=LocalDateTime.now();
     @Column(name = "photo_id")
     private Integer photoId;
 

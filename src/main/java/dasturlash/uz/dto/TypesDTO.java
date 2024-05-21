@@ -18,5 +18,4 @@ public class TypesDTO {
     private String name;
     private Boolean visible;
     private LocalDate createdDate;
-
 }

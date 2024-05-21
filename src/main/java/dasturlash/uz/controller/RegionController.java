@@ -47,12 +47,10 @@ public class RegionController {
         return ResponseEntity.ok().body(regionService.getAll());
     }
 
-
     @GetMapping("/lang")
     public ResponseEntity<List<RegionDTO>> getAllByLang(
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language lang) {
         List<RegionDTO> regionDTOList = regionService.getAllByLang(lang);
         return ResponseEntity.ok().body(regionDTOList);
     }
-
 }

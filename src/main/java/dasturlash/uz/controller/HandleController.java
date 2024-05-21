@@ -23,5 +23,4 @@ public class HandleController {
     public ResponseEntity<?> handle(AppBadException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
-
 }
