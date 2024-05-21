@@ -8,7 +8,6 @@ Content-Type: application/json
   "nameRu": "Первый шаг к реформе энергетики был сделан?",
   "nameEn": "The first step towards energy reform was taken?"
 }
-
 ### Put Type example server
 PUT localhost:8080/types/update/1
 Content-Type: application/json

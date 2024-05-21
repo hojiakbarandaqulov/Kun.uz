@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 
@@ -35,7 +37,7 @@ public class ProfileEntity {
     @Column(name = "visible")
     private Boolean visible;
     @Column(name = "created_date")
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
     @Column(name = "photo_id")
     private Integer photoId;
 
