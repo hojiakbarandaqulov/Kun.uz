@@ -1,0 +1,39 @@
+### Registration with Email
+POST localhost:8080/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "surname": "Aliuev",
+  "phone": "+998995092376",
+  "password": "1234"
+}
+
+### Registration with Phone
+POST localhost:8080/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "surname": "Aliuev",
+  "phone": "998942702363",
+  "password": "12345"
+}
+### Login
+POST localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "phone": "+998942702363",
+  "password": "12345"
+}
+
+
+### resend in registration
+GET localhost:8080/auth/registration/resend/hojiakbarandaqulov5@gmail.com
+
+
+### Delete
+DELETE localhost:8080/region/delete/33
+
+

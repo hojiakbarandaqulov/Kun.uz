@@ -1,12 +1,9 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.ProfileCreateDTO;
-import dasturlash.uz.dto.ProfileDTO;
-import dasturlash.uz.dto.RegionDTO;
-import dasturlash.uz.dto.TypesDTO;
+import dasturlash.uz.dto.*;
+import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
-import dasturlash.uz.entity.RegionEntity;
-import dasturlash.uz.entity.TypesEntity;
+import dasturlash.uz.repository.customRepository.ProfileCustomRepository;
 import dasturlash.uz.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -19,8 +16,10 @@ import java.util.List;
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private ProfileCustomRepository profileCustomRepository;
     public ProfileDTO create(ProfileCreateDTO profileDTO) {
-        ProfileEntity entity=new ProfileEntity();
+        ProfileEntity entity = new ProfileEntity();
         entity.setName(profileDTO.getName());
         entity.setSurname(profileDTO.getSurname());
         entity.setEmail(profileDTO.getEmail());
@@ -30,10 +29,11 @@ public class ProfileService {
         entity.setRole(profileDTO.getRole());
         profileRepository.save(entity);
         return profileToDTO(entity);
+
     }
 
     public Boolean update(Integer id, ProfileCreateDTO dto) {
-        ProfileEntity entity=get(id);
+        ProfileEntity entity = get(id);
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
@@ -44,7 +44,8 @@ public class ProfileService {
         profileRepository.save(entity);
         return true;
     }
-    public ProfileDTO profileToDTO(ProfileEntity entity){
+
+    public ProfileDTO profileToDTO(ProfileEntity entity) {
         ProfileDTO profileDTO = new ProfileDTO();
         profileDTO.setId(entity.getId());
         profileDTO.setName(entity.getName());
@@ -56,9 +57,12 @@ public class ProfileService {
         profileDTO.setRole(entity.getRole());
         return profileDTO;
     }
+
     private ProfileEntity get(Integer id) {
         return profileRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Profile not found"));
     }
+
+
     public PageImpl<ProfileDTO> getAllPagination(int page, int size) {
         Sort sort = Sort.by(Sort.Order.desc("createdDate"));
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -77,4 +81,51 @@ public class ProfileService {
         profileRepository.deleteById(id);
         return true;
     }
+
+   /* public PageImpl<ProfileDTO> paginationWithName(ProfileFilterDTO filterDTO, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        FilterResponseDTO<ProfileEntity> filterResponseDTO = profileCustomRepository.filter(filterDTO,page,size);
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity : filterResponseDTO.getContent()) {
+            ProfileDTO dto = new ProfileDTO();
+            dto.setName(entity.getName());
+            dto.setSurname(entity.getSurname());
+            dto.setPhone(entity.getPhone());
+            dto.setRole(entity.getRole());
+            dto.setCreatedDate(entity.getCreatedDate());
+            dtoList.add(dto);
+        }
+
+        Long totalCount = filterResponseDTO.getTotalCount();
+
+        return new PageImpl<ProfileDTO>(dtoList,pageable,totalCount);
+    }*/
+    public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
+        FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
+
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity : filterResponse.getContent()) {
+            ProfileDTO dto = new ProfileDTO();
+            dto.setId(entity.getId());
+            dto.setName(entity.getName());
+            dto.setSurname(entity.getSurname());
+            dto.setPhone(entity.getPhone());
+            dto.setCreatedDate(entity.getCreatedDate().toLocalDate());
+            dtoList.add(dto);
+        }
+        return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
+    }
+/*    public Boolean updateRole(ProfileRole role, ProfileCreateDTO dto) {
+        ProfileEntity entity=profileRepository.findByRole(role.name());
+        entity.setName(dto.getName());
+        entity.setSurname(dto.getSurname());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setPassword(dto.getPassword());
+        entity.setStatus(dto.getStatus());
+        profileRepository.save(entity);
+        return true;
+    }*/
+
 }
+

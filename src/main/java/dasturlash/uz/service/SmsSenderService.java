@@ -1,0 +1,95 @@
+package dasturlash.uz.service;
+
+import dasturlash.uz.util.RandomUtil;
+import okhttp3.*;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+
+@Service
+public class SmsSenderService {
+    @Value("${sms.url}")
+    private String smsUrl;
+    @Value("${my.eskiz.uz.phone}")
+    private String myEskizUzPhone;
+
+    @Value("${my.eskiz.uz.password}")
+//    @Value("9")
+    private String myEskizUzPassword;
+
+    public String sendSms(String phone) {
+        String code = RandomUtil.getRandomSmsCode();
+        String message = "YouGo ilovasiga ro'yxatdan o'tishning tasdiqlash kodi: " + code;
+        send(phone, message);
+        return null;
+    }
+
+    public  void send(String phone, String message) {
+        String token = "Bearer " + getToken();
+        String prPhone = phone;
+        if (prPhone.startsWith("+")) {
+            prPhone = prPhone.substring(1);
+        }
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("mobile_phone", prPhone)
+                .addFormDataPart("message", message)
+                .addFormDataPart("from", "4546")
+                .build();
+
+        okhttp3.Request request = new Request.Builder()
+                .url(smsUrl + "api/message/sms/send")
+                .method("POST", body)
+                .header("Authorization", token)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            if (response.isSuccessful()) {
+                System.out.println(response);
+            } else {
+                throw new IOException();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    private String getToken() {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("phone", myEskizUzPhone)
+                .addFormDataPart("password", myEskizUzPassword)
+                .build();
+      okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(smsUrl + "api/auth/login")
+                .method("POST", body)
+                .build();
+
+        okhttp3.Response response;
+        try {
+            response = client.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException();
+            } else {
+                assert response.body() != null;
+                JSONObject object = new JSONObject(response.body().string());
+                JSONObject data = object.getJSONObject("data");
+                Object token = data.get("token");
+                return token.toString();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+
+    }
+
+}
+
+

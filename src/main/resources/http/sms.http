@@ -1,0 +1,22 @@
+### Authorization
+POST https://notify.eskiz.uz/api/auth/login
+Content-Type: application/json
+
+{
+  "phone": "+998995092376",
+  "password": "6"
+}
+
+### Send sms
+POST https://notify.eskiz.uz/api/message/sms/send
+Content-Type: application/json
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkwNzE0MzYsImlhdCI6MTcxNjQ3OTQzNiwicm9sZSI6InVzZXIiLCJzaWduIjoiYWQ3ZmZkZjg1NWE5NmJiYjkxYWNiNGM5Y2VjZDliMWYxMDlmOThkN2QxNDc5NGJhN2M0ZmIwODhmOTBiNTMyNiIsInN1YiI6IjEwMzMifQ.PP19N2-m9sV0IyMQJ8Pb4zEcxIdcYBNs5q9qJSp0jwE
+
+{
+  "mobile_phone": "+998950292125",
+  "message": "YouGo ilovasiga ro'yxatdan o'tishning tasdiqlash kodi: 010203",
+  "from": "4546"
+}
+
+
+

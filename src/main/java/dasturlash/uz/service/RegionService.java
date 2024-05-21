@@ -24,6 +24,7 @@ public class RegionService {
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
+
         regionRepository.save(entity);
         return regionToDTO(entity);
     }

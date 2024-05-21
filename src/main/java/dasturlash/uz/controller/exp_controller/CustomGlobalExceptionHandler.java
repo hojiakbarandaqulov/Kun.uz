@@ -1,4 +1,4 @@
-package dasturlash.uz.controller;
+package dasturlash.uz.controller.exp_controller;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;

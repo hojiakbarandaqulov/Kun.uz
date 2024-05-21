@@ -1,19 +1,16 @@
-### Post Profile to example server
-POST localhost:8080/profile/create
+### Registration
+POST localhost:8080/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Alish",
-  "surname": "Alishev",
-  "email": "alish@gmail.com",
-  "phone": "993333233",
-  "password": "1234",
-  "status": "ACTIVE",
-  "role": "MODERATOR"
+  "name": "Ali",
+  "surname": "Aliyev",
+  "email": "hojiakbarandaqulov5@gmail.com",
+  "password": "1234"
 }
 
 ### Put Profile to example server
-PUT localhost:8080/profile/update/4
+PUT localhost:8080/profile/update/7
 Content-Type: application/json
 
 {
@@ -23,10 +20,37 @@ Content-Type: application/json
   "phone": "993333233",
   "password": "1234",
   "status": "ACTIVE",
-  "role": "MODERATOR"
+  "role": "ROLE_ADMIN"
+}
+
+### Put Profile to example server
+PUT localhost:8080/profile/update/USER
+Content-Type: application/json
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "email": "alish@gmail.com",
+  "phone": "993333233",
+  "password": "1234",
+  "status": "ACTIVE"
 }
 ### Get all Profile to example server
 GET localhost:8080/profile/profilePagination?page=1&size=3
 
 ### Delete ById Profile to example server
 DELETE localhost:8080/profile/delete/4
+
+###
+POST http://localhost:8080/profile/filter?page=1&size=3
+Content-Type: application/json
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "phone": "993333233",
+  "role": "ROLE_ADMIN",
+  "createdDateFrom": "2024-05-05",
+  "createdDateTo": "2024-05-10"
+}
+
