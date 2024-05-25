@@ -34,6 +34,9 @@ public class AuthController {
     @GetMapping("/registration/resend/{email}")
     public ResponseEntity<String> registrationResend(@PathVariable("email") String email) {
         String body = authService.registrationResendEmail(email);
+    @GetMapping("/verification/{userId}")
+    public ResponseEntity<String> resent(@PathVariable("userId") Integer userId) {
+        String body = authService.authorizationVerification(userId);
         return ResponseEntity.ok().body(body);
     }
 }
