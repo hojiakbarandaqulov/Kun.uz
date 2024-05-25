@@ -15,7 +15,8 @@ public class SmsSenderService {
     @Value("${my.eskiz.uz.email}")
     private String myEskizUzEmail;
 
-    @Value("${my.eskiz.uz.password}")
+//    @Value("${my.eskiz.uz.password}")
+    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyOTczMjksImlhdCI6MTcxNjcwNTMyOSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.roNBehHx4NVImf89UQBSbxVNBOqhWuAcv72ZrEytIJY")
     private String myEskizUzPassword;
 
     public String sendSms(String phone) {
@@ -26,7 +27,7 @@ public class SmsSenderService {
     }
 
     public  void send(String phone, String message) {
-        String token = "Bearer " + getToken();
+        String token = "bearer " + getToken();
         String prPhone = phone;
         if (prPhone.startsWith("+")) {
             prPhone = prPhone.substring(1);

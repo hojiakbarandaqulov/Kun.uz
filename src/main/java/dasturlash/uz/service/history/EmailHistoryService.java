@@ -1,13 +1,18 @@
 package dasturlash.uz.service.history;
 
+import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.EmailHistoryRepository;
 import dasturlash.uz.service.SmsSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,5 +57,50 @@ public class   EmailHistoryService {
         if (entity.getCreatedDate().plusDays(1).isBefore(LocalDateTime.now())) {
             throw new AppBadException("Confirmation time expired");
         }
+    }
+
+    public EmailHistoryEntity getByEmail(String email,EmailDTO emailDTO) {
+         Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByEmail(email);
+         if (byEmail.isEmpty()) {
+             throw new AppBadException("Email not found");
+         }
+         EmailHistoryEntity entity =new EmailHistoryEntity();
+         entity.setCreatedDate(LocalDateTime.now());
+         entity.setEmail(emailDTO.getEmail());
+         entity.setMessage(emailDTO.getMessage());
+         return entity;
+    }
+
+    public EmailHistoryEntity getByCreatedDate(LocalDateTime createdDate, EmailDTO emailDTO) {
+        Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByCreatedDate(createdDate);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("CreatedDate not found");
+        }
+        EmailHistoryEntity entity =new EmailHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setEmail(emailDTO.getEmail());
+        entity.setMessage(emailDTO.getMessage());
+        return entity;
+    }
+
+    public PageImpl<EmailDTO> paginationEmail(int page, int size) {
+        Sort sort=Sort.by(Sort.Order.desc("createdDate"));
+        Pageable pageable= PageRequest.of(page,size,sort);
+        Page<EmailHistoryEntity> all = emailHistoryRepository.findAll(pageable);
+
+        List<EmailDTO>email=new LinkedList<>();
+        for (EmailHistoryEntity emailEntity : all.getContent()) {
+            email.add(emailToDTO(emailEntity));
+        }
+        Long totalCount=all.getTotalElements();
+        return new PageImpl<EmailDTO>(email,pageable,totalCount);
+    }
+
+    private EmailDTO emailToDTO(EmailHistoryEntity emailEntity) {
+         EmailDTO emailDTO = new EmailDTO();
+         emailDTO.setCreatedDate(emailEntity.getCreatedDate());
+         emailDTO.setMessage(emailEntity.getMessage());
+         emailDTO.setEmail(emailEntity.getEmail());
+         return emailDTO;
     }
 }

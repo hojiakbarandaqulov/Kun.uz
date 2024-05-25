@@ -1,10 +1,14 @@
 package dasturlash.uz.service.history;
 
+import dasturlash.uz.dto.history.EmailDTO;
+import dasturlash.uz.dto.history.SmsDTO;
+import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.SmsHistoryRepository;
 import dasturlash.uz.service.SmsSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -51,4 +55,13 @@ public class SmsHistoryService {
             throw new AppBadException("Confirmation time expired");
         }
     }
+
+  /*  public EmailHistoryEntity getByPhone(String email, SmsDTO smsDTO) {
+    }
+
+    public EmailHistoryEntity getByCreatedDate(LocalDateTime createdDate, EmailDTO emailDTO) {
+    }
+
+    public PageImpl<EmailDTO> paginationPhone(int page, int size) {
+    }*/
 }

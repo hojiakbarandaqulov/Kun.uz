@@ -3,20 +3,25 @@ POST https://notify.eskiz.uz/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "handaqulov51@gmail.com",
-  "password": "6"
+  "email": "couragesland@mail.ru",
+  "password": "n5KsX5kQ1nHWz5316bZM9XswuFEGnhU9HBFo6fbM"
 }
 
 ### Send sms
 POST https://notify.eskiz.uz/api/message/sms/send
 Content-Type: application/json
-AUTHORIZATION: Bearer
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyMTkxMjEsImlhdCI6MTcxNjYyNzEyMSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.JsGEGpML-svM4ZJe0C3v4vp49zoCWcm6W_MJFrmrx4s
 
 {
   "mobile_phone": "+998995092376",
   "message": "This is test from Eskiz",
   "from": "4546"
 }
+
+
+
+
+
 
 
 

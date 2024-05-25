@@ -1,6 +1,8 @@
 package dasturlash.uz.repository;
 
+import dasturlash.uz.controller.history.EmailHistory;
 import dasturlash.uz.entity.ProfileEntity;
+import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.transaction.Transactional;
@@ -32,4 +34,5 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
    Optional<ProfileEntity> findByEmailAndPasswordAndVisible(String email, String password, Boolean visible);
     Optional<ProfileEntity> findByPhoneAndPasswordAndVisible(String phone, String password, Boolean visible);
     Optional<ProfileEntity> findByPhoneAndVisibleTrue(String phone);
+
 }

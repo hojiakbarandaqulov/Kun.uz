@@ -32,23 +32,23 @@ public class AuthService {
     private SmsHistoryService smsHistoryService;
 
     public String registration(RegistrationDTO dto) {
-        Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
-//        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(dto.getPhone());
+//        Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
+        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(dto.getPhone());
         if (optional.isPresent()) {
             throw new AppBadException("Phone already exists");
         }
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
-        entity.setEmail(dto.getEmail());
-//        entity.setPhone(dto.getPhone());
+//        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
         entity.setPassword(MD5Util.getMD5(dto.getPassword()));
         entity.setCreatedDate(LocalDateTime.now());
         entity.setRole(ProfileRole.ROLE_USER);
         entity.setStatus(ProfileStatus.REGISTRATION);
         profileRepository.save(entity);
         // send email
-        String url = "http://localhost:8080/auth/verification/" + entity.getId();
+     /*   String url = "http://localhost:8080/auth/verification/" + entity.getId();
         String formatText = "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
@@ -82,9 +82,9 @@ public class AuthService {
                 "</body>\n" +
                 "</html>";
         String text = String.format(formatText, url);
-        mailSenderService.send(dto.getEmail(), "Complete registration", text);
-//        smsSenderService.sendSms(dto.getPhone());
-        return "To complete your registration please verify your phone.";
+        mailSenderService.send(dto.getEmail(), "Complete registration", text);*/
+        smsSenderService.sendSms(dto.getPhone());
+        return "To complete your registration please verify your email.";
     }
     public String authorizationVerification(Integer userId) {
         Optional<ProfileEntity> optional = profileRepository.findById(userId);
@@ -101,7 +101,7 @@ public class AuthService {
 
     public AuthResponseDTO login(LoginDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndPasswordAndVisible(
-                dto.getPhone(),
+                dto.getEmail(),
                 MD5Util.getMD5(dto.getPassword()),
                 true);
         if (optional.isEmpty()) {
@@ -117,25 +117,29 @@ public class AuthService {
         responseDTO.setRole(entity.getRole());
         return responseDTO;
     }
+    // phone resend
     public String registrationResendPhone(String phone) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);
-        if (optional.isEmpty()) {
+       /* if (optional.isEmpty()) {
             throw new AppBadException("Phone not exists");
-        }
+        }*/
         ProfileEntity entity = optional.get();
-        if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
+        smsHistoryService.isNotExpiredPhone(entity.getPhone());// check for expireation date
+      /*  if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             throw new AppBadException("Registration not completed");
-        }
+        }*/
         smsHistoryService.checkPhoneLimit(phone);
         sendRegistrationPhone(entity.getId(), phone);
         return "To complete your registration please verify your phone.";
     }
+    //email resend
     public String registrationResendEmail(String email) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(email);
         if (optional.isEmpty()) {
             throw new AppBadException("Email not exists");
         }
         ProfileEntity entity = optional.get();
+        emailHistoryService.isNotExpiredEmail(entity.getEmail());// check for expireation date
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             throw new AppBadException("Registration not completed");
         }
@@ -159,4 +163,5 @@ public class AuthService {
         mailSenderService.send(email, "Complete registration",text);
         emailHistoryService.crete(email,text); // create history
     }
+
 }

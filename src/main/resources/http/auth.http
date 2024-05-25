@@ -3,23 +3,23 @@ POST localhost:8080/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Eshmat",
-  "surname": "Eshmatov",
-  "email": "hojiakbarandaqulov5@gmail.com",
-  "password": "321"
+  "name": "Toshmat",
+  "surname": "Toshmatov",
+  "phone": "+998995092376",
+  "password": "54321"
 }
 ### Login
 POST localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "phone": "hojiakbarandaqulov5@gmail.com",
+  "email": "hojiakbarandaqulov5@gmail.com",
   "password": "321"
 }
 
 
 ### resend in registration
-GET localhost:8080/auth/registration/resend/hojiakbarandaqulov5@gmail.com
+GET localhost:8080/auth/registration/resend/phone/+998995092376
 
 
 #### Delete
