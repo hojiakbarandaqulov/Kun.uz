@@ -18,9 +18,9 @@ public class SmsHistoryService {
     @Autowired
     private SmsSenderService smsService;
 
-    public void crete(String toEmail, String text) {
+    public void crete(String toPhone, String text) {
         SmsHistoryEntity smsHistoryEntity=new SmsHistoryEntity();
-        smsHistoryEntity.setPhone(toEmail);
+        smsHistoryEntity.setPhone(toPhone);
         smsHistoryEntity.setMessage(text);
         smsHistoryRepository.save(smsHistoryEntity);
     }
@@ -41,7 +41,6 @@ public class SmsHistoryService {
             throw new AppBadException("Sms limit reached. Please try after some time");
         }
     }
-
     public void isNotExpiredPhone(String phone) {
         Optional<SmsHistoryEntity> optional = smsHistoryRepository.findByPhone(phone);
         if (optional.isEmpty()) {

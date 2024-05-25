@@ -18,11 +18,12 @@ public class   EmailHistoryService {
     @Autowired
     private SmsSenderService smsService;
 
-    public void crete(String toEmail, String text) {
+    public String crete(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();
         entity.setEmail(toEmail);
         entity.setMessage(text);
         emailHistoryRepository.save(entity);
+        return null;
     }
 
     public void checkEmailLimit(String email) { // 1 minute -3 attempt

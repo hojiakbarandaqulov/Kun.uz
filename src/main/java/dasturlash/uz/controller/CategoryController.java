@@ -34,8 +34,6 @@ public class CategoryController {
         Boolean result = categoryService.delete(id);
         return ResponseEntity.ok().body(result);
     }
-
-
     @GetMapping("/all")
     public ResponseEntity<List<CategoryDTO>> all() {
         return ResponseEntity.ok().body(categoryService.getAll());

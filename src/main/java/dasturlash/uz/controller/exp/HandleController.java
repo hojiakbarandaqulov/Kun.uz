@@ -1,4 +1,4 @@
-package dasturlash.uz.controller.exp_controller;
+package dasturlash.uz.controller.exp;
 
 
 import dasturlash.uz.exp.AppBadException;

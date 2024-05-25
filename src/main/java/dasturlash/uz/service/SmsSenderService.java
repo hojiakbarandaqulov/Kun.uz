@@ -12,16 +12,15 @@ import java.io.IOException;
 public class SmsSenderService {
     @Value("${sms.url}")
     private String smsUrl;
-    @Value("${my.eskiz.uz.phone}")
-    private String myEskizUzPhone;
+    @Value("${my.eskiz.uz.email}")
+    private String myEskizUzEmail;
 
     @Value("${my.eskiz.uz.password}")
-//    @Value("9")
     private String myEskizUzPassword;
 
     public String sendSms(String phone) {
         String code = RandomUtil.getRandomSmsCode();
-        String message = "YouGo ilovasiga ro'yxatdan o'tishning tasdiqlash kodi: " + code;
+        String message = "This is test from Eskiz: " + code;
         send(phone, message);
         return null;
     }
@@ -45,7 +44,6 @@ public class SmsSenderService {
                 .method("POST", body)
                 .header("Authorization", token)
                 .build();
-
         try {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
@@ -63,21 +61,20 @@ public class SmsSenderService {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("phone", myEskizUzPhone)
+                .addFormDataPart("email", myEskizUzEmail)
                 .addFormDataPart("password", myEskizUzPassword)
                 .build();
-      okhttp3.Request request = new okhttp3.Request.Builder()
+        Request request = new Request.Builder()
                 .url(smsUrl + "api/auth/login")
                 .method("POST", body)
                 .build();
 
-        okhttp3.Response response;
+        Response response;
         try {
             response = client.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException();
             } else {
-                assert response.body() != null;
                 JSONObject object = new JSONObject(response.body().string());
                 JSONObject data = object.getJSONObject("data");
                 Object token = data.get("token");
@@ -87,9 +84,7 @@ public class SmsSenderService {
             e.printStackTrace();
             throw new RuntimeException();
         }
-
     }
-
 }
 
 

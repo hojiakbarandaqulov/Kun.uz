@@ -31,10 +31,9 @@ public class AuthController {
         String body = authService.authorizationVerification(userId);
         return ResponseEntity.ok().body(body);
     }
-    @GetMapping("/registration/resend/{phone}")
-    public ResponseEntity<String> registrationResend(@PathVariable("phone") String phone) {
-        String body = authService.registrationResend(phone);
+    @GetMapping("/registration/resend/{email}")
+    public ResponseEntity<String> registrationResend(@PathVariable("email") String email) {
+        String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
     }
-
 }

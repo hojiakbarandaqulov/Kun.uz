@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>, PagingAndSortingRepository<ProfileEntity, Integer> {
-    @Query(value = "select * from profile where email = :phone and visible = true",nativeQuery = true)
-    Optional<ProfileEntity> findByEmailAndVisibleTrue(@Param("phone") String phone);
+    @Query(value = "select * from profile where email = :email and visible = true",nativeQuery = true)
+    Optional<ProfileEntity> findByEmailAndVisibleTrue(String email);
 
     @Transactional
     @Modifying
