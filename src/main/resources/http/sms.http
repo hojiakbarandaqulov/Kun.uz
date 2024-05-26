@@ -3,17 +3,16 @@ POST https://notify.eskiz.uz/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "couragesland@mail.ru",
-  "password": "n5KsX5kQ1nHWz5316bZM9XswuFEGnhU9HBFo6fbM"
+  "email": "handaqulov51@gmail.com",
+  "password": "TBpAnEfk8CuMPnOZlqxzfXrxJRugKwb9m7vXmfyZ"
 }
-
 ### Send sms
 POST https://notify.eskiz.uz/api/message/sms/send
 Content-Type: application/json
-AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyMTkxMjEsImlhdCI6MTcxNjYyNzEyMSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.JsGEGpML-svM4ZJe0C3v4vp49zoCWcm6W_MJFrmrx4s
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1NjcsImlhdCI6MTcxNjc0MzU2Nywicm9sZSI6InRlc3QiLCJzaWduIjoiY2M3MzMwOWJiMzcyMTE5MWY3ZDdhNjA1NWQyNjhjNjFlYTUzYjVmNzZlMGMxN2IzMjM2ZjQyM2JkNmQ2NDY5YyIsInN1YiI6Ijc0MDcifQ.uupi-OXW0fgOMF8jUqLL9wwUWEex9Hdxq1wOEfKlmSw
 
 {
-  "mobile_phone": "+998995092376",
+  "mobile_phone": "+998999476970",
   "message": "This is test from Eskiz",
   "from": "4546"
 }

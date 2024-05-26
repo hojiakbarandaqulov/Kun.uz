@@ -2,7 +2,7 @@ package dasturlash.uz.controller.history;
 
 import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.dto.history.SmsDTO;
-import dasturlash.uz.entity.history.EmailHistoryEntity;
+import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.service.AuthService;
 import dasturlash.uz.service.history.EmailHistoryService;
 import dasturlash.uz.service.history.SmsHistoryService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("sms")
+@RequestMapping("/sms")
 public class SmsHistory {
 
     @Autowired
@@ -29,22 +29,22 @@ public class SmsHistory {
         return ResponseEntity.ok().body(body);
     }
 
-   /* @GetMapping("/by/{phone}")
-    public ResponseEntity<EmailHistoryEntity> getByPhone(@PathVariable("phone") String email, @Valid @RequestBody SmsDTO smsDTO) {
-        EmailHistoryEntity body = smsHistoryService.getByPhone(email, smsDTO);
+    @GetMapping("/by/{phone}")
+    public ResponseEntity<SmsHistoryEntity> getByPhone(@PathVariable("phone") String phone, @Valid @RequestBody SmsDTO smsDTO) {
+        SmsHistoryEntity body = smsHistoryService.getByPhone(phone, smsDTO);
         return ResponseEntity.ok().body(body);
     }
 
     @GetMapping("/by/{created_date}")
-    public ResponseEntity<EmailHistoryEntity> getByCreatedDate(@PathVariable("created_date") LocalDateTime createdDate, @Valid @RequestBody EmailDTO emailDTO) {
-        EmailHistoryEntity body = smsHistoryService.getByCreatedDate(createdDate, emailDTO);
+    public ResponseEntity<SmsHistoryEntity> getByCreatedDate(@PathVariable("created_date") LocalDateTime createdDate, @Valid @RequestBody SmsDTO smsDTO) {
+        SmsHistoryEntity body = smsHistoryService.getByCreatedDate(createdDate, smsDTO);
         return ResponseEntity.ok().body(body);
     }
 
     @GetMapping("/pagination")
-    public ResponseEntity<PageImpl<EmailDTO>> emailPagination(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                              @RequestParam(value = "size", defaultValue = "10") int size) {
-        PageImpl<EmailDTO> body = smsHistoryService.paginationPhone(page - 1, size);
+    public ResponseEntity<PageImpl<SmsDTO>> emailPagination(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                            @RequestParam(value = "size", defaultValue = "10") int size) {
+        PageImpl<SmsDTO> body = smsHistoryService.paginationPhone(page - 1, size);
         return ResponseEntity.ok().body(body);
-    }*/
+    }
 }

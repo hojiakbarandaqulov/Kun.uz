@@ -4,7 +4,7 @@ import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.EmailHistoryRepository;
-import dasturlash.uz.service.SmsSenderService;
+import dasturlash.uz.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class   EmailHistoryService {
     @Autowired
     private EmailHistoryRepository emailHistoryRepository;
     @Autowired
-    private SmsSenderService smsService;
+    private SmsService smsService;
 
     public String crete(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();
@@ -78,8 +78,8 @@ public class   EmailHistoryService {
         }
         EmailHistoryEntity entity =new EmailHistoryEntity();
         entity.setCreatedDate(LocalDateTime.now());
-        entity.setEmail(emailDTO.getEmail());
-        entity.setMessage(emailDTO.getMessage());
+//        entity.setEmail(emailDTO.getEmail());
+//        entity.setMessage(emailDTO.getMessage());
         return entity;
     }
 

@@ -19,10 +19,9 @@ Content-Type: application/json
 
 
 ### resend in registration
-GET localhost:8080/auth/registration/resend/phone/+998995092376
+GET localhost:8080/auth/registration/resend/phone/+998999476970
 
-
-#### Delete
-#DELETE localhost:8080/region/delete/33
+###
+GET localhost:8080/auth/registration/resend/hojiakbarandaqulov5@gmail.com
 
 

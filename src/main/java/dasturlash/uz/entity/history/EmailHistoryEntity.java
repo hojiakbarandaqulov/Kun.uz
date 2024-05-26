@@ -16,7 +16,7 @@ public class EmailHistoryEntity {
     private Integer id;
     @Column(name = "message", columnDefinition = "text")
     private String message;
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();

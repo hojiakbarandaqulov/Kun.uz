@@ -1,32 +1,35 @@
 package dasturlash.uz.service.history;
 
-import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.dto.history.SmsDTO;
-import dasturlash.uz.entity.history.EmailHistoryEntity;
+import dasturlash.uz.dto.history.SmsDTO;
+import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.SmsHistoryRepository;
-import dasturlash.uz.service.SmsSenderService;
+import dasturlash.uz.service.SmsService;
+import dasturlash.uz.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class SmsHistoryService {
     @Autowired
-
-    private SmsHistoryRepository smsHistoryRepository; ;
+    private SmsHistoryRepository smsHistoryRepository;
     @Autowired
-    private SmsSenderService smsService;
+    private SmsService smsService;
 
-    public void crete(String toPhone, String text) {
+    public String crete(String toPhone, String text) {
         SmsHistoryEntity smsHistoryEntity=new SmsHistoryEntity();
         smsHistoryEntity.setPhone(toPhone);
-        smsHistoryEntity.setMessage(text);
+        smsHistoryEntity.setCode(text);
         smsHistoryRepository.save(smsHistoryEntity);
+        return null;
     }
 
     public void checkPhoneLimit(String phone) { // 1 minute -3 attempt
@@ -56,12 +59,48 @@ public class SmsHistoryService {
         }
     }
 
-  /*  public EmailHistoryEntity getByPhone(String email, SmsDTO smsDTO) {
+
+
+    public SmsHistoryEntity getByPhone(String phone,SmsDTO smsDTO) {
+        Optional<SmsHistoryEntity> byEmail = smsHistoryRepository.findByPhone(phone);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("Phone not found");
+        }
+        SmsHistoryEntity entity =new SmsHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setPhone(smsDTO.getPhone());
+        entity.setCode(smsDTO.getMessage());
+        return entity;
     }
 
-    public EmailHistoryEntity getByCreatedDate(LocalDateTime createdDate, EmailDTO emailDTO) {
+    public SmsHistoryEntity getByCreatedDate(LocalDateTime createdDate, SmsDTO smsDTO) {
+        Optional<SmsHistoryEntity> byEmail = smsHistoryRepository.findByCreatedDate(createdDate);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("CreatedDate not found");
+        }
+        SmsHistoryEntity entity =new SmsHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setPhone(smsDTO.getPhone());
+        entity.setCode(smsDTO.getMessage());
+        return entity;
+    }
+    public PageImpl<SmsDTO> paginationPhone(int page, int size) {
+        Sort sort=Sort.by(Sort.Order.desc("createdDate"));
+        Pageable pageable= PageRequest.of(page,size,sort);
+        Page<SmsHistoryEntity> all = smsHistoryRepository.findAll(pageable);
+        List<SmsDTO> sms=new LinkedList<>();
+        for (SmsHistoryEntity smsEntity : all.getContent()) {
+            sms.add(smsToDTO(smsEntity));
+        }
+        Long totalCount=all.getTotalElements();
+        return new PageImpl<SmsDTO>(sms,pageable,totalCount);
     }
 
-    public PageImpl<EmailDTO> paginationPhone(int page, int size) {
-    }*/
+    private SmsDTO smsToDTO(SmsHistoryEntity smsEntity) {
+        SmsDTO emailDTO = new SmsDTO();
+        emailDTO.setCreatedDate(smsEntity.getCreatedDate());
+        emailDTO.setMessage(smsEntity.getCode());
+        emailDTO.setPhone(smsEntity.getPhone());
+        return emailDTO;
+    }
 }

@@ -1,12 +1,11 @@
 ### GET request to example server
-GET localhost:8080/email/history/resent/hojiakbarandaqulov5@gmail.com
+GET localhost:8080/email/history/hojiakbarandaqulov5@gmail.com
 
 ### GET request to example server
 GET localhost:8080/email/by/12@gmail.com
 
-
-###
-GET http://localhost:8080/email/pagination2024-05-24 13:39:30.351203
-
-###
+### getByEmail
 GET http://localhost:8080/email/by/hojiakbarandaqulov5@gmail.com
+
+### Pagination
+GET http://localhost:8080/email/pagination?page=1&size=4

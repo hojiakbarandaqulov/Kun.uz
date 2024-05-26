@@ -1,33 +1,44 @@
 package dasturlash.uz.service;
 
+import dasturlash.uz.entity.history.SmsHistoryEntity;
+import dasturlash.uz.exp.AppBadException;
+import dasturlash.uz.repository.ProfileRepository;
+import dasturlash.uz.repository.SmsHistoryRepository;
 import dasturlash.uz.util.RandomUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
-public class SmsSenderService {
+public class SmsService {
+
     @Value("${sms.url}")
     private String smsUrl;
     @Value("${my.eskiz.uz.email}")
     private String myEskizUzEmail;
 
-//    @Value("${my.eskiz.uz.password}")
-    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyOTczMjksImlhdCI6MTcxNjcwNTMyOSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.roNBehHx4NVImf89UQBSbxVNBOqhWuAcv72ZrEytIJY")
+    @Value("${my.eskiz.uz.password}")
     private String myEskizUzPassword;
 
-    public String sendSms(String phone) {
+    @Autowired
+    private ProfileRepository profileRepository;
+    @Autowired
+    private SmsHistoryRepository smsHistoryRepository;
+    public void sendSms(String phone) {
         String code = RandomUtil.getRandomSmsCode();
-        String message = "This is test from Eskiz: " + code;
-        send(phone, message);
-        return null;
+        String message = "This is test from Eskiz " + code;
+        send(phone,code, message);
     }
 
-    public  void send(String phone, String message) {
-        String token = "bearer " + getToken();
+    private void send(String phone, String code, String message) {
+        String token = "Bearer " + getToken();
         String prPhone = phone;
         if (prPhone.startsWith("+")) {
             prPhone = prPhone.substring(1);
@@ -40,11 +51,21 @@ public class SmsSenderService {
                 .addFormDataPart("from", "4546")
                 .build();
 
-        okhttp3.Request request = new Request.Builder()
+        Request request = new Request.Builder()
                 .url(smsUrl + "api/message/sms/send")
                 .method("POST", body)
                 .header("Authorization", token)
                 .build();
+
+        Optional<SmsHistoryEntity> byPhone = profileRepository.findByPhone(phone);
+        boolean empty = byPhone.isEmpty();
+        if (empty) {
+            throw new AppBadException("Phone not exists");
+        }
+        SmsHistoryEntity entity = byPhone.get();
+        entity.setCode(code);
+        smsHistoryRepository.save(entity);
+
         try {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
@@ -85,7 +106,9 @@ public class SmsSenderService {
             e.printStackTrace();
             throw new RuntimeException();
         }
+
     }
+
 }
 
 
