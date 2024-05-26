@@ -12,4 +12,7 @@ public interface SmsHistoryRepository extends JpaRepository<SmsHistoryEntity,Int
 
 
     Optional<SmsHistoryEntity> findByPhone(String phone);
+
+    Optional<SmsHistoryEntity> findByCreatedDate(LocalDateTime createdDate);
+
 }

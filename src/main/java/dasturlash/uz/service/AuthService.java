@@ -120,14 +120,14 @@ public class AuthService {
     // phone resend
     public String registrationResendPhone(String phone) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);
-       /* if (optional.isEmpty()) {
+        if (optional.isEmpty()) {
             throw new AppBadException("Phone not exists");
-        }*/
+        }
         ProfileEntity entity = optional.get();
         smsHistoryService.isNotExpiredPhone(entity.getPhone());// check for expireation date
-      /*  if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
+        if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             throw new AppBadException("Registration not completed");
-        }*/
+        }
         smsHistoryService.checkPhoneLimit(phone);
         sendRegistrationPhone(entity.getId(), phone);
         return "To complete your registration please verify your phone.";

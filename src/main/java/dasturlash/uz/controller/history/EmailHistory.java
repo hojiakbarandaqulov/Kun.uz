@@ -26,7 +26,6 @@ public class EmailHistory {
         String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
     }
-
     @GetMapping("/by/{email}")
     public ResponseEntity<EmailHistoryEntity> getByEmail(@PathVariable("email") String email, @Valid @RequestBody EmailDTO emailDTO) {
         EmailHistoryEntity body = emailHistoryService.getByEmail(email, emailDTO);

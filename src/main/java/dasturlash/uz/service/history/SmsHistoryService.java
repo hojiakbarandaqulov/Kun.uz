@@ -1,24 +1,25 @@
 package dasturlash.uz.service.history;
 
-import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.dto.history.SmsDTO;
-import dasturlash.uz.entity.history.EmailHistoryEntity;
+import dasturlash.uz.dto.history.SmsDTO;
+import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.SmsHistoryRepository;
 import dasturlash.uz.service.SmsSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class SmsHistoryService {
     @Autowired
-
-    private SmsHistoryRepository smsHistoryRepository; ;
+    private SmsHistoryRepository smsHistoryRepository;
     @Autowired
     private SmsSenderService smsService;
 
@@ -56,12 +57,46 @@ public class SmsHistoryService {
         }
     }
 
-  /*  public EmailHistoryEntity getByPhone(String email, SmsDTO smsDTO) {
+    public SmsHistoryEntity getByPhone(String email,SmsDTO smsDTO) {
+        Optional<SmsHistoryEntity> byEmail = smsHistoryRepository.findByPhone(email);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("Email not found");
+        }
+        SmsHistoryEntity entity =new SmsHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setPhone(smsDTO.getPhone());
+        entity.setMessage(smsDTO.getMessage());
+        return entity;
     }
 
-    public EmailHistoryEntity getByCreatedDate(LocalDateTime createdDate, EmailDTO emailDTO) {
+    public SmsHistoryEntity getByCreatedDate(LocalDateTime createdDate, SmsDTO smsDTO) {
+        Optional<SmsHistoryEntity> byEmail = smsHistoryRepository.findByCreatedDate(createdDate);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("CreatedDate not found");
+        }
+        SmsHistoryEntity entity =new SmsHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setPhone(smsDTO.getPhone());
+        entity.setMessage(smsDTO.getMessage());
+        return entity;
+    }
+    public PageImpl<SmsDTO> paginationPhone(int page, int size) {
+        Sort sort=Sort.by(Sort.Order.desc("createdDate"));
+        Pageable pageable= PageRequest.of(page,size,sort);
+        Page<SmsHistoryEntity> all = smsHistoryRepository.findAll(pageable);
+        List<SmsDTO> sms=new LinkedList<>();
+        for (SmsHistoryEntity smsEntity : all.getContent()) {
+            sms.add(smsToDTO(smsEntity));
+        }
+        Long totalCount=all.getTotalElements();
+        return new PageImpl<SmsDTO>(sms,pageable,totalCount);
     }
 
-    public PageImpl<EmailDTO> paginationPhone(int page, int size) {
-    }*/
+    private SmsDTO smsToDTO(SmsHistoryEntity smsEntity) {
+        SmsDTO emailDTO = new SmsDTO();
+        emailDTO.setCreatedDate(smsEntity.getCreatedDate());
+        emailDTO.setMessage(smsEntity.getMessage());
+        emailDTO.setPhone(smsEntity.getPhone());
+        return emailDTO;
+    }
 }

@@ -1,8 +1,11 @@
 package dasturlash.uz.service;
 
+import dasturlash.uz.entity.history.SmsHistoryEntity;
+import dasturlash.uz.repository.SmsHistoryRepository;
 import dasturlash.uz.util.RandomUtil;
 import okhttp3.*;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,11 @@ public class SmsSenderService {
     @Value("${my.eskiz.uz.email}")
     private String myEskizUzEmail;
 
-//    @Value("${my.eskiz.uz.password}")
-    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyOTczMjksImlhdCI6MTcxNjcwNTMyOSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.roNBehHx4NVImf89UQBSbxVNBOqhWuAcv72ZrEytIJY")
+    @Value("${my.eskiz.uz.password}")
+//    @Value("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkyOTczMjksImlhdCI6MTcxNjcwNTMyOSwicm9sZSI6InRlc3QiLCJzaWduIjoiYWRmODk1MDJhZDAyYjBlNDJjNTgwYTNiYmE3NmMyNGQwNjlhYWRmMTQ5NWY2N2Y1ZmEwNjc5OTBlMTE4YjU4NiIsInN1YiI6Ijc0MDIifQ.roNBehHx4NVImf89UQBSbxVNBOqhWuAcv72ZrEytIJY")
     private String myEskizUzPassword;
-
+    @Autowired
+    private SmsHistoryRepository smsHistoryRepository;
     public String sendSms(String phone) {
         String code = RandomUtil.getRandomSmsCode();
         String message = "This is test from Eskiz: " + code;
@@ -33,7 +37,6 @@ public class SmsSenderService {
             prPhone = prPhone.substring(1);
         }
         OkHttpClient client = new OkHttpClient();
-
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("mobile_phone", prPhone)
                 .addFormDataPart("message", message)
