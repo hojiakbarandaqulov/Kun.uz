@@ -31,13 +31,14 @@ public class SmsService {
     private ProfileRepository profileRepository;
     @Autowired
     private SmsHistoryRepository smsHistoryRepository;
-    public void sendSms(String phone) {
+    public String sendSms(String phone) {
         String code = RandomUtil.getRandomSmsCode();
-        String message = "This is test from Eskiz " + code;
-        send(phone,code, message);
+        String message = "This is test from Eskiz";
+        send(phone,message);
+        return null;
     }
 
-    private void send(String phone, String code, String message) {
+    private void send(String phone, String message) {
         String token = "Bearer " + getToken();
         String prPhone = phone;
         if (prPhone.startsWith("+")) {
@@ -56,18 +57,9 @@ public class SmsService {
                 .method("POST", body)
                 .header("Authorization", token)
                 .build();
-
-        Optional<SmsHistoryEntity> byPhone = profileRepository.findByPhone(phone);
-        boolean empty = byPhone.isEmpty();
-        if (empty) {
-            throw new AppBadException("Phone not exists");
-        }
-        SmsHistoryEntity entity = byPhone.get();
-        entity.setCode(code);
-        smsHistoryRepository.save(entity);
-
         try {
             Response response = client.newCall(request).execute();
+            System.out.println(response);
             if (response.isSuccessful()) {
                 System.out.println(response);
             } else {
@@ -94,7 +86,7 @@ public class SmsService {
         Response response;
         try {
             response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
+            if (response.isSuccessful()) {
                 throw new IOException();
             } else {
                 JSONObject object = new JSONObject(response.body().string());

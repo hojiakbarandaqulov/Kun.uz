@@ -1,5 +1,6 @@
 package dasturlash.uz.service;
 
+import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
@@ -10,6 +11,7 @@ import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ProfileRepository;
 import dasturlash.uz.service.history.EmailHistoryService;
 import dasturlash.uz.service.history.SmsHistoryService;
+import dasturlash.uz.util.JwtUtil;
 import dasturlash.uz.util.MD5Util;
 import dasturlash.uz.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,11 +101,10 @@ public class AuthService {
         return "Success";
     }
 //login email
-    public AuthResponseDTO login(LoginDTO dto) {
+   /* public AuthResponseDTO login(LoginDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndPasswordAndVisible(
                 dto.getEmail(),
-                MD5Util.getMD5(dto.getPassword()),
-                true);
+              );
         if (optional.isEmpty()) {
              throw new AppBadException("Email or password incorrect");
         }
@@ -116,12 +117,11 @@ public class AuthService {
         responseDTO.setSurname(entity.getSurname());
         responseDTO.setRole(entity.getRole());
         return responseDTO;
-    }
-    public AuthResponseDTO loginPhone(LoginDTO dto) {
-        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisible(
+    }*/
+    public ProfileDTO loginPhone(LoginDTO dto) {
+        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisibleIsTrue(
                 dto.getPhone(),
-                MD5Util.getMD5(dto.getPassword()),
-                true);
+                MD5Util.getMD5(dto.getPassword()));
         if (optional.isEmpty()) {
             throw new AppBadException("Phone or password incorrect");
         }
@@ -129,10 +129,14 @@ public class AuthService {
         if (entity.getStatus().equals(ProfileStatus.ACTIVE)) {
             throw new AppBadException("Wrong status");
         }
-        AuthResponseDTO responseDTO = new AuthResponseDTO();
+        ProfileDTO responseDTO = new ProfileDTO();
+        responseDTO.setId(entity.getId());
         responseDTO.setName(entity.getName());
         responseDTO.setSurname(entity.getSurname());
+        responseDTO.setEmail(entity.getEmail());
+        responseDTO.setPhone(entity.getPhone());
         responseDTO.setRole(entity.getRole());
+        responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), responseDTO.getRole()));
         return responseDTO;
     }
     // phone resend

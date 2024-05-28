@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/sms")
+@RequestMapping("/api")
 public class SmsHistory {
 
     @Autowired

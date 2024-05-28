@@ -18,7 +18,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   @NotNull HttpHeaders headers,
                                                                   HttpStatusCode status,
-                                                                  WebRequest request) {
+                                                                  @NotNull WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", new Date());
         body.put("status", status.value());

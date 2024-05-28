@@ -59,12 +59,13 @@ public class   EmailHistoryService {
         }
     }
 
-    public EmailHistoryEntity getByEmail(String email,EmailDTO emailDTO) {
+    public EmailHistoryEntity getByEmail(String email) {
          Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByEmail(email);
          if (byEmail.isEmpty()) {
              throw new AppBadException("Email not found");
          }
          EmailHistoryEntity entity =new EmailHistoryEntity();
+         EmailDTO emailDTO=new EmailDTO();
          entity.setCreatedDate(LocalDateTime.now());
          entity.setEmail(emailDTO.getEmail());
          entity.setMessage(emailDTO.getMessage());

@@ -5,16 +5,16 @@ Content-Type: application/json
 {
   "name": "Toshmat",
   "surname": "Toshmatov",
-  "phone": "+998995092376",
+  "phone": "+998953332333",
   "password": "54321"
 }
 ### Login
-POST localhost:8080/auth/login
+POST localhost:8080/auth/login/phone
 Content-Type: application/json
 
 {
-  "email": "hojiakbarandaqulov5@gmail.com",
-  "password": "321"
+  "phone": "+998953332333",
+  "password": "54321"
 }
 
 

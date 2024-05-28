@@ -30,14 +30,11 @@ public class TypesController {
         TypesDTO response = typesService.create(dto);
         return ResponseEntity.ok().body(response);
     }
-
-
     @PutMapping("/update/{id}")
     public ResponseEntity<Boolean> update(@PathVariable("id") Integer id, @Valid @RequestBody TypesDTO dto) {
         typesService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id) {
         typesService.delete(id);

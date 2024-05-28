@@ -1,45 +1,56 @@
 ### Registration
-POST localhost:8080/auth/registration
+POST http://localhost:8080/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Raxmonali",
-  "surname": "Andaqulov",
-  "phone": "+998999476970",
+  "name": "Alish",
+  "surname": "Alishev",
+  "phone": "+9989993332211",
   "password": "1234"
 }
-
-### Put Profile to example server
-PUT localhost:8080/profile/update/7
+####
+POST http://localhost:8080/profile/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTY5OTU4MDksInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTcwODIyMDksImlzcyI6Ikt1blV6VGVzdCJ9.T55rvoqnScNQKNwCvt8eDk7B2Fmq3VKTKn7qzW2KEIZCZE491TRlsZRXvbNUD6-PLXnAlnNQHdvaLagGU4x_Ow
 
 {
-  "name": "Alish",
-  "surname": "Alishev",
-  "email": "alish@gmail.com",
-  "phone": "993333233",
+  "name": "Valish",
+  "surname": "Valiyev",
+  "email": "valish@gmail.com",
+  "phone": "995092378",
   "password": "1234",
-  "status": "ACTIVE",
-  "role": "ROLE_ADMIN"
+  "status": "REGISTRATION",
+  "role": "ROLE_USER"
 }
 
-### Put Profile to example server
-PUT localhost:8080/profile/update/USER
+### Profile update detail
+PUT  http://localhost:8080/profile/current
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwMDEyNjYsImlkIjo2LCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzE3MDg3NjY2LCJpc3MiOiJLdW5VelRlc3QifQ.ZBUDfwLifNFToKvkMhrp4M0qB7hQVPlqWWCMtx2ydnq6OekxECJaTfKtIc-jobViRU8eDvPkREQTC8RKusl5lQ
+
+{
+  "name": "Valish",
+  "surname": "Valishev"
+}
+
+###
+PUT http://localhost:8080/profile/update/5
 Content-Type: application/json
 
 {
-  "name": "Alish",
-  "surname": "Alishev",
-  "email": "alish@gmail.com",
-  "phone": "993333233",
-  "password": "1234",
-  "status": "ACTIVE"
+"name": "Alish",
+"surname": "Alishev",
+"email": "ali@gmail.com",
+"phone": "9989955533322",
+"password": "1234",
+"status": "ACTIVE",
+"role": "ROLE_ADMIN"
 }
 ### Get all Profile to example server
-GET localhost:8080/profile/profilePagination?page=1&size=3
+GET  http://localhost:8080/profile/profilePagination?page=1&size=3
 
 ### Delete ById Profile to example server
-DELETE localhost:8080/profile/delete/4
+DELETE http://localhost:8080/profile/delete/6
 
 ###
 POST http://localhost:8080/profile/filter?page=1&size=3

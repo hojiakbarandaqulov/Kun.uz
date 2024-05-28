@@ -1,8 +1,11 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.*;
+import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.ProfileService;
+import dasturlash.uz.util.JwtUtil;
+import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -17,23 +20,29 @@ import java.io.IOException;
 public class ProfileController {
     @Autowired
     private ProfileService profileService;
+
     @PostMapping("/create")
-    public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO){
-        ProfileDTO response=profileService.create(profileDTO);
+    public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO,
+                                             @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
+        ProfileDTO response = profileService.create(profileDTO);
         return ResponseEntity.ok().body(response);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Boolean> updateRegion(@PathVariable("id") Integer id,
-                                                @Valid @RequestBody ProfileCreateDTO dto) {
-        Boolean result = profileService.update(id, dto);
-        return ResponseEntity.ok().body(result);
+    @PutMapping("/current")
+    public ResponseEntity<Boolean> updateUser(@RequestBody ProfileUpdateDTO profile,
+                                              @RequestHeader("Authorization") String token) {
+        JwtDTO dto = SecurityUtil.getJwtDTO(token);
+        profileService.updateUser(dto.getId(), profile);
+        return ResponseEntity.ok().body(true);
     }
-/* @PutMapping("/update/{role}")
-    public ResponseEntity<Boolean> updateUserRegion(@PathVariable("role") ProfileRole role,
-                                                    @Valid @RequestBody ProfileCreateDTO dto) {
-        Boolean result = profileService.updateRole(role, dto);
-        return ResponseEntity.ok().body(result);
-    }*/
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> update(@Valid @RequestBody ProfileCreateDTO profile,
+                                          @RequestHeader("Authorization") String token) {
+        JwtDTO dto = SecurityUtil.getJwtDTO(token);
+        profileService.update(dto.getId(), profile);
+        return ResponseEntity.ok().body(true);
+    }
     @GetMapping("/profilePagination")
     public ResponseEntity<PageImpl<ProfileDTO>> getAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "size", defaultValue = "10") int size) {
@@ -41,17 +50,17 @@ public class ProfileController {
         return ResponseEntity.ok().body(typeList);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id) {
-        profileService.delete(id);
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id,
+                                          @RequestHeader("Authorization") String token) {
+        JwtDTO dto = SecurityUtil.getJwtDTO(token);
+        profileService.delete(dto.getId(), id);
         return ResponseEntity.ok().body(true);
     }
     @PostMapping("/filter")
     public ResponseEntity<PageImpl<ProfileDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "size", defaultValue = "10") int size,
                                                                @RequestBody ProfileFilterDTO filter) {
-        PageImpl<ProfileDTO> studentDTOList = profileService.filter(filter,page - 1, size);
+        PageImpl<ProfileDTO> studentDTOList = profileService.filter(filter, page - 1, size);
         return ResponseEntity.ok().body(studentDTOList);
     }
-
-
 }

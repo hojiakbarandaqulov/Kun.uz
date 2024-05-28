@@ -17,7 +17,16 @@ AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1N
   "from": "4546"
 }
 
+### Sms resend
+POST http://localhost:8080/sms/resent/+998995092376
+Content-Type: application/json
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1NjcsImlhdCI6MTcxNjc0MzU2Nywicm9sZSI6InRlc3QiLCJzaWduIjoiY2M3MzMwOWJiMzcyMTE5MWY3ZDdhNjA1NWQyNjhjNjFlYTUzYjVmNzZlMGMxN2IzMjM2ZjQyM2JkNmQ2NDY5YyIsInN1YiI6Ijc0MDcifQ.uupi-OXW0fgOMF8jUqLL9wwUWEex9Hdxq1wOEfKlmSw
 
+{
+  "mobile_phone": "+998995092376",
+  "message": "This is test from Eskiz",
+  "from": "4546"
+}
 
 
 

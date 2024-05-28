@@ -23,4 +23,5 @@ public class ProfileDTO {
     private Boolean visible;
     private LocalDate createdDate;
     private Integer photoId;
+    private String jwt;
 }

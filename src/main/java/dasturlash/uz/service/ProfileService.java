@@ -3,6 +3,7 @@ package dasturlash.uz.service;
 import dasturlash.uz.dto.*;
 import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
+import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.customRepository.ProfileCustomRepository;
 import dasturlash.uz.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,27 @@ public class ProfileService {
         return profileToDTO(entity);
 
     }
-
-    public Boolean update(Integer id, ProfileCreateDTO dto) {
-        ProfileEntity entity = get(id);
-        entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
-        entity.setEmail(dto.getEmail());
-        entity.setPhone(dto.getPhone());
-        entity.setPassword(dto.getPassword());
-        entity.setStatus(dto.getStatus());
-        entity.setRole(dto.getRole());
-        profileRepository.save(entity);
+    public Boolean update(Integer id, ProfileCreateDTO profile) {
+        ProfileEntity profileEntity = get(id);
+        profileEntity.setName(profile.getName());
+        profileEntity.setSurname(profile.getSurname());
+        profileEntity.setEmail(profile.getEmail());
+        profileEntity.setPhone(profile.getPhone());
+        profileEntity.setPassword(profile.getPassword());
+        profileEntity.setStatus(profile.getStatus());
+        profileEntity.setRole(profile.getRole());
+        profileRepository.save(profileEntity);
         return true;
     }
 
+
+    public Boolean updateUser(Integer id, ProfileUpdateDTO profileUser) {
+        ProfileEntity profileEntity = get(id);
+        profileEntity.setName(profileUser.getName());
+        profileEntity.setSurname(profileUser.getSurname());
+        profileRepository.save(profileEntity);
+        return true;
+    }
     public ProfileDTO profileToDTO(ProfileEntity entity) {
         ProfileDTO profileDTO = new ProfileDTO();
         profileDTO.setId(entity.getId());
@@ -58,8 +66,10 @@ public class ProfileService {
         return profileDTO;
     }
 
-    private ProfileEntity get(Integer id) {
-        return profileRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Profile not found"));
+    public ProfileEntity get(Integer id) {
+        return profileRepository.findById(id).orElseThrow(() -> {
+            throw new AppBadException("Profile not found");
+        });
     }
 
 
@@ -77,7 +87,7 @@ public class ProfileService {
         return new PageImpl<ProfileDTO>(dtoList, pageable, totalCount);
     }
 
-    public Boolean delete(Integer id) {
+    public Boolean delete(Integer jwtDTO, Integer id) {
         profileRepository.deleteById(id);
         return true;
     }

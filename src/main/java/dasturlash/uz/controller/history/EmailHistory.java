@@ -27,11 +27,10 @@ public class EmailHistory {
         return ResponseEntity.ok().body(body);
     }
     @GetMapping("/by/{email}")
-    public ResponseEntity<EmailHistoryEntity> ByEmail(@PathVariable String email, @Valid @RequestBody  EmailDTO emailDTO) {
-        EmailHistoryEntity body = emailHistoryService.getByEmail(email, emailDTO);
+    public ResponseEntity<EmailHistoryEntity> ByEmail(@PathVariable("email") String email) {
+        EmailHistoryEntity body = emailHistoryService.getByEmail(email);
         return ResponseEntity.ok().body(body);
     }
-
    /* @GetMapping("/created_date/{created_date}")
     public ResponseEntity<EmailHistoryEntity> getByCreatedDate(@PathVariable("created_date") LocalDateTime createdDate, @Valid @RequestBody EmailDTO emailDTO) {
         EmailHistoryEntity body = emailHistoryService.getByCreatedDate(createdDate, emailDTO);

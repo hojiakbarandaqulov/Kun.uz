@@ -3,6 +3,7 @@ package dasturlash.uz.entity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,19 +26,20 @@ public class ProfileEntity {
     @Column(name = "email",unique = true)
     private String email;
     @Column(name = "phone",unique = true)
+    @Size(min = 9,max = 13)
     private String phone;
     @Column(name = "password")
     private String password;
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    @Enumerated(EnumType.STRING)
     private ProfileStatus status;
-    @Column(name = "role")
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private ProfileRole role;
     @Column(name = "visible")
-    private Boolean visible=Boolean.TRUE;
+    private Boolean visible = Boolean.TRUE;
     @Column(name = "created_date")
-    private LocalDateTime createdDate=LocalDateTime.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
     @Column(name = "photo_id")
     private Integer photoId;
 
