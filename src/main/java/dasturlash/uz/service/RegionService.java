@@ -31,6 +31,7 @@ public class RegionService {
 
     public Boolean update(Integer id,  RegionCreateDTO dto) {
         RegionEntity entity = get(id);
+        entity.setOrderNumber(dto.getOrderNumber());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
@@ -58,7 +59,7 @@ public class RegionService {
         return true;
     }
 
-    public List<RegionDTO> getAll() {
+    public List<RegionDTO> getAll(Integer id) {
         Iterable<RegionEntity> entity = regionRepository.findAll();
         List<RegionDTO> dtoList = new LinkedList<>();
         for (RegionEntity region : entity) {

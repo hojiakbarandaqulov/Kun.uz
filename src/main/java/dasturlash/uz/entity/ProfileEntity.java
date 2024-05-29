@@ -26,7 +26,7 @@ public class ProfileEntity {
     @Column(name = "email",unique = true)
     private String email;
     @Column(name = "phone",unique = true)
-    @Size(min = 9,max = 13)
+    @Size(min = 9,max = 14)
     private String phone;
     @Column(name = "password")
     private String password;

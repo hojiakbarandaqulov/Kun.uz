@@ -1,6 +1,7 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.dto.*;
+import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.exp.AppBadException;
@@ -32,7 +33,7 @@ public class ProfileService {
         return profileToDTO(entity);
 
     }
-    public Boolean update(Integer id, ProfileCreateDTO profile) {
+    public Boolean update(Integer id,ProfileCreateDTO profile) {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profile.getName());
         profileEntity.setSurname(profile.getSurname());
@@ -87,7 +88,7 @@ public class ProfileService {
         return new PageImpl<ProfileDTO>(dtoList, pageable, totalCount);
     }
 
-    public Boolean delete(Integer jwtDTO, Integer id) {
+    public Boolean deleteId(Integer id) {
         profileRepository.deleteById(id);
         return true;
     }

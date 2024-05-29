@@ -1,19 +1,19 @@
 ### Post Region to example server
-POST localhost:8080//region/create
+POST http://localhost:8080/region/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTY5MDk1NDQsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTY5OTU5NDQsImlzcyI6Ikt1blV6VGVzdCJ9.vJS4-nqegy-mGNIWN-sV_DB5RkmK2PP0J12dgGXLLhW3-Wp5eTjDhH1WqKUF54AlYcUmDpSr2CwQd6hCyj6Y8w
 
 {
-  "orderNumber": 4,
-  "nameUz": "Samarqand",
-  "nameRu": "Самарканд",
-  "nameEn": "Samarkand",
-  "visible": true,
-  "createdDate": "2024-05-15"
+  "orderNumber": 0,
+  "nameUz": "Jizzax",
+  "nameRu": "Djizzax",
+  "nameEn": "Jizzakh"
 }
 
 ### Put Region example server
-PUT localhost:8080/region/update/1
+PUT localhost:8080/region/update/7
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwMzIzNDQsImlkIjo3LCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzE3MTE4NzQ0LCJpc3MiOiJLdW5VelRlc3QifQ.OKS7JsH8uWdMgms6KEmAyxZWIHWicJrrstDFodzs4jPUR7nlvz41Nj55NrrTaE71BpuuCdOmcyjSdxtQ3o7dcA
 
 {
   "orderNumber": 4,
@@ -22,7 +22,8 @@ Content-Type: application/json
   "nameEn": "Samarkand"
 }
 ### Delete Region example server
-DELETE localhost:8080/region/delete/1
+DELETE localhost:8080/region/delete/7
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwMzIzNDQsImlkIjo3LCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzE3MTE4NzQ0LCJpc3MiOiJLdW5VelRlc3QifQ.OKS7JsH8uWdMgms6KEmAyxZWIHWicJrrstDFodzs4jPUR7nlvz41Nj55NrrTaE71BpuuCdOmcyjSdxtQ3o7dcA
 
 ### Get all Region example server
 GET localhost:8080/region/regionAll

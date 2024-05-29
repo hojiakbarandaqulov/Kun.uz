@@ -40,12 +40,14 @@ public class ProfileController {
     public ResponseEntity<Boolean> update(@Valid @RequestBody ProfileCreateDTO profile,
                                           @RequestHeader("Authorization") String token) {
         JwtDTO dto = SecurityUtil.getJwtDTO(token);
-        profileService.update(dto.getId(), profile);
+        profileService.update(dto.getId(),profile);
         return ResponseEntity.ok().body(true);
     }
     @GetMapping("/profilePagination")
     public ResponseEntity<PageImpl<ProfileDTO>> getAll(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                       @RequestParam(value = "size", defaultValue = "10") int size) {
+                                                       @RequestParam(value = "size", defaultValue = "10") int size,
+                                                       @RequestHeader("Authorization") String token) {
+        JwtDTO dto = SecurityUtil.getJwtDTO(token);
         PageImpl<ProfileDTO> typeList = profileService.getAllPagination(page - 1, size);
         return ResponseEntity.ok().body(typeList);
     }
@@ -53,13 +55,16 @@ public class ProfileController {
     public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id,
                                           @RequestHeader("Authorization") String token) {
         JwtDTO dto = SecurityUtil.getJwtDTO(token);
-        profileService.delete(dto.getId(), id);
+        profileService.deleteId(dto.getId());
         return ResponseEntity.ok().body(true);
     }
+
     @PostMapping("/filter")
     public ResponseEntity<PageImpl<ProfileDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "size", defaultValue = "10") int size,
-                                                               @RequestBody ProfileFilterDTO filter) {
+                                                               @RequestBody ProfileFilterDTO filter,
+                                                               @RequestHeader("Authorization") String token) {
+        JwtDTO dto = SecurityUtil.getJwtDTO(token);
         PageImpl<ProfileDTO> studentDTOList = profileService.filter(filter, page - 1, size);
         return ResponseEntity.ok().body(studentDTOList);
     }

@@ -86,7 +86,7 @@ public class SmsService {
         Response response;
         try {
             response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
+            if (!response.isSuccessful()) {
                 throw new IOException();
             } else {
                 JSONObject object = new JSONObject(response.body().string());

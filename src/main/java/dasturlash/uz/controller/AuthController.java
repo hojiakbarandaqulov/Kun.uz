@@ -4,7 +4,9 @@ import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
+import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.AuthService;
+import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,9 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/registration")
-    public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto) {
+    public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto,
+                                               @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         String body = authService.registration(dto);
         return ResponseEntity.ok().body(body);
     }
