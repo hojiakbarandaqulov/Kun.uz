@@ -1,14 +1,12 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.CategoryCreateDTO;
 import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.RegionDTO;
+import dasturlash.uz.dto.create.CategoryCreateDTO;
+//import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.entity.CategoryEntity;
-import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.Language;
 import dasturlash.uz.mapper.CategoryMapper;
 import dasturlash.uz.repository.CategoryRepository;
-import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

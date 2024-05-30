@@ -12,16 +12,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwic
 ####
 POST http://localhost:8080/profile/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE3MjgsImlkIjoyMywicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE3MTcxNjgxMjgsImlzcyI6Ikt1blV6VGVzdCJ9.u4zF86sedFPy5X_nMMAB5XaKizcKSpUw44lKJOuqC0C5Y3YJ3dxIV1FfDzTEmcxPTQyRlQJemevnTpmQqesQTg
 
 {
-  "name": "Valish",
+  "name": "Alis",
   "surname": "Valiyev",
   "email": "valish@gmail.com",
-  "phone": "995092379",
+  "phone": "+998995092381",
   "password": "1234",
   "status": "REGISTRATION",
-  "role": "ROLE_USER"
+  "role": "ROLE_ADMIN"
 }
 
 ### Profile update detail
@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwic
 ###
 PUT http://localhost:8080/profile/update/7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE0NzcsImlkIjoyMywicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE2Nzg3NywiaXNzIjoiS3VuVXpUZXN0In0.itZ1sMRWL432Todd0Gecx1o7EbKyLQcdKD1vehVavv7zSPSE5-8L9aRNiQ1l9kj3VlXwgBs2QeDpx-8gqh_EYw
 
 {
 "name": "Alish",

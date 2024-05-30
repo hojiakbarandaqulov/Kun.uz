@@ -1,23 +1,14 @@
 package dasturlash.uz.repository;
 
-import dasturlash.uz.controller.history.EmailHistory;
 import dasturlash.uz.entity.ProfileEntity;
-import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.entity.history.SmsHistoryEntity;
-import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>, PagingAndSortingRepository<ProfileEntity, Integer> {

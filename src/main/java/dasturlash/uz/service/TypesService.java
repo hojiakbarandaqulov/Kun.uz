@@ -1,14 +1,11 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.RegionDTO;
-import dasturlash.uz.dto.TypesCreatedDto;
+import dasturlash.uz.dto.create.TypesCreatedDto;
 import dasturlash.uz.dto.TypesDTO;
 import dasturlash.uz.entity.TypesEntity;
 import dasturlash.uz.enums.Language;
-import dasturlash.uz.mapper.RegionMapper;
 import dasturlash.uz.mapper.TypesMapper;
 import dasturlash.uz.repository.TypesRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.dto.*;
-import dasturlash.uz.dto.auth.JwtDTO;
+import dasturlash.uz.dto.create.ProfileCreateDTO;
 import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.exp.AppBadException;
@@ -31,7 +31,6 @@ public class ProfileService {
         entity.setRole(profileDTO.getRole());
         profileRepository.save(entity);
         return profileToDTO(entity);
-
     }
     public Boolean update(Integer id,ProfileCreateDTO profile) {
         ProfileEntity profileEntity = get(id);

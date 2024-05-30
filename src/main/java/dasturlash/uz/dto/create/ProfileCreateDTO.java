@@ -1,10 +1,9 @@
-package dasturlash.uz.dto;
+package dasturlash.uz.dto.create;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.enums.ProfileStatus;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;

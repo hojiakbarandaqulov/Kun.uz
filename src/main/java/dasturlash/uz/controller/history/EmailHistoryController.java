@@ -4,18 +4,14 @@ import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.service.AuthService;
 import dasturlash.uz.service.history.EmailHistoryService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
 @RestController
 @RequestMapping("/email")
-public class EmailHistory {
+public class EmailHistoryController {
     @Autowired
     private AuthService authService;
     @Autowired

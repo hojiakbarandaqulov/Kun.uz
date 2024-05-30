@@ -27,10 +27,6 @@ public class SmsService {
     @Value("${my.eskiz.uz.password}")
     private String myEskizUzPassword;
 
-    @Autowired
-    private ProfileRepository profileRepository;
-    @Autowired
-    private SmsHistoryRepository smsHistoryRepository;
     public String sendSms(String phone) {
         String code = RandomUtil.getRandomSmsCode();
         String message = "This is test from Eskiz";

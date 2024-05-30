@@ -1,6 +1,6 @@
 package dasturlash.uz.controller;
 
-import dasturlash.uz.dto.CategoryCreateDTO;
+import dasturlash.uz.dto.create.CategoryCreateDTO;
 import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.enums.Language;
@@ -19,34 +19,25 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-    @PostMapping("/create")
-    public ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryCreateDTO region,
-                                              @RequestHeader("Authorization") String token) {
-        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
+    @PostMapping("/adm/create")
+    public ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryCreateDTO region) {
         CategoryDTO response = categoryService.create(region);
         return ResponseEntity.ok().body(response);
     }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Boolean> updateRegion(@Valid @RequestBody CategoryCreateDTO dto,
-                                                @RequestHeader("Authorization") String token) {
-        JwtDTO jwtDTO=SecurityUtil.getJwtDTO(token);
-        Boolean result = categoryService.update(jwtDTO.getId(), dto);
+    @PutMapping("/adm/update/{id}")
+    public ResponseEntity<Boolean> updateRegion(@PathVariable("id")Integer id,@Valid @RequestBody CategoryCreateDTO dto) {
+        Boolean result = categoryService.update(id, dto);
         return ResponseEntity.ok().body(result);
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteRegion(@PathVariable("id") Integer id,
-                                                @RequestHeader("Authorization") String token) {
-        JwtDTO jwtDTO=SecurityUtil.getJwtDTO(token);
-        Boolean result = categoryService.delete(jwtDTO.getId());
+    @DeleteMapping("/adm/delete/{id}")
+    public ResponseEntity<Boolean> deleteRegion(@PathVariable("id") Integer id) {
+        Boolean result = categoryService.delete(id);
         return ResponseEntity.ok().body(result);
     }
-    @GetMapping("/all")
+    @GetMapping("/adm/all")
     public ResponseEntity<List<CategoryDTO>> all() {
         return ResponseEntity.ok().body(categoryService.getAll());
     }
-
     @GetMapping("/lang")
     public ResponseEntity<List<CategoryDTO>> getAllByLang(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language lang) {
         List<CategoryDTO> categoryList = categoryService.getAllByLanguage(lang);

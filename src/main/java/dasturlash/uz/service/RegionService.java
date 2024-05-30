@@ -1,12 +1,11 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.dto.RegionCreateDTO;
+import dasturlash.uz.dto.create.RegionCreateDTO;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.Language;
 import dasturlash.uz.mapper.RegionMapper;
 import dasturlash.uz.repository.RegionRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +58,7 @@ public class RegionService {
         return true;
     }
 
-    public List<RegionDTO> getAll(Integer id) {
+    public List<RegionDTO> getAll() {
         Iterable<RegionEntity> entity = regionRepository.findAll();
         List<RegionDTO> dtoList = new LinkedList<>();
         for (RegionEntity region : entity) {

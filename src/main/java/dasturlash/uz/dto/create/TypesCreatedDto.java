@@ -1,4 +1,4 @@
-package dasturlash.uz.dto;
+package dasturlash.uz.dto.create;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
@@ -9,13 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class RegionCreateDTO {
+public class TypesCreatedDto {
     @NotNull
     private Integer orderNumber;
-    @NotBlank(message = "NameUz required")
+    @NotBlank(message = "nameUz required")
     private String nameUz;
-    @NotBlank(message = "NameRu required")
+    @NotBlank(message = "nameRu required")
     private String nameRu;
-    @NotBlank(message = "NameEn required")
+    @NotBlank(message = "nameEn required")
     private String nameEn;
 }

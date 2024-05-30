@@ -1,10 +1,8 @@
 package dasturlash.uz.controller.history;
 
-import dasturlash.uz.dto.history.EmailDTO;
 import dasturlash.uz.dto.history.SmsDTO;
 import dasturlash.uz.entity.history.SmsHistoryEntity;
 import dasturlash.uz.service.AuthService;
-import dasturlash.uz.service.history.EmailHistoryService;
 import dasturlash.uz.service.history.SmsHistoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api")
-public class SmsHistory {
+public class SmsHistoryController {
 
     @Autowired
     private AuthService authService;

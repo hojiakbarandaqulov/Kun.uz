@@ -29,7 +29,7 @@ public class AuthService {
     @Autowired
     private EmailHistoryService emailHistoryService;
     @Autowired
-    private SmsService smsSenderService;
+    private SmsService smsService;
     @Autowired
     private SmsHistoryService smsHistoryService;
 
@@ -46,13 +46,14 @@ public class AuthService {
         entity.setPhone(dto.getPhone());
         entity.setPassword(MD5Util.getMD5(dto.getPassword()));
         entity.setCreatedDate(LocalDateTime.now());
-        entity.setRole(ProfileRole.ROLE_USER);
+        entity.setRole(ProfileRole.ROLE_ADMIN);
         entity.setStatus(ProfileStatus.REGISTRATION);
         profileRepository.save(entity);
         // send email
 //        sendRegistrationEmail(entity.getId(), entity.getEmail());
-        smsSenderService.sendSms(dto.getPhone());
-        return "To complete your registration please verify your email.";
+        sendRegistrationPhone(entity.getId(), dto.getPhone());
+        smsService.sendSms(dto.getPhone());
+        return "To complete your registration please verify your phone.";
     }
 
     public String authorizationVerification(Integer userId) {
@@ -174,5 +175,4 @@ public class AuthService {
         mailSenderService.send(email, "Complete registration", text);
         emailHistoryService.crete(email, text); // create history
     }
-
 }
