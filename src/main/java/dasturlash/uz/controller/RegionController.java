@@ -38,8 +38,7 @@ public class RegionController {
         return ResponseEntity.ok().body(true);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(/*@PathVariable ("id") Integer id,*/
-                                          @RequestHeader("Authorization") String token){
+    public ResponseEntity<Boolean> delete(@RequestHeader("Authorization") String token){
         JwtDTO jwtDTO = SecurityUtil.getJwtDTO(token);
         regionService.delete(jwtDTO.getId());
         return ResponseEntity.ok().body(true);

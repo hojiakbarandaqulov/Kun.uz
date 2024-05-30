@@ -39,7 +39,7 @@ public class ProfileController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Boolean> update(@Valid @RequestBody ProfileCreateDTO profile,
                                           @RequestHeader("Authorization") String token) {
-        JwtDTO dto = SecurityUtil.getJwtDTO(token);
+        JwtDTO dto = SecurityUtil.getJwtDTO(token,ProfileRole.ROLE_ADMIN);
         profileService.update(dto.getId(),profile);
         return ResponseEntity.ok().body(true);
     }
@@ -58,7 +58,6 @@ public class ProfileController {
         profileService.deleteId(dto.getId());
         return ResponseEntity.ok().body(true);
     }
-
     @PostMapping("/filter")
     public ResponseEntity<PageImpl<ProfileDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "size", defaultValue = "10") int size,

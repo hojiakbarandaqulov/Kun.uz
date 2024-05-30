@@ -1,27 +1,35 @@
 ### Registration with Phone
 POST localhost:8080/auth/registration
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
   "name": "Toshmat",
   "surname": "Toshmatov",
-  "phone": "+998953332333",
-  "password": "54321"
+  "phone": "+998992431068",
+  "password": "1234",
+  "role": "ROLE_USER"
 }
+
+###
+GET http://localhost:8080/auth/verification/11
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+
 ### Login
-POST localhost:8080/auth/login/phone
+POST localhost:8080/auth/login
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTA2MzAsInJvbGUiOiJST0xFX1VTRVIiLCJleHAiOjE3MTcxMzcwMzAsImlzcyI6Ikt1blV6VGVzdCJ9.3nZd63g7c1TLQtlyfAa4wQR9c5ywImvQSnXgxEOmqKSiZ9nOgdpv-52fuUAmF_7_-KbiEgU4DLBFIcz7SDdmoA
 
 {
-  "phone": "9989993332211",
+  "phone": "+998995092376",
   "password": "1234"
 }
-
-
 ### resend in registration
-GET localhost:8080/auth/registration/resend/phone/+998999476970
+GET localhost:8080/auth/resend/phone/+998992431068
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 ###
 GET localhost:8080/auth/registration/resend/hojiakbarandaqulov5@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 

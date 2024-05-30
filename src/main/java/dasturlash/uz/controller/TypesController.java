@@ -45,8 +45,7 @@ public class TypesController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(/*@PathVariable("id") Integer id,*/
-                                          @RequestHeader("Authorization") String token){
+    public ResponseEntity<Boolean> delete(@RequestHeader("Authorization") String token){
         JwtDTO jwtDTO = SecurityUtil.getJwtDTO(token);
         typesService.delete(jwtDTO.getId());
         return ResponseEntity.ok().body(true);
@@ -60,7 +59,8 @@ public class TypesController {
     }
 
     @GetMapping("/language")
-    public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language) {
+    public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language,
+                                        @RequestHeader("Authorization") String token) {
         return typesService.getAllByLang(language);
     }
    /* @ResponseStatus(HttpStatus.BAD_REQUEST)

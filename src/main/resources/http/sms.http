@@ -9,7 +9,7 @@ Content-Type: application/json
 ### Send sms
 POST https://notify.eskiz.uz/api/message/sms/send
 Content-Type: application/json
-AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1NjcsImlhdCI6MTcxNjc0MzU2Nywicm9sZSI6InRlc3QiLCJzaWduIjoiY2M3MzMwOWJiMzcyMTE5MWY3ZDdhNjA1NWQyNjhjNjFlYTUzYjVmNzZlMGMxN2IzMjM2ZjQyM2JkNmQ2NDY5YyIsInN1YiI6Ijc0MDcifQ.uupi-OXW0fgOMF8jUqLL9wwUWEex9Hdxq1wOEfKlmSw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
   "mobile_phone": "+998999476970",
@@ -18,12 +18,12 @@ AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1N
 }
 
 ### Sms resend
-POST http://localhost:8080/sms/resent/+998995092376
+GET http://localhost:8080/api/history/+998999476970
 Content-Type: application/json
-AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkzMzU1NjcsImlhdCI6MTcxNjc0MzU2Nywicm9sZSI6InRlc3QiLCJzaWduIjoiY2M3MzMwOWJiMzcyMTE5MWY3ZDdhNjA1NWQyNjhjNjFlYTUzYjVmNzZlMGMxN2IzMjM2ZjQyM2JkNmQ2NDY5YyIsInN1YiI6Ijc0MDcifQ.uupi-OXW0fgOMF8jUqLL9wwUWEex9Hdxq1wOEfKlmSw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
-  "mobile_phone": "+998995092376",
+  "mobile_phone": "+998999476970",
   "message": "This is test from Eskiz",
   "from": "4546"
 }

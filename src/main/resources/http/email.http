@@ -1,6 +1,7 @@
 ### GET request to example server
 GET localhost:8080/email/history/hojiakbarandaqulov5@gmail.com
 
+
 ### GET request to example server
 GET localhost:8080/email/by/12@gmail.com
 

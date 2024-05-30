@@ -10,10 +10,11 @@ public class SecurityUtil {
         JwtDTO dto = JwtUtil.decode(jwt);
         return dto;
     }
-    public static void getJwtDTO(String token, ProfileRole requiredRole) {
+    public static JwtDTO getJwtDTO(String token, ProfileRole requiredRole) {
         JwtDTO dto = getJwtDTO(token);
         if(!dto.getRole().equals(requiredRole)){
             throw new AppForbiddenException("Method not allowed");
         }
+        return dto;
     }
 }

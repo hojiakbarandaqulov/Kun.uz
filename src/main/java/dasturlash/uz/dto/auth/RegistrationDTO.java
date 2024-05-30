@@ -1,5 +1,7 @@
 package dasturlash.uz.dto.auth;
 
+import dasturlash.uz.dto.ProfileDTO;
+import dasturlash.uz.enums.ProfileRole;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +15,9 @@ public class RegistrationDTO {
     private String surname;
     @NotBlank(message = "phone required")
     private String phone;
-  /*  @NotBlank(message = "email required")
+    /*@NotBlank(message = "email required")
     private String email;*/
     @NotBlank(message = "password required")
     private String password;
+    private ProfileRole role;
 }

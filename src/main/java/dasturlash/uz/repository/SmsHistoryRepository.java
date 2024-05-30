@@ -12,8 +12,7 @@ public interface SmsHistoryRepository extends JpaRepository<SmsHistoryEntity,Int
     Long countByPhoneAndCreatedDateBetween(String phone, LocalDateTime from, LocalDateTime to);
     // select count(*) from email_history createdDate between :from and :to
 
-    @Query(value = "select * from sms_history where phone=:phone",nativeQuery = true)
-    Optional<SmsHistoryEntity> findByPhone(@Param("phone") String phone);
+    Optional<SmsHistoryEntity> findByPhone(String phone);
 
     Optional<SmsHistoryEntity> findByCreatedDate(LocalDateTime createdDate);
 

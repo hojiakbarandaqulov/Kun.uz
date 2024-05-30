@@ -2,6 +2,7 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
+import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
 import dasturlash.uz.enums.ProfileRole;
@@ -18,35 +19,51 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/registration")
-    public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto,
-                                               @RequestHeader("Authorization") String token) {
+     @PostMapping("/registration")
+     public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto,
+                                                @RequestHeader("Authorization") String token) {
+         SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
+         String body = authService.registration(dto);
+         return ResponseEntity.ok().body(body);
+     }
+  /*  @PostMapping("/registration")
+    public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto,
+                                                    @RequestHeader("Authorization") String token) {
         SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         String body = authService.registration(dto);
         return ResponseEntity.ok().body(body);
-    }
-   /* @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody LoginDTO dto) {
-        AuthResponseDTO body = authService.login(dto);
-        return ResponseEntity.ok().body(body);
     }*/
-    @PostMapping("/login/phone")
-    public ResponseEntity<ProfileDTO> loginPhone(@Valid @RequestBody LoginDTO dto) {
+    @PostMapping("/login")
+    public ResponseEntity<ProfileDTO> login(@Valid @RequestBody LoginDTO dto,
+                                            @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         ProfileDTO body = authService.loginPhone(dto);
         return ResponseEntity.ok().body(body);
     }
+    /* @PostMapping("/login/phone")
+     public ResponseEntity<ProfileDTO> loginPhone(@Valid @RequestBody LoginDTO dto) {
+         ProfileDTO body = authService.loginPhone(dto);
+         return ResponseEntity.ok().body(body);
+     }*/
     @GetMapping("/verification/{userId}")
-    public ResponseEntity<String> verification(@PathVariable("userId") Integer userId) {
+    public ResponseEntity<String> verification(@PathVariable("userId") Integer userId,
+                                               @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         String body = authService.authorizationVerification(userId);
         return ResponseEntity.ok().body(body);
     }
-    @GetMapping("/registration/resend/{email}")
-    public ResponseEntity<String> registrationResend(@PathVariable("email") String email) {
+    /*@GetMapping("/registration/resend/{email}")
+    public ResponseEntity<String> registrationResend(@PathVariable("email") String email,
+              @RequestHeader("Authorization") String token) {
+        JwtDTO jwtDTO=SecurityUtil.getJwtDTO(token);
         String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
-    }
-    @GetMapping("/registration/resend/phone/{phone}")
-    public ResponseEntity<String> registrationResendPhone(@PathVariable("phone") String phone) {
+    }*/
+
+    @GetMapping("/resend/phone/{phone}")
+    public ResponseEntity<String> registrationResendPhone(@PathVariable("phone") String phone,
+            @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         String body = authService.registrationResendPhone(phone);
         return ResponseEntity.ok().body(body);
     }
