@@ -34,6 +34,7 @@ public class CategoryService {
 
     public Boolean update(Integer id, CategoryCreateDTO dto) {
         CategoryEntity entity = get(id);
+        entity.setOrderNumber(dto.getOrderNumber());
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
@@ -53,7 +54,6 @@ public class CategoryService {
     private CategoryEntity get(Integer id) {
         return categoryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Category not found"));
     }
-
     public Boolean delete(Integer id) {
         categoryRepository.deleteById(id);
         return true;

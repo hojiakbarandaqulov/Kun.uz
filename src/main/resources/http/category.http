@@ -10,17 +10,17 @@ Content-Type: application/json
 }
 
 ### Put Region example server
-PUT localhost:8080/category/update/9
+PUT localhost:8080/category/update/12
 Content-Type: application/json
 
 {
   "orderNumber": 4,
-  "nameUz": "AUDIO",
+  "nameUz": "Audio",
   "nameRu": "АУДИО",
   "nameEn": "AUDIO"
 }
 ### Delete Region example server
-DELETE localhost:8080/category/delete/10
+DELETE localhost:8080/category/delete/12
 
 ### Get all Region example server
 GET localhost:8080/category/all
