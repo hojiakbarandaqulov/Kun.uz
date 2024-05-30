@@ -1,16 +1,18 @@
 ### Post Type to example server
 POST localhost:8080//types/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwMzIzNDQsImlkIjo3LCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzE3MTE4NzQ0LCJpc3MiOiJLdW5VelRlc3QifQ.OKS7JsH8uWdMgms6KEmAyxZWIHWicJrrstDFodzs4jPUR7nlvz41Nj55NrrTaE71BpuuCdOmcyjSdxtQ3o7dcA
 
 {
-  "orderNumber": 4,
+  "orderNumber": 5,
   "nameUz": "Energetika ",
-  "nameRu": "Первый шаг к реформе энергетики был сделан?",
-  "nameEn": "The first step towards energy reform was taken?"
+  "nameRu": "Первый шаг к реформе энергетики был?",
+  "nameEn": "The first step towards energy reform was"
 }
 ### Put Type example server
-PUT localhost:8080/types/update/1
+PUT localhost:8080/types/update/15
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwMzIzNDQsImlkIjo3LCJyb2xlIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzE3MTE4NzQ0LCJpc3MiOiJLdW5VelRlc3QifQ.OKS7JsH8uWdMgms6KEmAyxZWIHWicJrrstDFodzs4jPUR7nlvz41Nj55NrrTaE71BpuuCdOmcyjSdxtQ3o7dcA
 
 {
   "order_number": 1,
@@ -19,7 +21,7 @@ Content-Type: application/json
   "name_en": "The first step towards energy reform was taken?"
 }
 ### Delete Type example server
-DELETE localhost:8080/types/delete/5
+DELETE localhost:8080/types/delete/15
 
 ### Get all Type example server
 GET localhost:8080/types/typeAllPagination?page=1&size=3

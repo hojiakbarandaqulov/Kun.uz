@@ -2,9 +2,12 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.TypesCreatedDto;
 import dasturlash.uz.dto.TypesDTO;
+import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.enums.Language;
+import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.RegionService;
 import dasturlash.uz.service.TypesService;
+import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -26,18 +29,26 @@ public class TypesController {
     private TypesService typesService;
 
     @PostMapping("/create")
-    public ResponseEntity<TypesDTO> create(@Valid @RequestBody TypesCreatedDto dto) {
+    public ResponseEntity<TypesDTO> create(@Valid @RequestBody TypesCreatedDto dto,
+                                           @RequestHeader("Authorization") String token) {
+        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
         TypesDTO response = typesService.create(dto);
         return ResponseEntity.ok().body(response);
     }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable("id") Integer id, @Valid @RequestBody TypesDTO dto) {
-        typesService.update(id, dto);
+    public ResponseEntity<Boolean> update(@Valid @RequestBody TypesDTO dto,
+                                          @RequestHeader("Authorization") String token) {
+        JwtDTO jwtDTO = SecurityUtil.getJwtDTO(token);
+        typesService.update(jwtDTO.getId(), dto);
         return ResponseEntity.ok().body(true);
     }
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id) {
-        typesService.delete(id);
+    public ResponseEntity<Boolean> delete(/*@PathVariable("id") Integer id,*/
+                                          @RequestHeader("Authorization") String token){
+        JwtDTO jwtDTO = SecurityUtil.getJwtDTO(token);
+        typesService.delete(jwtDTO.getId());
         return ResponseEntity.ok().body(true);
     }
 
@@ -47,8 +58,9 @@ public class TypesController {
         PageImpl<TypesDTO> typeList = typesService.getAllPagination(page - 1, size);
         return ResponseEntity.ok().body(typeList);
     }
+
     @GetMapping("/language")
-    public List<TypesDTO> getByLanguage(@RequestHeader(value ="Accept-Language", defaultValue = "UZ") Language language){
+    public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language) {
         return typesService.getAllByLang(language);
     }
    /* @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -63,4 +75,4 @@ public class TypesController {
         });
         return errors;
     }*/
-    }
+}
