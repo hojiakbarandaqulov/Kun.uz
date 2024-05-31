@@ -55,7 +55,6 @@ public class AuthController {
         String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
     }*/
-
     @GetMapping("/sms/{phone}")
     public ResponseEntity<String> registrationResendPhone(@PathVariable("phone") String phone) {
         String body = authService.registrationResendPhone(phone);

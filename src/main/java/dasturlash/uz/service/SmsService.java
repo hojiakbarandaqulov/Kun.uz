@@ -66,7 +66,6 @@ public class SmsService {
             throw new RuntimeException();
         }
     }
-
     private String getToken() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();

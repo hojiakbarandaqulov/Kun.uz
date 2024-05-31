@@ -1,6 +1,5 @@
-package dasturlash.uz.dto;
+package dasturlash.uz.dto.update;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;

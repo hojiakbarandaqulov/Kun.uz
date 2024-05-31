@@ -1,48 +1,67 @@
 package dasturlash.uz.service;
 
 
-import dasturlash.uz.dto.ArticleDTO;
-import dasturlash.uz.dto.ProfileDTO;
+import dasturlash.uz.dto.article.ArticleDTO;
 import dasturlash.uz.dto.create.ArticleCreateDTO;
+import dasturlash.uz.dto.response.ArticleRequestDTO;
 import dasturlash.uz.entity.ArticleEntity;
-import dasturlash.uz.entity.ProfileEntity;
-import dasturlash.uz.exp.AppBadException;
+import dasturlash.uz.entity.CategoryEntity;
+import dasturlash.uz.entity.RegionEntity;
+import dasturlash.uz.mapper.ArticleMapper;
 import dasturlash.uz.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
-
 @Service
 public class ArticleService {
-
     @Autowired
     private ArticleRepository articleRepository;
-
-    public ArticleDTO createArticle(ArticleCreateDTO article) {
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private RegionService regionService;
+  /*  public ArticleDTO createArticle(ArticleCreateDTO article) {
         ArticleEntity entity = new ArticleEntity();
+        entity.setTitle(article.getTitle());
         entity.setDescription(article.getDescription());
         entity.setContent(article.getContent());
         entity.setImageId(article.getImageId());
         entity.setRegionId(article.getRegionId());
-//        entity.setCategory(article.getCategory());
+        entity.setCategoryId(article.getCategoryId());
+        entity.set(article.getArticleType());
+        articleRepository.save(entity);
+        return articleToDTO(entity);
+    }*/
+
+    public ArticleRequestDTO create(ArticleRequestDTO dto) {
+        // check
+//        ProfileEntity moderator = profileService.get(moderId);
+        /*RegionEntity region = regionService.getId(dto.getRegionId());
+        CategoryEntity category = categoryService.getId(dto.getCategoryId());*/
+        ArticleEntity entity = new ArticleEntity();
+        entity.setTitle(dto.getTitle());
+        entity.setDescription(dto.getDescription());
+        entity.setContent(dto.getContent());
+//        entity.setModeratorId(moderId);
+        entity.setImageId(dto.getImageId());
+        entity.setRegionId(dto.getRegionId());
+        entity.setCategoryId(dto.getCategoryId());
+        // type
         articleRepository.save(entity);
         return articleToDTO(entity);
     }
 
-    private ArticleDTO articleToDTO(ArticleEntity entity) {
-        ArticleDTO articleDTO = new ArticleDTO();
-        articleDTO.setId(entity.getId());
+    private ArticleRequestDTO articleToDTO(ArticleEntity entity) {
+        ArticleRequestDTO articleDTO = new ArticleRequestDTO();
+//        articleDTO.setId(entity.getId());
+        articleDTO.setTitle(entity.getTitle());
         articleDTO.setDescription(entity.getDescription());
         articleDTO.setContent(entity.getContent());
         articleDTO.setImageId(entity.getImageId());
         articleDTO.setRegionId(entity.getRegionId());
-//        articleDTO.setCategory(entity.getCategory());
-        articleDTO.setModeratorId(entity.getModeratorId());
+        articleDTO.setCategoryId(entity.getCategoryId());
         return articleDTO;
     }
-
    /* public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }

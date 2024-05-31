@@ -1,18 +1,8 @@
-### Registration
-POST http://localhost:8080/auth/registration
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
-
-{
-  "name": "Alish",
-  "surname": "Alishev",
-  "phone": "+998992431068",
-  "password": "1234"
-}
 ####
-POST http://localhost:8080/profile/create
+POST http://localhost:8080/profile/adm/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE3MjgsImlkIjoyMywicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE3MTcxNjgxMjgsImlzcyI6Ikt1blV6VGVzdCJ9.u4zF86sedFPy5X_nMMAB5XaKizcKSpUw44lKJOuqC0C5Y3YJ3dxIV1FfDzTEmcxPTQyRlQJemevnTpmQqesQTg
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE3MjgsImlkIjoyMywicm9sZSI6IlJPTEVfQURNSU4iLCJleHAiOjE3MTcxNjgxMjgsImlzcyI6Ikt1blV6VGVzdCJ9.u4zF86sedFPy5X_nMMAB5XaKizcKSpUw44lKJOuqC0C5Y3YJ3dxIV1FfDzTEmcxPTQyRlQJemevnTpmQqesQTg
 
 {
   "name": "Alis",
@@ -20,14 +10,15 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE3MjgsImlkIjoyMywic
   "email": "valish@gmail.com",
   "phone": "+998995092381",
   "password": "1234",
-  "status": "REGISTRATION",
+  "status": "ACTIVE",
   "role": "ROLE_ADMIN"
 }
 
 ### Profile update detail
-PUT  http://localhost:8080/profile/current
+PUT  http://localhost:8080/profile/adm/current/46
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
   "name": "Valish",
@@ -35,9 +26,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwic
 }
 
 ###
-PUT http://localhost:8080/profile/update/7
+PUT http://localhost:8080/profile/adm/update/46
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE0NzcsImlkIjoyMywicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE2Nzg3NywiaXNzIjoiS3VuVXpUZXN0In0.itZ1sMRWL432Todd0Gecx1o7EbKyLQcdKD1vehVavv7zSPSE5-8L9aRNiQ1l9kj3VlXwgBs2QeDpx-8gqh_EYw
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE0NzcsImlkIjoyMywicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE2Nzg3NywiaXNzIjoiS3VuVXpUZXN0In0.itZ1sMRWL432Todd0Gecx1o7EbKyLQcdKD1vehVavv7zSPSE5-8L9aRNiQ1l9kj3VlXwgBs2QeDpx-8gqh_EYw
 
 {
 "name": "Alish",
@@ -49,26 +41,29 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwODE0NzcsImlkIjoyMywic
 "role": "ROLE_ADMIN"
 }
 ### Get all Profile to example server
-GET  http://localhost:8080/profile/profilePagination?page=1&size=3
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+GET  http://localhost:8080/profile/adm/profilePagination?page=1&size=3
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 
 ### Delete ById Profile to example server
-DELETE http://localhost:8080/profile/delete/10
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+DELETE http://localhost:8080/profile/adm/delete/28
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 
 ###
-POST http://localhost:8080/profile/filter?page=1&size=3
+POST http://localhost:8080/profile/filter?page=4&size=10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
   "name": "Alish",
   "surname": "Alishev",
-  "phone": "993333233",
-  "role": "ROLE_ADMIN",
-  "createdDateFrom": "2024-05-05",
-  "createdDateTo": "2024-05-10"
+  "phone": "9989993332212",
+  "role": "ROLE_USER",
+  "createdDateFrom": "2024-05-29",
+  "createdDateTo": "2024-05-31"
 }
 

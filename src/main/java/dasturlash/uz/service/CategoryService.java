@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -76,5 +77,11 @@ public class CategoryService {
         }
         return dtoList;
     }
-
+    public CategoryEntity getId(Integer id){
+        Optional<CategoryEntity> optional=categoryRepository.findById(id);
+        if (optional.isEmpty()){
+            throw new IllegalArgumentException("Category not found");
+        }
+        return optional.get();
+    }
 }

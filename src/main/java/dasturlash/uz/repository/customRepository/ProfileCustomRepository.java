@@ -1,6 +1,6 @@
 package dasturlash.uz.repository.customRepository;
 
-import dasturlash.uz.dto.ProfileFilterDTO;
+import dasturlash.uz.dto.filter.ProfileFilterDTO;
 import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import jakarta.persistence.EntityManager;

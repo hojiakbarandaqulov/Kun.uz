@@ -17,6 +17,7 @@ import dasturlash.uz.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class AuthService {
 //        entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
         entity.setPassword(MD5Util.getMD5(dto.getPassword()));
-        entity.setCreatedDate(LocalDateTime.now());
+        entity.setCreatedDate(LocalDate.now());
         entity.setRole(ProfileRole.ROLE_ADMIN);
         entity.setStatus(ProfileStatus.REGISTRATION);
         profileRepository.save(entity);

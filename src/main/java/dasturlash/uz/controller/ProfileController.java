@@ -1,13 +1,10 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.*;
-import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.dto.create.ProfileCreateDTO;
-import dasturlash.uz.enums.ProfileRole;
+import dasturlash.uz.dto.filter.ProfileFilterDTO;
+import dasturlash.uz.dto.update.ProfileUpdateDTO;
 import dasturlash.uz.service.ProfileService;
-import dasturlash.uz.util.HttpRequestUtil;
-import dasturlash.uz.util.SecurityUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -25,17 +22,15 @@ public class ProfileController {
         ProfileDTO response = profileService.create(profileDTO);
         return ResponseEntity.ok().body(response);
     }
-    @PutMapping("/adm/current")
-    public ResponseEntity<Boolean> updateUser(@PathVariable("id")Integer id,@RequestBody ProfileUpdateDTO profile) {
+    @PutMapping("/adm/current/{id}")
+    public ResponseEntity<Boolean> updateUser(@PathVariable("id")Integer id, @RequestBody ProfileUpdateDTO profile) {
         profileService.updateUser(id, profile);
         return ResponseEntity.ok().body(true);
     }
-
     @PutMapping("/adm/update/{id}")
-    public ResponseEntity<Boolean> update(@Valid @RequestBody ProfileCreateDTO profile,
-                                          @RequestHeader("Authorization") String token) {
-        JwtDTO dto = SecurityUtil.getJwtDTO(token,ProfileRole.ROLE_ADMIN);
-        profileService.update(dto.getId(),profile);
+    public ResponseEntity<Boolean> update(@PathVariable("id")Integer id,
+                                          @Valid @RequestBody ProfileCreateDTO profile) {
+        profileService.update(id,profile);
         return ResponseEntity.ok().body(true);
     }
     @GetMapping("/adm/profilePagination")

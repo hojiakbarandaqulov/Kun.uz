@@ -6,16 +6,16 @@ Content-Type: application/json
   "email": "handaqulov51@gmail.com",
   "password": "TBpAnEfk8CuMPnOZlqxzfXrxJRugKwb9m7vXmfyZ"
 }
-### Send sms
-POST https://notify.eskiz.uz/api/message/sms/send
-Content-Type: application/json
-#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
-
-{
-  "mobile_phone": "+998992431068",
-  "message": "This is test from Eskiz",
-  "from": "4546"
-}
+#### Send sms
+##POST https://notify.eskiz.uz/api/message/sms/send
+##Content-Type: application/json
+###Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+##
+##{
+##  "mobile_phone": "+998992431068",
+##  "message": "This is test from Eskiz",
+##  "from": "4546"
+##}
 
 ### Sms resend
 GET http://localhost:8080/api/history/+998915721213

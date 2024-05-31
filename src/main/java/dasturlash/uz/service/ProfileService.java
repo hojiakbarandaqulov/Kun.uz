@@ -2,7 +2,9 @@ package dasturlash.uz.service;
 
 import dasturlash.uz.dto.*;
 import dasturlash.uz.dto.create.ProfileCreateDTO;
+import dasturlash.uz.dto.filter.ProfileFilterDTO;
 import dasturlash.uz.dto.response.FilterResponseDTO;
+import dasturlash.uz.dto.update.ProfileUpdateDTO;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.customRepository.ProfileCustomRepository;
@@ -120,7 +122,7 @@ public class ProfileService {
             dto.setName(entity.getName());
             dto.setSurname(entity.getSurname());
             dto.setPhone(entity.getPhone());
-            dto.setCreatedDate(entity.getCreatedDate().toLocalDate());
+            dto.setCreatedDate(entity.getCreatedDate());
             dtoList.add(dto);
         }
         return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());

@@ -39,7 +39,7 @@ public class ProfileEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
     @Column(name = "created_date")
-    private LocalDateTime createdDate = LocalDateTime.now();
+    private LocalDate createdDate = LocalDate.now();
     @Column(name = "photo_id")
     private Integer photoId;
 

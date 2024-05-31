@@ -9,11 +9,4 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/types")
 public class TypeController {
 
-    @Autowired
-    private TypeService typeService;
-
-   /* @PostMapping
-    public ResponseEntity<TypeDTO> createType(@RequestBody TypeDTO type) {
-        return ResponseEntity.ok(typeService.createType(type));
-    }*/
 }

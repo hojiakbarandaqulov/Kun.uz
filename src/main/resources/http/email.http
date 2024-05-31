@@ -1,12 +1,13 @@
 ### GET request to example server
 GET localhost:8080/email/history/hojiakbarandaqulov5@gmail.com
-
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 
 ### GET request to example server
 GET localhost:8080/email/by/12@gmail.com
-
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 ### getByEmail
 GET http://localhost:8080/email/by/hojiakbarandaqulov5@gmail.com
-
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 ### Pagination
 GET http://localhost:8080/email/pagination?page=1&size=4
+Authorization: Basic YWRtaW46YWRtaW5qb24=

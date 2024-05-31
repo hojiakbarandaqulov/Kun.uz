@@ -35,12 +35,10 @@ public class SecurityConfig {
                 .password("{noop}adminjon")
                 .roles("ADMIN")
                 .build();
-
         final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(new InMemoryUserDetailsManager(user, admin));
         return authenticationProvider;
     }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // authorization
@@ -48,7 +46,6 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and().formLogin();*/
-
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers("/auth/**").permitAll()
@@ -63,16 +60,13 @@ public class SecurityConfig {
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
+                    .requestMatchers("/api/create/*").hasRole("MODERATOR")
                     .anyRequest()
                     .authenticated();
         });
         http.httpBasic(Customizer.withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);
-
-
         return http.build();
     }
-
-
 }

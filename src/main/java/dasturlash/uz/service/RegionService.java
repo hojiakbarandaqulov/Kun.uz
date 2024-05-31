@@ -4,6 +4,7 @@ import dasturlash.uz.dto.create.RegionCreateDTO;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.Language;
+import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.mapper.RegionMapper;
 import dasturlash.uz.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RegionService {
@@ -28,7 +30,7 @@ public class RegionService {
         return regionToDTO(entity);
     }
 
-    public Boolean update(Integer id,  RegionCreateDTO dto) {
+    public Boolean update(Integer id, RegionCreateDTO dto) {
         RegionEntity entity = get(id);
         entity.setOrderNumber(dto.getOrderNumber());
         entity.setNameUz(dto.getNameUz());
@@ -37,7 +39,8 @@ public class RegionService {
         regionRepository.save(entity);
         return true;
     }
-    public RegionDTO regionToDTO(RegionEntity entity){
+
+    public RegionDTO regionToDTO(RegionEntity entity) {
         RegionDTO regionDTO = new RegionDTO();
         regionDTO.setId(entity.getId());
         regionDTO.setOrderNumber(entity.getOrderNumber());
@@ -48,6 +51,7 @@ public class RegionService {
         regionDTO.setCreatedDate(entity.getCreatedDate());
         return regionDTO;
     }
+
     private RegionEntity get(Integer id) {
         return regionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Region not found"));
     }
@@ -66,6 +70,7 @@ public class RegionService {
         }
         return dtoList;
     }
+
     public List<RegionDTO> getAllByLang(Language lang) {
         List<RegionMapper> mapperList = regionRepository.findAllByLanguage(lang.name());
         List<RegionDTO> dtoList = new LinkedList<>();
@@ -76,5 +81,12 @@ public class RegionService {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+    public RegionEntity getId(Integer id) {
+        Optional<RegionEntity> optional = regionRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new AppBadException("Item not found: " + id);
+        }
+        return optional.get();
     }
 }

@@ -1,18 +1,13 @@
-package dasturlash.uz.dto.create;
+package dasturlash.uz.dto.response;
 
-//import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.enums.ProfileRole;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.mapping.Array;
 
-@Setter
 @Getter
-
-public class ArticleCreateDTO {
+@Setter
+public class ArticleRequestDTO {
     @NotNull(message = "Title cannot be null")
     @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
     private String title;
@@ -30,9 +25,4 @@ public class ArticleCreateDTO {
 
     @NotNull(message = "Category ID cannot be null")
     private Integer categoryId;
-
-    @NotNull(message = "Category ID cannot be null")
-    private Array[] articleType;
-
-    private ProfileRole role;
 }

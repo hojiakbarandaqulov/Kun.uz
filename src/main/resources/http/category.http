@@ -1,6 +1,7 @@
 ### Post Region to example server
 POST http://localhost:8080/category/adm/create
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
@@ -11,8 +12,9 @@ Content-Type: application/json
 }
 
 ### Put Region example server
-PUT http://localhost:8080/category/adm/update/12
+PUT http://localhost:8080/category/adm/update/3
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
@@ -22,13 +24,17 @@ Content-Type: application/json
   "nameEn": "AUDIO"
 }
 ### Delete Region example server
-DELETE localhost:8080/category/adm/delete/12
+DELETE localhost:8080/category/adm/delete/3
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 ### Get all Region example server
 GET localhost:8080/category/adm/all
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 ### GetByLanguage example server
-GET localhost:8080/category/adm/lang
+GET localhost:8080/category/lang
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q

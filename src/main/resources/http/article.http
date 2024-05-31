@@ -1,0 +1,13 @@
+### Article create to example
+POST http://localhost:8080/api/create
+Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
+
+{
+  "title": "dfdf",
+  "description": "dfg",
+  "content": "dfgsdf",
+  "imageId": 1,
+  "regionId": 1,
+  "categoryId": 1
+}

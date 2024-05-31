@@ -1,6 +1,7 @@
 ### Registration with Phone
 POST localhost:8080/auth/registration
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
@@ -14,6 +15,7 @@ Content-Type: application/json
 ###
 POST  localhost:8080/auth/registration
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 
 {
   "name": "Java",
@@ -29,6 +31,7 @@ GET http://localhost:8080/auth/verification/28
 ### Login
 POST localhost:8080/auth/login
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 
 {
   "phone": "998995092376",
@@ -37,10 +40,11 @@ Content-Type: application/json
 ### resend in registration
 GET localhost:8080/auth/sms/998995092376
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW5qb24=
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
 
 {
-  "mobile_phone": "998995092376",
+  "mobile_phone": "998999476970",
   "message": "This is test from Eskiz",
   "from": "4546"
 }

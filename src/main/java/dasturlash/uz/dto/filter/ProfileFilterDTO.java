@@ -1,8 +1,7 @@
-package dasturlash.uz.dto;
+package dasturlash.uz.dto.filter;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dasturlash.uz.enums.ProfileRole;
-import dasturlash.uz.service.ProfileService;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -9,6 +9,7 @@ import dasturlash.uz.service.TypesService;
 import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,11 @@ public class TypesController {
         typesService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
-
     @DeleteMapping("/adm/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id")Integer id){
         typesService.delete(id);
         return ResponseEntity.ok().body(true);
     }
-
     @GetMapping("/adm/typeAllPagination")
     public ResponseEntity<PageImpl<TypesDTO>> getAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "size", defaultValue = "10") int size) {
