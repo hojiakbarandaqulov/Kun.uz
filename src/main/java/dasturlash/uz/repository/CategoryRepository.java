@@ -9,7 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CategoryRepository extends JpaRepository<CategoryEntity,Integer> {
+public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer> {
+
     @Query(value = "select id," +
             " case :lang" +
             " when 'UZ' then name_uz" +

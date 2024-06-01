@@ -8,11 +8,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.mapping.Array;
+import org.hibernate.mapping.List;
 
 @Setter
 @Getter
 
 public class ArticleCreateDTO {
+
     @NotNull(message = "Title cannot be null")
     @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
     private String title;
@@ -32,7 +34,7 @@ public class ArticleCreateDTO {
     private Integer categoryId;
 
     @NotNull(message = "Category ID cannot be null")
-    private Array[] articleType;
+    private Array articleType;
 
     private ProfileRole role;
 }

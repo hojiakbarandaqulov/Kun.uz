@@ -11,7 +11,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+
 public class SmsDTO {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

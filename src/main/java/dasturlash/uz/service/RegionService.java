@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Service
 public class RegionService {
+
     @Autowired
     private RegionRepository regionRepository;
 
@@ -82,6 +83,7 @@ public class RegionService {
         }
         return dtoList;
     }
+
     public RegionEntity getId(Integer id) {
         Optional<RegionEntity> optional = regionRepository.findById(id);
         if (optional.isEmpty()) {

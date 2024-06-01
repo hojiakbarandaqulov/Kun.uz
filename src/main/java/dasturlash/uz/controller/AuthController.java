@@ -18,26 +18,32 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     @Autowired
     private AuthService authService;
 
-     @PostMapping("/registration")
+    /* @PostMapping("/registration")
      public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto) {
          String body = authService.registration(dto);
          return ResponseEntity.ok().body(body);
-     }
-  /*  @PostMapping("/registration")
-    public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto,
-                                                    @RequestHeader("Authorization") String token) {
-        SecurityUtil.getJwtDTO(token, ProfileRole.ROLE_USER);
+     }*/
+    @PostMapping("/registration")
+    public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto) {
         String body = authService.registration(dto);
         return ResponseEntity.ok().body(body);
-    }*/
-    @PostMapping("/login")
+    }
+
+ /*   @PostMapping("/login")
     public ResponseEntity<ProfileDTO> login(@Valid @RequestBody LoginDTO dto) {
         ProfileDTO body = authService.loginPhone(dto);
         return ResponseEntity.ok().body(body);
+    }*/
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponseDTO> loginEmail(@Valid @RequestBody LoginDTO dto) {
+        AuthResponseDTO body = authService.login(dto);
+        return ResponseEntity.ok().body(body);
     }
+
     /* @PostMapping("/login/phone")
      public ResponseEntity<ProfileDTO> loginPhone(@Valid @RequestBody LoginDTO dto) {
          ProfileDTO body = authService.loginPhone(dto);
@@ -48,16 +54,16 @@ public class AuthController {
         String body = authService.authorizationVerification(userId);
         return ResponseEntity.ok().body(body);
     }
-    /*@GetMapping("/registration/resend/{email}")
-    public ResponseEntity<String> registrationResend(@PathVariable("email") String email,
-              @RequestHeader("Authorization") String token) {
-        JwtDTO jwtDTO=SecurityUtil.getJwtDTO(token);
+
+    @GetMapping("/registration/resend/{email}")
+    public ResponseEntity<String> registrationResend(@PathVariable("email") String email) {
         String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
-    }*/
-    @GetMapping("/sms/{phone}")
+    }
+
+   /* @GetMapping("/sms/{phone}")
     public ResponseEntity<String> registrationResendPhone(@PathVariable("phone") String phone) {
         String body = authService.registrationResendPhone(phone);
         return ResponseEntity.ok().body(body);
-    }
+    }*/
 }

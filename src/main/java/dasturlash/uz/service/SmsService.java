@@ -21,6 +21,7 @@ public class SmsService {
 
     @Value("${sms.url}")
     private String smsUrl;
+
     @Value("${my.eskiz.uz.email}")
     private String myEskizUzEmail;
 
@@ -66,6 +67,7 @@ public class SmsService {
             throw new RuntimeException();
         }
     }
+
     private String getToken() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();

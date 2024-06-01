@@ -1,13 +1,14 @@
 ### Article create to example
 POST http://localhost:8080/api/create
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW5qb24=
 
 {
-  "title": "dfdf",
-  "description": "dfg",
-  "content": "dfgsdf",
+  "title": "Sample Title",
+  "description": "Sample Description",
+  "content": "Sample Content",
   "imageId": 1,
-  "regionId": 1,
-  "categoryId": 1
+  "regionId": 2,
+  "categoryId": 3,
+  "articleType": ["News", "Technology"]
 }

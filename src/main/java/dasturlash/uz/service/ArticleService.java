@@ -1,59 +1,43 @@
 package dasturlash.uz.service;
 
 
-import dasturlash.uz.dto.article.ArticleDTO;
-import dasturlash.uz.dto.create.ArticleCreateDTO;
 import dasturlash.uz.dto.response.ArticleRequestDTO;
 import dasturlash.uz.entity.ArticleEntity;
-import dasturlash.uz.entity.CategoryEntity;
-import dasturlash.uz.entity.RegionEntity;
-import dasturlash.uz.mapper.ArticleMapper;
+import dasturlash.uz.enums.ArticleStatus;
+import dasturlash.uz.enums.ProfileRole;
+import dasturlash.uz.enums.ProfileStatus;
 import dasturlash.uz.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
+
     @Autowired
     private CategoryService categoryService;
+
     @Autowired
     private RegionService regionService;
-  /*  public ArticleDTO createArticle(ArticleCreateDTO article) {
-        ArticleEntity entity = new ArticleEntity();
-        entity.setTitle(article.getTitle());
-        entity.setDescription(article.getDescription());
-        entity.setContent(article.getContent());
-        entity.setImageId(article.getImageId());
-        entity.setRegionId(article.getRegionId());
-        entity.setCategoryId(article.getCategoryId());
-        entity.set(article.getArticleType());
-        articleRepository.save(entity);
-        return articleToDTO(entity);
-    }*/
 
-    public ArticleRequestDTO create(ArticleRequestDTO dto) {
-        // check
-//        ProfileEntity moderator = profileService.get(moderId);
-        /*RegionEntity region = regionService.getId(dto.getRegionId());
-        CategoryEntity category = categoryService.getId(dto.getCategoryId());*/
-        ArticleEntity entity = new ArticleEntity();
-        entity.setTitle(dto.getTitle());
-        entity.setDescription(dto.getDescription());
-        entity.setContent(dto.getContent());
-//        entity.setModeratorId(moderId);
-        entity.setImageId(dto.getImageId());
-        entity.setRegionId(dto.getRegionId());
-        entity.setCategoryId(dto.getCategoryId());
-        // type
-        articleRepository.save(entity);
-        return articleToDTO(entity);
+    public ArticleRequestDTO createArticle(ArticleRequestDTO articleRequestDTO) {
+        ArticleEntity article = new ArticleEntity();
+        article.setTitle(articleRequestDTO.getTitle());
+        article.setDescription(articleRequestDTO.getDescription());
+        article.setContent(articleRequestDTO.getContent());
+        article.setImageId(articleRequestDTO.getImageId());
+        article.setRegionId(articleRequestDTO.getRegionId());
+        article.setCategoryId(articleRequestDTO.getCategoryId());
+        article.setArticleType(articleRequestDTO.getArticleType());
+        articleRepository.save(article);
+        return articleToDTO(article);
     }
 
     private ArticleRequestDTO articleToDTO(ArticleEntity entity) {
         ArticleRequestDTO articleDTO = new ArticleRequestDTO();
-//        articleDTO.setId(entity.getId());
         articleDTO.setTitle(entity.getTitle());
         articleDTO.setDescription(entity.getDescription());
         articleDTO.setContent(entity.getContent());

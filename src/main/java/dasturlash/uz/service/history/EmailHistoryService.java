@@ -1,6 +1,8 @@
 package dasturlash.uz.service.history;
 
+import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.history.EmailDTO;
+import dasturlash.uz.entity.CategoryEntity;
 import dasturlash.uz.entity.history.EmailHistoryEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.EmailHistoryRepository;
@@ -20,11 +22,15 @@ public class   EmailHistoryService {
 
     @Autowired
     private EmailHistoryRepository emailHistoryRepository;
+
     @Autowired
     private SmsService smsService;
 
     public String crete(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();
+        if (toEmail.equals(entity.getEmail())){
+            throw new AppBadException("Email is already in use");
+        }
         entity.setEmail(toEmail);
         entity.setMessage(text);
         emailHistoryRepository.save(entity);
@@ -59,29 +65,37 @@ public class   EmailHistoryService {
         }
     }
 
-    public EmailHistoryEntity getByEmail(String email) {
+    public EmailDTO getByEmail(String email,EmailDTO emailDTO) {
          Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByEmail(email);
          if (byEmail.isEmpty()) {
              throw new AppBadException("Email not found");
          }
          EmailHistoryEntity entity =new EmailHistoryEntity();
-         EmailDTO emailDTO=new EmailDTO();
          entity.setCreatedDate(LocalDateTime.now());
          entity.setEmail(emailDTO.getEmail());
          entity.setMessage(emailDTO.getMessage());
-         return entity;
+         return emailDTO(entity);
     }
 
-    public EmailHistoryEntity getByCreatedDate(LocalDateTime createdDate, EmailDTO emailDTO) {
+    private EmailDTO emailDTO(EmailHistoryEntity entity) {
+        EmailDTO emailDTO = new EmailDTO();
+        emailDTO.setCreatedDate(entity.getCreatedDate());
+        emailDTO.setEmail(entity.getEmail());
+        emailDTO.setMessage(entity.getMessage());
+        return emailDTO;
+    }
+
+
+    public EmailDTO getByCreatedDate(EmailDTO emailDTO,LocalDateTime createdDate) {
         Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByCreatedDate(createdDate);
         if (byEmail.isEmpty()) {
             throw new AppBadException("CreatedDate not found");
         }
         EmailHistoryEntity entity =new EmailHistoryEntity();
         entity.setCreatedDate(LocalDateTime.now());
-//        entity.setEmail(emailDTO.getEmail());
-//        entity.setMessage(emailDTO.getMessage());
-        return entity;
+        entity.setEmail(emailDTO.getEmail());
+        entity.setMessage(emailDTO.getMessage());
+        return emailDTO(entity);
     }
 
     public PageImpl<EmailDTO> paginationEmail(int page, int size) {
@@ -91,17 +105,9 @@ public class   EmailHistoryService {
 
         List<EmailDTO>email=new LinkedList<>();
         for (EmailHistoryEntity emailEntity : all.getContent()) {
-            email.add(emailToDTO(emailEntity));
+            email.add(emailDTO(emailEntity));
         }
         Long totalCount=all.getTotalElements();
         return new PageImpl<EmailDTO>(email,pageable,totalCount);
-    }
-
-    private EmailDTO emailToDTO(EmailHistoryEntity emailEntity) {
-         EmailDTO emailDTO = new EmailDTO();
-         emailDTO.setCreatedDate(emailEntity.getCreatedDate());
-         emailDTO.setMessage(emailEntity.getMessage());
-         emailDTO.setEmail(emailEntity.getEmail());
-         return emailDTO;
     }
 }

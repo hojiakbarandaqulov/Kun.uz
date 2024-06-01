@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("/region")
 @RestController
 public class RegionController {
+
     @Autowired
     private RegionService regionService;
 
@@ -25,20 +26,24 @@ public class RegionController {
         RegionDTO response=regionService.create(region);
         return ResponseEntity.ok().body(response);
     }
+
     @PutMapping("/adm/update/{id}")
     public ResponseEntity<Boolean> updateRegion(@PathVariable("id")Integer id,@Valid @RequestBody RegionCreateDTO dto) {
         regionService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
+
     @DeleteMapping("/adm/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id/*@RequestHeader("Authorization") String token*/){
         regionService.delete(id);
         return ResponseEntity.ok().body(true);
     }
+
     @GetMapping("/adm/regionAll")
     public ResponseEntity<List<RegionDTO>> all(/*@RequestHeader("Authorization") String token*/) {
         return ResponseEntity.ok().body(regionService.getAll());
     }
+
     @GetMapping("/lang")
     public ResponseEntity<List<RegionDTO>> getAllByLang(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language lang) {
         List<RegionDTO> regionDTOList = regionService.getAllByLang(lang);

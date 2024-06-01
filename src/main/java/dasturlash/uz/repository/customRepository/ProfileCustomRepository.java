@@ -6,6 +6,7 @@ import dasturlash.uz.entity.ProfileEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -14,8 +15,10 @@ import java.util.Map;
 
 @Repository
 public class ProfileCustomRepository {
+
     @Autowired
     private EntityManager entityManager;
+
     public FilterResponseDTO<ProfileEntity> filter(ProfileFilterDTO filter, int page, int size) {
         Map<String, Object> params = new HashMap<>();
 
@@ -24,18 +27,22 @@ public class ProfileCustomRepository {
             query.append(" and s.name=:name ");
             params.put("name", filter.getName());
         }
+
         if (filter.getSurname() != null) {
             query.append(" and s.surname=:surname ");
             params.put("surname", filter.getSurname());
         }
+
         if (filter.getPhone() != null) {
             query.append(" and s.phone=:phone ");
             params.put("phone", filter.getPhone());
         }
+
         if (filter.getRole() != null) {
             query.append(" and s.role=:role ");
             params.put("role", filter.getRole());
         }
+
         if (filter.getCreatedDateFrom() != null) {
             query.append(" and s.createdDate between :createdDateFrom and :createdDateTo");
             params.put("createdDateFrom", filter.getCreatedDateFrom());

@@ -10,14 +10,19 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "email_history")
+
 public class EmailHistoryEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "message", columnDefinition = "text")
     private String message;
+
     @Column(name = "email",unique = true)
     private String email;
+
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 }

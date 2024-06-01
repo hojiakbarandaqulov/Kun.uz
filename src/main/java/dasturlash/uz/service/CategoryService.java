@@ -16,12 +16,12 @@ import java.util.Optional;
 
 @Service
 public class CategoryService {
+
     @Autowired
     private CategoryRepository categoryRepository;
 
     public CategoryDTO create(CategoryCreateDTO categoryDTO) {
         CategoryEntity categoryEntity = new CategoryEntity();
-
         categoryEntity.setOrderNumber(categoryDTO.getOrderNumber());
         categoryEntity.setNameUz(categoryDTO.getNameUz());
         categoryEntity.setNameRu(categoryDTO.getNameRu());
@@ -40,6 +40,7 @@ public class CategoryService {
         categoryRepository.save(entity);
         return true;
     }
+
     public CategoryDTO categoryToDTO(CategoryEntity categoryEntity){
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setId(categoryEntity.getId());
@@ -66,6 +67,7 @@ public class CategoryService {
         }
         return dtoList;
     }
+
     public List<CategoryDTO> getAllByLanguage(Language lang) {
         List<CategoryMapper> mapperList = categoryRepository.findByLanguage(lang.name());
         List<CategoryDTO> dtoList = new LinkedList<>();
@@ -77,6 +79,7 @@ public class CategoryService {
         }
         return dtoList;
     }
+
     public CategoryEntity getId(Integer id){
         Optional<CategoryEntity> optional=categoryRepository.findById(id);
         if (optional.isEmpty()){

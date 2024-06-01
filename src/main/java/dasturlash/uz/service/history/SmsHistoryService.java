@@ -19,8 +19,10 @@ import java.util.Optional;
 
 @Service
 public class SmsHistoryService {
+
     @Autowired
     private SmsHistoryRepository smsHistoryRepository;
+
     @Autowired
     private SmsService smsService;
 

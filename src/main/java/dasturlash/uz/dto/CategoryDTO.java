@@ -9,11 +9,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class CategoryDTO {
+
     private Integer id;
     private Integer orderNumber;
     private String nameUz;
@@ -21,5 +24,5 @@ public class CategoryDTO {
     private String nameEn;
     private String name;
     private Boolean visible;
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
 }

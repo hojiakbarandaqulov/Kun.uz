@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/types")
 @RestController
 public class TypesController {
+
     @Autowired
     private TypesService typesService;
 
@@ -33,17 +34,20 @@ public class TypesController {
         typesService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
+
     @DeleteMapping("/adm/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id")Integer id){
         typesService.delete(id);
         return ResponseEntity.ok().body(true);
     }
+
     @GetMapping("/adm/typeAllPagination")
     public ResponseEntity<PageImpl<TypesDTO>> getAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "size", defaultValue = "10") int size) {
         PageImpl<TypesDTO> typeList = typesService.getAllPagination(page - 1, size);
         return ResponseEntity.ok().body(typeList);
     }
+
     @GetMapping("/language")
     public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language){
         return typesService.getAllByLang(language);

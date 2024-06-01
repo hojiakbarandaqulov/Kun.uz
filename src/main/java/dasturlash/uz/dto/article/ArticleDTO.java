@@ -15,6 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ArticleDTO {
+
     @Id
     @GeneratedValue
     private UUID id;

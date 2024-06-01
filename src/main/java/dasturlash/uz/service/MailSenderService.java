@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailSenderService {
+
     @Autowired
     private JavaMailSender javaMailSender;
+
     @Value("${spring.mail.username}")
     private String fromEmail;
+
     public void send(String toAccount, String subject, String text)  {
       /*  SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(toAccount);

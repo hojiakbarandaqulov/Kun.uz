@@ -18,10 +18,13 @@ import java.util.List;
 
 @Service
 public class ProfileService {
+
     @Autowired
     private ProfileRepository profileRepository;
+
     @Autowired
     private ProfileCustomRepository profileCustomRepository;
+
     public ProfileDTO create(ProfileCreateDTO profileDTO) {
         ProfileEntity entity = new ProfileEntity();
         entity.setName(profileDTO.getName());
@@ -34,6 +37,7 @@ public class ProfileService {
         profileRepository.save(entity);
         return profileToDTO(entity);
     }
+
     public Boolean update(Integer id,ProfileCreateDTO profile) {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profile.getName());
@@ -55,6 +59,7 @@ public class ProfileService {
         profileRepository.save(profileEntity);
         return true;
     }
+
     public ProfileDTO profileToDTO(ProfileEntity entity) {
         ProfileDTO profileDTO = new ProfileDTO();
         profileDTO.setId(entity.getId());
@@ -112,6 +117,7 @@ public class ProfileService {
 
         return new PageImpl<ProfileDTO>(dtoList,pageable,totalCount);
     }*/
+
     public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
         FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
 
@@ -127,6 +133,7 @@ public class ProfileService {
         }
         return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
     }
+
 /*    public Boolean updateRole(ProfileRole role, ProfileCreateDTO dto) {
         ProfileEntity entity=profileRepository.findByRole(role.name());
         entity.setName(dto.getName());

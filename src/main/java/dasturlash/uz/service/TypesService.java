@@ -27,6 +27,7 @@ public class TypesService {
         typesRepository.save(typesEntity);
         return typesToDTO(typesEntity);
     }
+
     public Boolean update(Integer id, TypesDTO dto) {
         TypesEntity entity = get(id);
         entity.setNameUz(dto.getNameUz());
@@ -35,6 +36,7 @@ public class TypesService {
         typesRepository.save(entity);
         return true;
     }
+
     public TypesDTO typesToDTO(TypesEntity typesEntity) {
         TypesDTO dto = new TypesDTO();
         dto.setId(typesEntity.getId());
@@ -75,6 +77,7 @@ public class TypesService {
         Long totalCount = pageObj.getTotalElements();
         return new PageImpl<TypesDTO>(dtoList, pageable, totalCount);
     }
+
     /*
         private RegionEntity getName(String name) {
             return typesRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Region not found"));

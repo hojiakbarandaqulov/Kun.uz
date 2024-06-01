@@ -1,6 +1,7 @@
 ### Authorization
 POST https://notify.eskiz.uz/api/auth/login
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczMzMzMDMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQxOTcwMywiaXNzIjoiS3VuVXpUZXN0In0.o5FnrTeXfqPc3abGUya3EoRCNLWEXPoSC0hREh6dP0bgsh7ybqWzWd8VmSTZxXMJao2Ap2mokyC9H2OcyFgK7w
 
 {
   "email": "handaqulov51@gmail.com",
@@ -20,7 +21,7 @@ Content-Type: application/json
 ### Sms resend
 GET http://localhost:8080/api/history/+998915721213
 Content-Type: application/json
-#Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcwNTg3MDAsImlkIjoxMSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNzE0NTEwMCwiaXNzIjoiS3VuVXpUZXN0In0.39wJspZogiu1l02zJNiENCrTSzM1SwnWsRsCo9dFwLpSRaokPVO25PveCmoLLd41e_Axmjj3n1LwE9NrjkOl3Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczMzMzMDMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQxOTcwMywiaXNzIjoiS3VuVXpUZXN0In0.o5FnrTeXfqPc3abGUya3EoRCNLWEXPoSC0hREh6dP0bgsh7ybqWzWd8VmSTZxXMJao2Ap2mokyC9H2OcyFgK7w
 
 {
   "mobile_phone": "+998915721213",

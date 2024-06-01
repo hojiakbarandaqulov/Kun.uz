@@ -11,7 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+
 public class ProfileCreateDTO {
+
     private String name;
     @NotBlank(message = "surname required")
     private String surname;

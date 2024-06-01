@@ -1,13 +1,15 @@
 ### GET request to example server
-GET localhost:8080/email/history/hojiakbarandaqulov5@gmail.com
-Authorization: Basic YWRtaW46YWRtaW5qb24=
+GET localhost:8080/email/adm/hojiakbarandaqulov5@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
 
 ### GET request to example server
-GET localhost:8080/email/by/12@gmail.com
-Authorization: Basic YWRtaW46YWRtaW5qb24=
+GET localhost:8080/email/adm/byEmail/hojiakbarandaqulov5@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
+
 ### getByEmail
-GET http://localhost:8080/email/by/hojiakbarandaqulov5@gmail.com
-Authorization: Basic YWRtaW46YWRtaW5qb24=
+GET http://localhost:8080/email/adm/date/2024-06-02 17:08:54.578584
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
+
 ### Pagination
-GET http://localhost:8080/email/pagination?page=1&size=4
-Authorization: Basic YWRtaW46YWRtaW5qb24=
+GET http://localhost:8080/email/adm/pagination?page=1&size=4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA

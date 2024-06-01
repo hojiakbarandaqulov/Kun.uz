@@ -1,10 +1,7 @@
 package dasturlash.uz.controller;
 
-import dasturlash.uz.dto.article.ArticleDTO;
-import dasturlash.uz.dto.create.ArticleCreateDTO;
 import dasturlash.uz.dto.response.ArticleRequestDTO;
 import dasturlash.uz.service.ArticleService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class ArticleController {
+
     @Autowired
     private ArticleService articleService;
 
     @PostMapping("/create")
-    public ResponseEntity<ArticleRequestDTO> createArticle(@RequestBody ArticleRequestDTO articleDTO) {
-        ArticleRequestDTO response = articleService.create(articleDTO);
-        return ResponseEntity.ok().body(response);
+    public ResponseEntity<ArticleRequestDTO> createArticle(@RequestBody ArticleRequestDTO articleRequestDTO) {
+        ArticleRequestDTO article = articleService.createArticle(articleRequestDTO);
+        return ResponseEntity.ok().body(article);
     }
    /* @PostMapping("")
     public ResponseEntity<ArticleRequestDTO> create(@RequestBody @Valid ArticleRequestDTO dto) {

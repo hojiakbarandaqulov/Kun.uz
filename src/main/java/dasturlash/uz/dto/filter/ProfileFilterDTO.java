@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProfileFilterDTO {
+
    private String name;
    private String surname;
    private String phone;

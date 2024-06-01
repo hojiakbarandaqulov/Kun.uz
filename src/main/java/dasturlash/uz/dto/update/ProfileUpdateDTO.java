@@ -6,7 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class ProfileUpdateDTO {
+
     @NotBlank
     private String name;
     @NotBlank

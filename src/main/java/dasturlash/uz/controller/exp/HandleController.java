@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class HandleController {
+
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<?> handle(IllegalArgumentException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
     @ExceptionHandler({AppBadException.class})
     public ResponseEntity<?> handle(AppBadException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
@@ -23,4 +25,11 @@ public class HandleController {
     public ResponseEntity<String> handler(AppForbiddenException e) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handler(RuntimeException e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
+
 }
