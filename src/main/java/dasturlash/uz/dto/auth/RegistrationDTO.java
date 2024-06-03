@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class RegistrationDTO {
     @NotBlank(message = "name required")
     private String name;

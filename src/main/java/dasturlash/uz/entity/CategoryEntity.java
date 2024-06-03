@@ -9,10 +9,8 @@ import java.time.LocalDate;
 
 @Setter
 @Getter
-
 @Entity
 @Table(name = "category")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

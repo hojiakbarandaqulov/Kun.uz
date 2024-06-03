@@ -28,7 +28,7 @@ public class CategoryController {
     }
 
     @PutMapping("/adm/update/{id}")
-    public ResponseEntity<Boolean> updateRegion(@PathVariable("id")Integer id,@Valid @RequestBody CategoryCreateDTO dto) {
+    public ResponseEntity<Boolean> updateRegion(@PathVariable("id") Integer id, @Valid @RequestBody CategoryCreateDTO dto) {
         Boolean result = categoryService.update(id, dto);
         return ResponseEntity.ok().body(result);
     }

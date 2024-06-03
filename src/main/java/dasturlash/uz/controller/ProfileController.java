@@ -19,21 +19,21 @@ public class ProfileController {
     private ProfileService profileService;
 
     @PostMapping("/adm/create")
-    public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO){
+    public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO) {
         ProfileDTO response = profileService.create(profileDTO);
         return ResponseEntity.ok().body(response);
     }
 
     @PutMapping("/adm/current/{id}")
-    public ResponseEntity<Boolean> updateUser(@PathVariable("id")Integer id, @RequestBody ProfileUpdateDTO profile) {
+    public ResponseEntity<Boolean> updateUser(@PathVariable("id") Integer id, @RequestBody ProfileUpdateDTO profile) {
         profileService.updateUser(id, profile);
         return ResponseEntity.ok().body(true);
     }
 
     @PutMapping("/adm/update/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable("id")Integer id,
+    public ResponseEntity<Boolean> update(@PathVariable("id") Integer id,
                                           @Valid @RequestBody ProfileCreateDTO profile) {
-        profileService.update(id,profile);
+        profileService.update(id, profile);
         return ResponseEntity.ok().body(true);
     }
 

@@ -1,8 +1,12 @@
 package dasturlash.uz.util;
 
+import dasturlash.uz.config.CustomUserDetail;
 import dasturlash.uz.dto.auth.JwtDTO;
+import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.exp.AppForbiddenException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtil {
 
@@ -19,4 +23,16 @@ public class SecurityUtil {
         }
         return dto;
     }
+    public static Integer getProfileId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetail user = (CustomUserDetail) authentication.getPrincipal();
+        return user.getProfile().getId();
+    }
+
+    public static ProfileEntity getProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetail user = (CustomUserDetail) authentication.getPrincipal();
+        return user.getProfile();
+    }
+
 }

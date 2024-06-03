@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RegionCreateDTO {
-
     @NotNull
     private Integer orderNumber;
     @NotBlank(message = "NameUz required")

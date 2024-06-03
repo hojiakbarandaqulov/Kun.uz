@@ -15,7 +15,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ArticleDTO {
-
     @Id
     @GeneratedValue
     private UUID id;
@@ -37,6 +36,6 @@ public class ArticleDTO {
     private LocalDateTime publishedDate;
     private boolean visible;
     private int viewCount;
-    private Integer[] type;
+    private List<Integer> type;
 
 }

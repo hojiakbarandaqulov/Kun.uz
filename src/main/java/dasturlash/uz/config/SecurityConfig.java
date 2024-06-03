@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+
 @Configuration
 @EnableWebSecurity
 @Component
@@ -78,8 +79,8 @@ public class SecurityConfig {
                     .requestMatchers("types/language").permitAll()
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
-                    .requestMatchers("/api/history/*").permitAll()
-                    .requestMatchers("/api/create/*").hasRole("MODERATOR")
+                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("email/adm/**").permitAll()
                     .anyRequest()
                     .authenticated();

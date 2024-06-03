@@ -64,13 +64,13 @@ public class TypesService {
         Page<TypesEntity> pageObj = typesRepository.findAll(pageable);
 
         List<TypesDTO> dtoList = new LinkedList<>();
-        for (TypesEntity types : pageObj.getContent()) {
+        for (TypesEntity entity : pageObj.getContent()) {
             TypesDTO typesDTO = new TypesDTO();
-            typesDTO.setId(types.getId());
-            typesDTO.setNameUz(types.getNameUz());
-            typesDTO.setNameRu(types.getNameRu());
-            typesDTO.setNameEn(types.getNameEn());
-            typesDTO.setOrderNumber(types.getOrderNumber());
+            typesDTO.setId(entity.getId());
+            typesDTO.setNameUz(entity.getNameUz());
+            typesDTO.setNameRu(entity.getNameRu());
+            typesDTO.setNameEn(entity.getNameEn());
+            typesDTO.setOrderNumber(entity.getOrderNumber());
             dtoList.add(typesDTO);
         }
 

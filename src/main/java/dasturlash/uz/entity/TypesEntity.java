@@ -8,16 +8,12 @@ import org.springframework.cglib.core.Local;
 import java.time.LocalDate;
 @Getter
 @Setter
-
 @Entity
 @Table(name = "types")
-
 public class TypesEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "order_number")
     private Integer orderNumber;
 

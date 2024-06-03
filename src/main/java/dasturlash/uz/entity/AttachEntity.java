@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "attach")
-
 public class AttachEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

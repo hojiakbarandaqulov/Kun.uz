@@ -12,12 +12,9 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-
 @Entity
 @Table(name = "profile")
-
 public class ProfileEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

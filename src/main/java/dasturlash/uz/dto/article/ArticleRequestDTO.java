@@ -1,19 +1,25 @@
-package dasturlash.uz.dto.create;
+package dasturlash.uz.dto.article;
 
-//import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.CategoryDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.mapping.Array;
-import org.hibernate.mapping.List;
 
-@Setter
+import java.util.List;
+import java.util.UUID;
+
 @Getter
-
-public class ArticleCreateDTO {
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ArticleRequestDTO {
+    @NotNull
+    private UUID id;
 
     @NotNull(message = "Title cannot be null")
     @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
@@ -24,6 +30,9 @@ public class ArticleCreateDTO {
 
     @NotNull(message = "Content cannot be null")
     private String content;
+
+    @Column(name = "shared_count")
+    private Integer sharedCount = 0;
     @NotNull(message = "Image ID cannot be null")
     private Integer imageId;
 
@@ -33,8 +42,13 @@ public class ArticleCreateDTO {
     @NotNull(message = "Category ID cannot be null")
     private Integer categoryId;
 
-    @NotNull(message = "Category ID cannot be null")
-    private Array articleType;
-
+    @NotNull(message = "Role cannot be null")
     private ProfileRole role;
+
+    @NotNull(message = "Article cannot be null")
+    private ArticleStatus status;
+//    @ElementCollection
+
+    private List<Integer> articleType;
+
 }

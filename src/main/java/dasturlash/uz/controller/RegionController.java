@@ -21,20 +21,20 @@ public class RegionController {
     @Autowired
     private RegionService regionService;
 
-   @RequestMapping(value = "/adm/create", method = RequestMethod.POST)
-    public ResponseEntity<RegionDTO> create(@Valid @RequestBody RegionCreateDTO region){
-        RegionDTO response=regionService.create(region);
+    @RequestMapping(value = "/adm/create", method = RequestMethod.POST)
+    public ResponseEntity<RegionDTO> create(@Valid @RequestBody RegionCreateDTO region) {
+        RegionDTO response = regionService.create(region);
         return ResponseEntity.ok().body(response);
     }
 
     @PutMapping("/adm/update/{id}")
-    public ResponseEntity<Boolean> updateRegion(@PathVariable("id")Integer id,@Valid @RequestBody RegionCreateDTO dto) {
+    public ResponseEntity<Boolean> updateRegion(@PathVariable("id") Integer id, @Valid @RequestBody RegionCreateDTO dto) {
         regionService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
 
     @DeleteMapping("/adm/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id/*@RequestHeader("Authorization") String token*/){
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id/*@RequestHeader("Authorization") String token*/) {
         regionService.delete(id);
         return ResponseEntity.ok().body(true);
     }

@@ -1,7 +1,7 @@
 ### Registration with Phone
 POST localhost:8080/auth/registration
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
 
 {
   "name": "Jek",
@@ -24,8 +24,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST
 #  "role": "ROLE_ADMIN"
 #}
 ###
-GET http://localhost:8080/auth/verification/51
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
+GET http://localhost:8080/auth/verification/15
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
 
 
 ### Login

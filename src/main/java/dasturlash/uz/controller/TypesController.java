@@ -30,13 +30,13 @@ public class TypesController {
     }
 
     @PutMapping("/adm/update/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable("id")Integer id,@Valid @RequestBody TypesDTO dto) {
+    public ResponseEntity<Boolean> update(@PathVariable("id") Integer id, @Valid @RequestBody TypesDTO dto) {
         typesService.update(id, dto);
         return ResponseEntity.ok().body(true);
     }
 
     @DeleteMapping("/adm/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id")Integer id){
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id) {
         typesService.delete(id);
         return ResponseEntity.ok().body(true);
     }
@@ -49,7 +49,7 @@ public class TypesController {
     }
 
     @GetMapping("/language")
-    public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language){
+    public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language) {
         return typesService.getAllByLang(language);
     }
    /* @ResponseStatus(HttpStatus.BAD_REQUEST)

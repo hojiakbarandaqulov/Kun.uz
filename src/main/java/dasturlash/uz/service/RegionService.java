@@ -87,7 +87,7 @@ public class RegionService {
     public RegionEntity getId(Integer id) {
         Optional<RegionEntity> optional = regionRepository.findById(id);
         if (optional.isEmpty()) {
-            throw new AppBadException("Item not found: " + id);
+            throw new AppBadException("Region not found: " + id);
         }
         return optional.get();
     }

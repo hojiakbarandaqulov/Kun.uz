@@ -25,11 +25,13 @@ public class EmailHistoryController {
         String body = authService.registrationResendEmail(email);
         return ResponseEntity.ok().body(body);
     }
+
     @GetMapping("/adm/byEmail/{email}")
-    public ResponseEntity<EmailDTO> ByEmail(@PathVariable("email") String email,EmailDTO emailDTO) {
-        EmailDTO body = emailHistoryService.getByEmail(email,emailDTO);
+    public ResponseEntity<EmailDTO> ByEmail(@PathVariable("email") String email, EmailDTO emailDTO) {
+        EmailDTO body = emailHistoryService.getByEmail(email, emailDTO);
         return ResponseEntity.ok().body(body);
     }
+
     @GetMapping("/adm/date/{created_date}")
     public ResponseEntity<EmailDTO> getByCreatedDate(@Valid @RequestBody EmailDTO emailDTO, @PathVariable LocalDateTime created_date) {
         EmailDTO body = emailHistoryService.getByCreatedDate(emailDTO, created_date);
@@ -39,7 +41,7 @@ public class EmailHistoryController {
     @GetMapping("/adm/pagination")
     public ResponseEntity<PageImpl<EmailDTO>> emailPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                               @RequestParam(value = "size", defaultValue = "10") int size) {
-         PageImpl<EmailDTO> body = emailHistoryService.paginationEmail(page - 1, size);
+        PageImpl<EmailDTO> body = emailHistoryService.paginationEmail(page - 1, size);
         return ResponseEntity.ok().body(body);
     }
 }
