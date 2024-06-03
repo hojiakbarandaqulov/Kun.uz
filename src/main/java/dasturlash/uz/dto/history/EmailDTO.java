@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 public class EmailDTO {
-
     @NotBlank(message = "CreatedDate required")
     private LocalDateTime createdDate;
 

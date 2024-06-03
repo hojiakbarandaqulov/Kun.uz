@@ -9,6 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 public class FilterResponseDTO<T> {
 
-   private List<T> content;
-   private Long totalCount;
+    private List<T> content;
+    private Long totalCount;
 }

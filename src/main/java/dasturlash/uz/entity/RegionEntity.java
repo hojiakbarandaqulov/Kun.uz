@@ -9,12 +9,9 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-
 @Entity
 @Table(name = "region")
-
 public class RegionEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

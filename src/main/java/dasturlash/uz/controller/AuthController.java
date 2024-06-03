@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
     @Autowired
     private AuthService authService;
 
@@ -33,11 +32,11 @@ public class AuthController {
         return ResponseEntity.ok().body(body);
     }
 
- /*   @PostMapping("/login")
-    public ResponseEntity<ProfileDTO> login(@Valid @RequestBody LoginDTO dto) {
-        ProfileDTO body = authService.loginPhone(dto);
-        return ResponseEntity.ok().body(body);
-    }*/
+    /*   @PostMapping("/login")
+       public ResponseEntity<ProfileDTO> login(@Valid @RequestBody LoginDTO dto) {
+           ProfileDTO body = authService.loginPhone(dto);
+           return ResponseEntity.ok().body(body);
+       }*/
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> loginEmail(@Valid @RequestBody LoginDTO dto) {
         AuthResponseDTO body = authService.login(dto);

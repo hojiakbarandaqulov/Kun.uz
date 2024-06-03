@@ -1,14 +1,32 @@
 ### Article create to example
 POST http://localhost:8080/api/create
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTcyNTkzNzEsInJvbGUiOiJST0xFX1VTRVIiLCJ1c2VybmFtZSI6ImFsaXNoQGdtYWlsLmNvbSIsImV4cCI6MTcxNzM0NTc3MSwiaXNzIjoiS3VuVXpUZXN0In0.gJf6M-JR2sJOPkunHxewks_83lvZGENTseHwOFvTway1UXUT3FN7KzNHlSCp5x1pEH0k-D9ZiHPLebEJtwduZA
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
 
 {
+  "id": 1,
   "title": "Sample Title",
   "description": "Sample Description",
   "content": "Sample Content",
   "imageId": 1,
-  "regionId": 2,
-  "categoryId": 3,
-  "articleType": ["News", "Technology"]
+  "regionId": 5,
+  "categoryId": 2,
+  "articleType": [1,3]
+}
+
+
+#### Article update to example
+PUT http://localhost:8080/api/update/012b3539-d3ca-4aab-8321-ddebd5603782
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
+
+{
+  "title": "Title",
+  "description": "Description",
+  "content": "Content",
+  "sharedCount": 1,
+  "imageId": 2,
+  "regionId": 5,
+  "categoryId": 2,
+  "articleType": [1,2]
 }

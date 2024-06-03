@@ -1,16 +1,16 @@
 package dasturlash.uz.service;
 
 
-import dasturlash.uz.dto.response.ArticleRequestDTO;
+import dasturlash.uz.dto.article.ArticleRequestDTO;
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.enums.ArticleStatus;
-import dasturlash.uz.enums.ProfileRole;
-import dasturlash.uz.enums.ProfileStatus;
 import dasturlash.uz.repository.ArticleRepository;
+import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ArticleService {
@@ -18,7 +18,7 @@ public class ArticleService {
     private ArticleRepository articleRepository;
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     private RegionService regionService;
@@ -44,7 +44,30 @@ public class ArticleService {
         articleDTO.setImageId(entity.getImageId());
         articleDTO.setRegionId(entity.getRegionId());
         articleDTO.setCategoryId(entity.getCategoryId());
+        articleDTO.setArticleType(entity.getArticleType());
         return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(UUID id,ArticleRequestDTO articleUpdateDTO) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if (optionalArticle.isEmpty()) {
+            throw new IllegalArgumentException("Article does not exists");
+        }
+
+        ArticleEntity article = optionalArticle.get();
+
+        if (!categoryRepository.existsById(articleUpdateDTO.getCategoryId())) {
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        article.setTitle(articleUpdateDTO.getTitle());
+        article.setDescription(articleUpdateDTO.getDescription());
+        article.setContent(articleUpdateDTO.getContent());
+        article.setSharedCount(articleUpdateDTO.getSharedCount());
+        article.setImageId(articleUpdateDTO.getImageId());
+        article.setRegionId(articleUpdateDTO.getRegionId());
+        article.setCategoryId(articleUpdateDTO.getCategoryId());
+        article.setStatus(ArticleStatus.NOT_PUBLISHED);
+        return articleRepository.save(article);
     }
    /* public List<Article> getAllArticles() {
         return articleRepository.findAll();

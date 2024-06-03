@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 public class TypesDTO {
 
     private Integer id;

@@ -9,18 +9,17 @@ import org.hibernate.mapping.Array;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 @Getter
 @Setter
-
 @Entity
 @Table(name = "article")
-
 public class ArticleEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(name = "title", columnDefinition = "text")
     private String title;
 
@@ -81,11 +80,11 @@ public class ArticleEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
 
-    @Column(name = "view_count")
-    private Integer viewCount;
+   /* @Column(name = "view_count")
+    private Integer viewCount;*/
 
-    @Column(name = "article_type")
-    private Array articleType;
+    @ElementCollection
+    private List<String> articleType;
 
     @Enumerated(EnumType.STRING)
     private ProfileRole role;

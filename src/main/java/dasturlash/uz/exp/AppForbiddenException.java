@@ -1,8 +1,8 @@
 package dasturlash.uz.exp;
 
-public class AppForbiddenException extends RuntimeException{
+public class AppForbiddenException extends RuntimeException {
 
-    public AppForbiddenException(String message){
+    public AppForbiddenException(String message) {
         super(message);
     }
 }

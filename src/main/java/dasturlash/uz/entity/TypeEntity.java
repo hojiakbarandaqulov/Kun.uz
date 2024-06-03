@@ -10,9 +10,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "type")
-
 public class TypeEntity {
-
     @Id
     @GeneratedValue
     private UUID id;
