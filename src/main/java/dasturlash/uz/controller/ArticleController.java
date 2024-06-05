@@ -1,7 +1,10 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 import java.util.UUID;
 
 @RestController
@@ -23,6 +29,7 @@ public class ArticleController {
         ArticleRequestDTO article = articleService.createArticle(articleRequestDTO);
         return ResponseEntity.ok().body(article);
     }
+<<<<<<< HEAD
 
     @PutMapping("/moderator/{id}")
     public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
@@ -49,3 +56,13 @@ public class ArticleController {
     }*/
 
 }
+=======
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+        articleService.updateArticle(id,articleRequestDTO);
+        return ResponseEntity.ok().body(true);
+    }
+}
+// User and Admin profile da umuman yoq bolsa qayerdan userni
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9

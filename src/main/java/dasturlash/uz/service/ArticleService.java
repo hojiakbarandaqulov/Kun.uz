@@ -2,12 +2,16 @@ package dasturlash.uz.service;
 
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.CategoryEntity;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.ArticleStatus;
+<<<<<<< HEAD
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ArticleRepository;
 import dasturlash.uz.repository.CategoryRepository;
@@ -21,6 +25,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static java.nio.file.Paths.get;
+=======
+import dasturlash.uz.repository.ArticleRepository;
+import dasturlash.uz.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 
 @Service
 public class ArticleService {
@@ -68,11 +81,18 @@ public class ArticleService {
         articleDTO.setRegionId(entity.getRegionId());
         articleDTO.setCategoryId(entity.getCategoryId());
         articleDTO.setArticleType(entity.getArticleType());
+<<<<<<< HEAD
         articleDTO.setRole(entity.getRole());
         return articleDTO;
     }
 
     public ArticleEntity updateArticle(UUID id, ArticleRequestDTO articleUpdateDTO) {
+=======
+        return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(UUID id,ArticleRequestDTO articleUpdateDTO) {
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
         if (optionalArticle.isEmpty()) {
             throw new IllegalArgumentException("Article does not exists");
@@ -93,6 +113,7 @@ public class ArticleService {
         article.setStatus(ArticleStatus.NOT_PUBLISHED);
         return articleRepository.save(article);
     }
+<<<<<<< HEAD
 
     public void deleteArticle(UUID id) {
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
@@ -116,6 +137,8 @@ public class ArticleService {
         return articleRepository.findTypeIdOrder(type);
     }
 }
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
    /* public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }

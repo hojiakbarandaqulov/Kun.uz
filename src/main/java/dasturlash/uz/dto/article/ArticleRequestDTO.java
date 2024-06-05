@@ -1,22 +1,27 @@
 package dasturlash.uz.dto.article;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.mapping.Array;
 
 import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
+<<<<<<< HEAD
 @JsonInclude(JsonInclude.Include.NON_NULL)
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 public class ArticleRequestDTO {
     @NotNull
     private UUID id;
@@ -42,8 +47,13 @@ public class ArticleRequestDTO {
     @NotNull(message = "Category ID cannot be null")
     private Integer categoryId;
 
+<<<<<<< HEAD
     @NotNull(message = "Role cannot be null")
     private ProfileRole role;
+=======
+    @ElementCollection
+    private List<String> articleType;
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
 
     @NotNull(message = "Article cannot be null")
     private ArticleStatus status;

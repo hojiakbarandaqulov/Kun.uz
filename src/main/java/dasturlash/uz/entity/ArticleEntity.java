@@ -81,8 +81,18 @@ public class ArticleEntity {
 
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
+<<<<<<< HEAD
 //    @ElementCollection
     private List<Integer> articleType;
+=======
+
+   /* @Column(name = "view_count")
+    private Integer viewCount;*/
+
+    @ElementCollection
+    private List<String> articleType;
+
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
     @Enumerated(EnumType.STRING)
     private ProfileRole role;
 }
