@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -25,12 +24,11 @@ public class ArticleController {
     }
 
     @PutMapping("/moderator/{id}")
-    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") String id, @RequestBody ArticleRequestDTO articleRequestDTO) {
         articleService.updateArticle(id, articleRequestDTO);
         return ResponseEntity.ok().body(true);
     }
 
-    // User and Admin profile da umuman yoq bolsa qayerdan userni oladi
     @DeleteMapping("/moderator/{id}")
     public ResponseEntity<Boolean> deleteArticle(@PathVariable("id") UUID id) {
         articleService.deleteArticle(id);
@@ -38,14 +36,15 @@ public class ArticleController {
     }
 
     @PutMapping("/changeByStatus/{id}")
-    public ResponseEntity<Boolean>changeByStatus(@PathVariable("id") UUID id, @RequestBody ArticleStatusDTO statusDTO) {
-        articleService.changeByStatus(id,statusDTO);
+    public ResponseEntity<Boolean> changeByStatus(@PathVariable("id") UUID id, @RequestBody ArticleStatusDTO statusDTO) {
+        articleService.changeByStatus(id, statusDTO);
         return ResponseEntity.ok().body(true);
     }
-   /* @GetMapping("/typeIntermediate/{type}")
-    public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType( @PathVariable String type) {
-        List<ArticleRequestDTO> articles = articleService.TypeById(type);
-        return new ResponseEntity<>(articles, HttpStatus.OK);
-    }*/
+
+    /* @GetMapping("/typeIntermediate/{type}")
+     public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType( @PathVariable String type) {
+         List<ArticleRequestDTO> articles = articleService.TypeById(type);
+         return new ResponseEntity<>(articles, HttpStatus.OK);
+     }*/
 
 }

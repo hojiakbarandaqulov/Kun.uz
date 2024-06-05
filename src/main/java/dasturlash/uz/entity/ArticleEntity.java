@@ -20,7 +20,7 @@ public class ArticleEntity {
     @Id
     @GeneratedValue(generator = "uuid-hibernate-generator")
     @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID id;
+    private String id;
 
     @Column(name = "title", columnDefinition = "text")
     private String title;
@@ -82,7 +82,11 @@ public class ArticleEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
 //    @ElementCollection
-    private List<Integer> articleType;
+    private List<ArticleTypesEntity> articleType;
+
+   /* @Column(name = "view_count")
+    private Integer viewCount;*/
+
     @Enumerated(EnumType.STRING)
     private ProfileRole role;
 }

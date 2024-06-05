@@ -7,18 +7,17 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>, PagingAndSortingRepository<ProfileEntity, Integer> {
+public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>{
 
     Optional<ProfileEntity> findByEmailAndVisibleTrue(String email);
 
     @Transactional
     @Modifying
     @Query("update ProfileEntity set status =?2 where id =?1")
-    int updateStatus(Integer profileId, ProfileStatus status);
+    void updateStatus(Integer profileId, ProfileStatus status);
 
     /* @Query(value = "select * from profile where email = :email and visible = true",nativeQuery = true)
      Optional<ProfileEntity> findByEmailAndVisibleTrue(@Param("email") String email);*/
@@ -27,5 +26,5 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
 
     Optional<ProfileEntity> findByPhoneAndVisibleTrue(String phone);
 
-    Optional<SmsHistoryEntity> findByPhone(String phone);
+//    Optional<SmsHistoryEntity> findByPhone(String phone);
 }

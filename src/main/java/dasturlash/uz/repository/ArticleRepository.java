@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ArticleRepository extends JpaRepository<ArticleEntity, UUID> {
-    List<ArticleRequestDTO> findTypeIdOrder(List<String> type);
+//    List<ArticleRequestDTO> findTypeIdOrder(List<String> type);
     //    List<ArticleRequestDTO> findTop5ByArticleTypeOrderByCreatedDateDesc(List<String> articleType);
 }

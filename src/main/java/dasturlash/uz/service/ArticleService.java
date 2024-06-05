@@ -22,6 +22,14 @@ import java.util.UUID;
 
 import static java.nio.file.Paths.get;
 
+import dasturlash.uz.repository.ArticleRepository;
+import dasturlash.uz.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class ArticleService {
     @Autowired
@@ -36,14 +44,14 @@ public class ArticleService {
     private RegionService regionService;
 
     public ArticleRequestDTO createArticle(ArticleRequestDTO articleRequestDTO) {
-        RegionEntity regionEntity=regionService.getId(articleRequestDTO.getRegionId());
+        RegionEntity regionEntity = regionService.getId(articleRequestDTO.getRegionId());
         Optional<CategoryEntity> categoryEntity = categoryRepository.findById(articleRequestDTO.getCategoryId());
-        if (categoryEntity.isEmpty()){
+        if (categoryEntity.isEmpty()) {
             throw new AppBadException("Category not found");
         }
 //        Integer moderatorId= SecurityUtil.getProfileId();
 
-        ProfileEntity moderator=SecurityUtil.getProfile();
+        ProfileEntity moderator = SecurityUtil.getProfile();
 
         ArticleEntity article = new ArticleEntity();
         article.setTitle(articleRequestDTO.getTitle());
@@ -55,7 +63,7 @@ public class ArticleService {
         article.setCategoryId(articleRequestDTO.getCategoryId());
         article.setModeratorId(article.getModeratorId());
         articleRepository.save(article);
-//        articleTypesService.create(article.getId(),article.getArticleType());
+        articleTypesService.create(article.getId(), articleRequestDTO.getArticleType());
         return articleToDTO(article);
     }
 
@@ -65,15 +73,11 @@ public class ArticleService {
         articleDTO.setDescription(entity.getDescription());
         articleDTO.setContent(entity.getContent());
         articleDTO.setImageId(entity.getImageId());
-        articleDTO.setRegionId(entity.getRegionId());
-        articleDTO.setCategoryId(entity.getCategoryId());
-        articleDTO.setArticleType(entity.getArticleType());
-        articleDTO.setRole(entity.getRole());
         return articleDTO;
     }
 
-    public ArticleEntity updateArticle(UUID id, ArticleRequestDTO articleUpdateDTO) {
-        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+    public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
         if (optionalArticle.isEmpty()) {
             throw new IllegalArgumentException("Article does not exists");
         }
@@ -112,40 +116,10 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
-    public List<ArticleRequestDTO> TypeById(List<String> type) {
-        return articleRepository.findTypeIdOrder(type);
-    }
+//    public List<ArticleRequestDTO> TypeById(List<String> type) {
+//        return articleRepository.findTypeIdOrder(type);
+//    }
 }
-   /* public List<Article> getAllArticles() {
-        return articleRepository.findAll();
-    }
 
-    public Article getArticleById(UUID id) {
-        return articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
-    }
-
-    public Article updateArticle(UUID id, Article articleDetails) {
-        Article article = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
-        article.setTitle(articleDetails.getTitle());
-        article.setDescription(articleDetails.getDescription());
-        article.setContent(articleDetails.getContent());
-        article.setSharedCount(articleDetails.getSharedCount());
-        article.setImageId(articleDetails.getImageId());
-        article.setRegionId(articleDetails.getRegionId());
-        article.setCategoryId(articleDetails.getCategoryId());
-        article.setModeratorId(articleDetails.getModeratorId());
-        article.setPublisherId(articleDetails.getPublisherId());
-        article.setStatus(articleDetails.getStatus());
-        article.setCreatedDate(articleDetails.getCreatedDate());
-        article.setPublishedDate(articleDetails.getPublishedDate());
-        article.setVisible(articleDetails.isVisible());
-        article.setViewCount(articleDetails.getViewCount());
-        article.setTypes(articleDetails.getTypes());
-        return articleRepository.save(article);
-    }
-
-    public void deleteArticle(UUID id) {
-        articleRepository.deleteById(id);
-    }*/
 
 

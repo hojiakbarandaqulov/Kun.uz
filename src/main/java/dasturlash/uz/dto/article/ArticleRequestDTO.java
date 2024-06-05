@@ -4,12 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.mapping.Array;
 
 import java.util.List;
 import java.util.UUID;
@@ -44,6 +42,8 @@ public class ArticleRequestDTO {
 
     @NotNull(message = "Role cannot be null")
     private ProfileRole role;
+/*    @ElementCollection
+    private List<String> articleType;*/
 
     @NotNull(message = "Article cannot be null")
     private ArticleStatus status;

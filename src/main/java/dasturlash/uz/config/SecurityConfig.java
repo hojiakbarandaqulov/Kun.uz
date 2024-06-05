@@ -81,6 +81,8 @@ public class SecurityConfig {
                     .requestMatchers("category/language").permitAll()
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
+                    .requestMatchers("/api/history/*").permitAll()
+                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
                     .requestMatchers("email/adm/**").permitAll()
                     .anyRequest()
                     .authenticated();
