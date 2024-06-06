@@ -18,8 +18,7 @@ import java.util.UUID;
 @Table(name = "article")
 public class ArticleEntity {
     @Id
-    @GeneratedValue(generator = "uuid-hibernate-generator")
-    @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
+   @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "title", columnDefinition = "text")
@@ -82,10 +81,7 @@ public class ArticleEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
 //    @ElementCollection
-    private List<ArticleTypesEntity> articleType;
-
-   /* @Column(name = "view_count")
-    private Integer viewCount;*/
+//    private List<ArticleTypesEntity> articleType;
 
     @Enumerated(EnumType.STRING)
     private ProfileRole role;

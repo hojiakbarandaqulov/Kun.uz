@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 
 public class AuthResponseDTO {
+    @NotNull
     private Integer id;
     @NotBlank(message = "name required")
     private String name;

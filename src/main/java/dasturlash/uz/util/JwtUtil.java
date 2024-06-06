@@ -48,4 +48,10 @@ public class JwtUtil {
         }
         return new JwtDTO(id);
     }
+    public static JwtDTO getJwtDTO(String authorization) {
+        String[] str = authorization.split(" ");
+        String jwt = str[1];
+        return JwtUtil.decode(jwt);
+    }
+
 }

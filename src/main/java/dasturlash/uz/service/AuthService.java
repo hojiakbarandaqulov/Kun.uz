@@ -91,6 +91,7 @@ public class AuthService {
         }
 
         AuthResponseDTO responseDTO = new AuthResponseDTO();
+        responseDTO.setId(entity.getId());
         responseDTO.setName(entity.getName());
         responseDTO.setSurname(entity.getSurname());
         responseDTO.setRole(entity.getRole());

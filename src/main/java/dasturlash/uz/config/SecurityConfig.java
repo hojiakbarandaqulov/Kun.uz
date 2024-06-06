@@ -4,6 +4,7 @@ import dasturlash.uz.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -22,9 +23,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 @Component
+@Configuration
 public class SecurityConfig {
 
     @Autowired
@@ -79,6 +81,10 @@ public class SecurityConfig {
                     .requestMatchers("types/language").permitAll()
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
+                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/changeByStatus/**").permitAll()
+                    .requestMatchers("/api/history/*").permitAll()
+                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
