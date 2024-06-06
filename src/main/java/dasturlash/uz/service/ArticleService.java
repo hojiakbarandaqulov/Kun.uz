@@ -2,12 +2,23 @@ package dasturlash.uz.service;
 
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.CategoryEntity;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.ArticleStatus;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ArticleRepository;
 import dasturlash.uz.repository.CategoryRepository;
@@ -21,7 +32,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static java.nio.file.Paths.get;
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 import dasturlash.uz.repository.ArticleRepository;
 import dasturlash.uz.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +44,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.UUID;
+<<<<<<< HEAD
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 
 @Service
 public class ArticleService {
@@ -73,11 +92,30 @@ public class ArticleService {
         articleDTO.setDescription(entity.getDescription());
         articleDTO.setContent(entity.getContent());
         articleDTO.setImageId(entity.getImageId());
+<<<<<<< HEAD
         return articleDTO;
     }
 
     public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
+=======
+        articleDTO.setRegionId(entity.getRegionId());
+        articleDTO.setCategoryId(entity.getCategoryId());
+        articleDTO.setArticleType(entity.getArticleType());
+<<<<<<< HEAD
+        articleDTO.setRole(entity.getRole());
+        return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(UUID id, ArticleRequestDTO articleUpdateDTO) {
+=======
+        return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(UUID id,ArticleRequestDTO articleUpdateDTO) {
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
         if (optionalArticle.isEmpty()) {
             throw new IllegalArgumentException("Article does not exists");
         }
@@ -97,6 +135,10 @@ public class ArticleService {
         article.setStatus(ArticleStatus.NOT_PUBLISHED);
         return articleRepository.save(article);
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 
     public void deleteArticle(UUID id) {
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
@@ -120,6 +162,42 @@ public class ArticleService {
 //        return articleRepository.findTypeIdOrder(type);
 //    }
 }
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+   /* public List<Article> getAllArticles() {
+        return articleRepository.findAll();
+    }
+
+    public Article getArticleById(UUID id) {
+        return articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+    }
+
+    public Article updateArticle(UUID id, Article articleDetails) {
+        Article article = articleRepository.findById(id).orElseThrow(() -> new RuntimeException("Article not found"));
+        article.setTitle(articleDetails.getTitle());
+        article.setDescription(articleDetails.getDescription());
+        article.setContent(articleDetails.getContent());
+        article.setSharedCount(articleDetails.getSharedCount());
+        article.setImageId(articleDetails.getImageId());
+        article.setRegionId(articleDetails.getRegionId());
+        article.setCategoryId(articleDetails.getCategoryId());
+        article.setModeratorId(articleDetails.getModeratorId());
+        article.setPublisherId(articleDetails.getPublisherId());
+        article.setStatus(articleDetails.getStatus());
+        article.setCreatedDate(articleDetails.getCreatedDate());
+        article.setPublishedDate(articleDetails.getPublishedDate());
+        article.setVisible(articleDetails.isVisible());
+        article.setViewCount(articleDetails.getViewCount());
+        article.setTypes(articleDetails.getTypes());
+        return articleRepository.save(article);
+    }
+
+    public void deleteArticle(UUID id) {
+        articleRepository.deleteById(id);
+    }*/
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 
 

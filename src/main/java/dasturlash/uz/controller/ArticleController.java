@@ -1,14 +1,29 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
 import java.util.List;
+=======
+
+<<<<<<< HEAD
+import java.util.List;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 import java.util.UUID;
 
 @RestController
@@ -22,6 +37,10 @@ public class ArticleController {
         ArticleRequestDTO article = articleService.createArticle(articleRequestDTO);
         return ResponseEntity.ok().body(article);
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
 
     @PutMapping("/moderator/{id}")
     public ResponseEntity<Boolean> updateArticle(@PathVariable("id") String id, @RequestBody ArticleRequestDTO articleRequestDTO) {
@@ -41,6 +60,7 @@ public class ArticleController {
         return ResponseEntity.ok().body(true);
     }
 
+<<<<<<< HEAD
     /* @GetMapping("/typeIntermediate/{type}")
      public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType( @PathVariable String type) {
          List<ArticleRequestDTO> articles = articleService.TypeById(type);
@@ -48,3 +68,16 @@ public class ArticleController {
      }*/
 
 }
+=======
+}
+=======
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+        articleService.updateArticle(id,articleRequestDTO);
+        return ResponseEntity.ok().body(true);
+    }
+}
+// User and Admin profile da umuman yoq bolsa qayerdan userni
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
