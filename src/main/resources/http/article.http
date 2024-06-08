@@ -1,5 +1,6 @@
 ### Article create to example
-POST http://localhost:8080/article/moderator
+
+POST http://localhost:8080/api/mdr/create
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc3NDY3ODYsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzgzMzE4NiwiaXNzIjoiS3VuVXpUZXN0In0.7wdoV3pR_8n7bWJ9pQJQ5LbKgCcVkk9SvPN9pA7zdjl9F_JUkZf4KvjWaQURKpppYd700KJUWWDtrHhuUubhBw
 
@@ -15,6 +16,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc3NDY3ODYsImlkIjo1MSwic
   "status": "NOT_PUBLISHED",
   "articleType": [1,8]
 }
+
+
 
 #### Article update to example
 PUT http://localhost:8080/api/update/012b3539-d3ca-4aab-8321-ddebd5603782
@@ -33,10 +36,9 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST
 
 }
 
-### Article Delete id
+###
 DELETE http://localhost:8080/article/moderator/6b9b00a2-10f0-46fc-8843-b00d74b12144
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc4MjE4MzMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzkwODIzMywiaXNzIjoiS3VuVXpUZXN0In0.LafhBQJ0d5JTpYIB3AVgEGQ-qxQaX94ym2zUNja_fBa5ABtPjtMgwXwVJ3zJrAgvuF4ygqbZRCfhoj0_Yn3bhw
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc4NTExMDQsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzkzNzUwNCwiaXNzIjoiS3VuVXpUZXN0In0.3fWzEz9qiOYWIDCnQ--BIDEEiHPtEixw_RaLeQp1-Erk2Fr2wuZ9zw4GfUHW7Zq6L_0pluS_vp96bE08LxIV2A
 
 ###
 PUT http://localhost:8080/article/changeByStatus/6b9b00a2-10f0-46fc-8843-b00d74b12144

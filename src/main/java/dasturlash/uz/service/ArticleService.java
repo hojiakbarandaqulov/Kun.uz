@@ -2,7 +2,6 @@ package dasturlash.uz.service;
 
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
-import dasturlash.uz.dto.article.ArticleStatusDTO;
 
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.ProfileEntity;
@@ -21,6 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 
 @Service
 public class ArticleService {
@@ -64,6 +66,15 @@ public class ArticleService {
 
     /*public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
+=======
+<<<<<<< HEAD
+        return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
+=======
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
         articleDTO.setRegionId(entity.getRegionId());
         articleDTO.setCategoryId(entity.getCategoryId());
         articleDTO.setArticleType(entity.getArticleType());
@@ -98,10 +109,10 @@ public class ArticleService {
         return dto;
     }
 
-    @Transactional
     public void deleteArticle(String id) {
-//        articleTypesRepository.deleteById(Integer.valueOf(id));
-        articleRepository.deleteById(id);
+        ArticleEntity article = articleRepository.findById(id);
+        article.setVisible(false);
+        articleRepository.save(article);
     }
 
     public void changeByStatus(String id) {
@@ -125,12 +136,51 @@ public class ArticleService {
         }
         return list;
     }
+}
+/*
+        return list;
+    public ArticleEntity updateArticle(UUID id,ArticleRequestDTO articleUpdateDTO) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if (optionalArticle.isEmpty()) {
+            throw new IllegalArgumentException("Article does not exists");
+        }
+
+        ArticleEntity article = optionalArticle.get();
+
+        if (!categoryRepository.existsById(articleUpdateDTO.getCategoryId())) {
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        article.setTitle(articleUpdateDTO.getTitle());
+        article.setDescription(articleUpdateDTO.getDescription());
+        article.setContent(articleUpdateDTO.getContent());
+        article.setSharedCount(articleUpdateDTO.getSharedCount());
+        article.setImageId(articleUpdateDTO.getImageId());
+        article.setRegionId(articleUpdateDTO.getRegionId());
+        article.setCategoryId(articleUpdateDTO.getCategoryId());
+        article.setStatus(ArticleStatus.NOT_PUBLISHED);
+        return articleRepository.save(article);
+    }
+*/
+
+/*
+
+    public void deleteArticle(UUID id) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if (optionalArticle.isEmpty()) {
+            throw new IllegalArgumentException("Article does not exists");
+        }
+        ArticleEntity article = optionalArticle.get();
+        if (!categoryRepository.existsById(article.getCategoryId())) {
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        articleRepository.delete(article);
+    }
+*/
 
 
 //    public List<ArticleRequestDTO> TypeById(List<String> type) {
 //        return articleRepository.findTypeIdOrder(type);
 //    }
-}
 
    /* public List<Article> getAllArticles() {
         return articleRepository.findAll();
@@ -163,5 +213,3 @@ public class ArticleService {
     public void deleteArticle(UUID id) {
         articleRepository.deleteById(id);
     }*/
-
-

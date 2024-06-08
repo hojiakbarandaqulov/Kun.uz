@@ -81,6 +81,7 @@ public class SecurityConfig {
                     .requestMatchers("types/language").permitAll()
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
+
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
@@ -89,6 +90,12 @@ public class SecurityConfig {
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
                     /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
+
+                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/changeByStatus/**").permitAll()
+                    .requestMatchers("/api/history/*").permitAll()
+                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
+
                     .requestMatchers("email/adm/**").permitAll()
                     .anyRequest()
                     .authenticated();
