@@ -85,22 +85,19 @@ public class SecurityConfig {
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
-                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
-                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
-                    .requestMatchers("/api/changeByStatus/**").permitAll()
-                    .requestMatchers("/api/history/*").permitAll()
-                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
 
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
-                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
 
+                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/changeByStatus/**").permitAll()
+                    .requestMatchers("/api/history/*").permitAll()
                     .requestMatchers("email/adm/**").permitAll()
+                    .requestMatchers("/attach/**").permitAll()
                     .anyRequest()
                     .authenticated();
         });
-        //http.httpBasic(Customizer.withDefaults());
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);

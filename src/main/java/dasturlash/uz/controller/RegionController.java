@@ -8,6 +8,7 @@ import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.RegionService;
 import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
+import org.hibernate.validator.constraints.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,11 @@ import java.util.List;
 @RestController
 public class RegionController {
 
+    private final RegionService regionService;
     @Autowired
-    private RegionService regionService;
+    public RegionController(RegionService regionService) {
+        this.regionService = regionService;
+    }
 
     @RequestMapping(value = "/adm/create", method = RequestMethod.POST)
     public ResponseEntity<RegionDTO> create(@Valid @RequestBody RegionCreateDTO region) {

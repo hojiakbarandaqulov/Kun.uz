@@ -1,6 +1,13 @@
 ### Article create to example
 
 POST http://localhost:8080/api/mdr/create
+
+###
+POST http://localhost:8080/article/moderator
+
+
+###
+POST http://localhost:8080/api/mdr/create
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc3NDY3ODYsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzgzMzE4NiwiaXNzIjoiS3VuVXpUZXN0In0.7wdoV3pR_8n7bWJ9pQJQ5LbKgCcVkk9SvPN9pA7zdjl9F_JUkZf4KvjWaQURKpppYd700KJUWWDtrHhuUubhBw
 
@@ -17,7 +24,21 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc3NDY3ODYsImlkIjo1MSwic
   "articleType": [1,8]
 }
 
+###
+POST http://localhost:8080/api/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
 
+{
+  "id": 1,
+  "title": "Sample Title",
+  "description": "Sample Description",
+  "content": "Sample Content",
+  "imageId": 1,
+  "regionId": 5,
+  "categoryId": 2,
+  "articleType": [1,3]
+}
 
 #### Article update to example
 PUT http://localhost:8080/api/update/012b3539-d3ca-4aab-8321-ddebd5603782
@@ -33,7 +54,6 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST
   "regionId": 5,
   "categoryId": 2,
   "articleType": [1,2]
-
 }
 
 ###

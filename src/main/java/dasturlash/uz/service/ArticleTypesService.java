@@ -1,7 +1,9 @@
 package dasturlash.uz.service;
 
+//import dasturlash.uz.entity.ArticleTypesEntity;
+//import dasturlash.uz.repository.ArticleTypesRepository;
+//import dasturlash.uz.repository.ArticleTypesRepository;
 import dasturlash.uz.entity.ArticleTypesEntity;
-import dasturlash.uz.repository.ArticleTypesRepository;
 import dasturlash.uz.repository.ArticleTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,12 @@ import java.util.UUID;
 @Service
 public class ArticleTypesService {
 
-    @Autowired
-    private ArticleTypesRepository articleTypesRepository;
+    private final ArticleTypesRepository articleTypesRepository;
 
+    @Autowired
+    public ArticleTypesService(ArticleTypesRepository articleTypesRepository) {
+        this.articleTypesRepository = articleTypesRepository;
+    }
 
     public void create(String articleId, List<Integer> typesList) {
         for (Integer typesId : typesList) {

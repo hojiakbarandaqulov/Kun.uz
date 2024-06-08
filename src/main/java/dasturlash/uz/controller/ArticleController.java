@@ -1,12 +1,9 @@
 package dasturlash.uz.controller;
 
+import dasturlash.uz.dto.article.ArticleCreateDTO;
 import dasturlash.uz.dto.article.ArticleRequestDTO;
-import dasturlash.uz.dto.article.ArticleStatusDTO;
 
-import dasturlash.uz.dto.article.ArticleStatusDTO;
-
-import dasturlash.uz.dto.article.ArticleStatusDTO;
-
+//import dasturlash.uz.service.ArticleService;
 import dasturlash.uz.service.ArticleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import java.util.List;
-
-import java.util.UUID;
-
 //@PreAuthorize("hasRole('MODERATOR')")
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+
     private final ArticleService articleService;
 
     @Autowired
@@ -33,26 +27,20 @@ public class ArticleController {
     }
 
     @PostMapping("/moderator")
-    public ResponseEntity<ArticleRequestDTO> createArticle(@RequestBody ArticleRequestDTO articleRequestDTO) {
-        ArticleRequestDTO article = articleService.createArticle(articleRequestDTO);
+    public ResponseEntity<ArticleRequestDTO> createArticle(@RequestBody ArticleCreateDTO create) {
+        ArticleRequestDTO article = articleService.createArticle(create);
         return ResponseEntity.ok().body(article);
     }
 
-
-    /*@PutMapping("/moderator/{id}")
-    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") String id, @RequestBody ArticleRequestDTO articleRequestDTO) {
-        articleService.update(id, articleRequestDTO);
-        return ResponseEntity.ok().body(true);
-    }*/
-    @PreAuthorize("hasRole('MODERATOR')")
+//    @PreAuthorize("hasRole('MODERATOR')")
     @PutMapping("/moderator/{id}")
-    public ResponseEntity<ArticleRequestDTO> update(@Valid @RequestBody ArticleRequestDTO createDto,
+    public ResponseEntity<ArticleRequestDTO> update(@Valid @RequestBody ArticleCreateDTO createDto,
                                                     @PathVariable("id") String id) {
         return ResponseEntity.ok(articleService.update(id, createDto));
     }
 
-    @PreAuthorize("hasAnyRole('MODERATOR','PUBLISHER')")
-    @PutMapping("/moderator/{id}")
+//    @PreAuthorize("hasAnyRole('MODERATOR','PUBLISHER')")
+    @PutMapping("/v1/moderator/{id}")
     public ResponseEntity<Boolean> deleteArticle(@PathVariable("id") String id) {
         articleService.deleteArticle(id);
         return ResponseEntity.ok().body(true);
@@ -69,6 +57,34 @@ public class ArticleController {
         List<ArticleRequestDTO> articles = articleService.TypeById(type);
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
-
 }
+/*
+
+     @GetMapping("/typeIntermediate/{type}")
+     public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType(@PathVariable Integer type) {
+         List<ArticleRequestDTO> articles = articleService.TypeById(type);
+         return new ResponseEntity<>(articles, HttpStatus.OK);
+     }
+*/
+
+
+   /* @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+        articleService.updateArticle(id, articleRequestDTO);
+        return ResponseEntity.ok().body(true);
+    }*/
+
+
+    /* @GetMapping("/typeIntermediate/{type}")
+     public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType( @PathVariable String type) {
+         List<ArticleRequestDTO> articles = articleService.TypeById(type);
+         return new ResponseEntity<>(articles, HttpStatus.OK);
+     }*/
+
+
+  /*  @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+        articleService.updateArticle(id, articleRequestDTO);
+        return ResponseEntity.ok().body(true);
+    }*/
 

@@ -18,8 +18,12 @@ import java.util.List;
 @RestController
 public class CategoryController {
 
+    private final CategoryService categoryService;
+
     @Autowired
-    private CategoryService categoryService;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @PostMapping("/adm/create")
     public ResponseEntity<CategoryDTO> create(@Valid @RequestBody CategoryCreateDTO region) {

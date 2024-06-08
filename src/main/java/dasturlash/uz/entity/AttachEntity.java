@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Table(name = "attach")
 public class AttachEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "original_name")
@@ -28,7 +27,7 @@ public class AttachEntity {
     private String extension;
 
     @Column(name = "created_date")
-    private LocalDateTime createdData;
+    private LocalDateTime createdData=LocalDateTime.now();
 }
 
 

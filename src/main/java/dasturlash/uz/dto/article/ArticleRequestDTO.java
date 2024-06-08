@@ -3,6 +3,19 @@ package dasturlash.uz.dto.article;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import dasturlash.uz.enums.ArticleStatus;
+import dasturlash.uz.enums.ProfileRole;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import dasturlash.uz.enums.ArticleStatus;
+import dasturlash.uz.enums.ProfileRole;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import dasturlash.uz.enums.ArticleStatus;
+import dasturlash.uz.enums.ProfileRole;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotNull;
@@ -15,9 +28,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 public class ArticleRequestDTO {
 
     @NotNull(message = "Title cannot be null")
@@ -43,16 +54,9 @@ public class ArticleRequestDTO {
 
     @NotNull(message = "Role cannot be null")
     private ProfileRole role;
-/*    @ElementCollection
-    private List<String> articleType;*/
-
- /*   @ElementCollection
-    private List<String> articleType;
-*/
 
     @NotNull(message = "Article cannot be null")
     private ArticleStatus status;
-//    @ElementCollection
 
     private List<Integer> articleType;
 

@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ProfileController {
 
+    private final ProfileService profileService;
+
     @Autowired
-    private ProfileService profileService;
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
 
     @PostMapping("/adm/create")
     public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO) {
