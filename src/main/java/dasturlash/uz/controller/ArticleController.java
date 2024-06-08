@@ -1,10 +1,21 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
 
 import dasturlash.uz.dto.article.ArticleStatusDTO;
 
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.service.ArticleService;
 import jakarta.validation.Valid;
@@ -13,8 +24,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+import java.util.List;
+=======
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 import java.util.UUID;
 //@PreAuthorize("hasRole('MODERATOR')")
 @RestController
@@ -28,6 +51,13 @@ public class ArticleController {
         ArticleRequestDTO article = articleService.createArticle(articleRequestDTO);
         return ResponseEntity.ok().body(article);
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 
 
     /*@PutMapping("/moderator/{id}")
@@ -55,6 +85,7 @@ public class ArticleController {
         return ResponseEntity.ok().body(true);
     }
 
+<<<<<<< HEAD
      @GetMapping("/typeIntermediate/{type}")
      public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType(@PathVariable Integer type) {
          List<ArticleRequestDTO> articles = articleService.TypeById(type);
@@ -69,3 +100,26 @@ public class ArticleController {
     }*/
 
 }
+=======
+<<<<<<< HEAD
+    /* @GetMapping("/typeIntermediate/{type}")
+     public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType( @PathVariable String type) {
+         List<ArticleRequestDTO> articles = articleService.TypeById(type);
+         return new ResponseEntity<>(articles, HttpStatus.OK);
+     }*/
+
+}
+=======
+}
+=======
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Boolean> updateArticle(@PathVariable("id") UUID id, @RequestBody ArticleRequestDTO articleRequestDTO) {
+        articleService.updateArticle(id,articleRequestDTO);
+        return ResponseEntity.ok().body(true);
+    }
+}
+// User and Admin profile da umuman yoq bolsa qayerdan userni
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34

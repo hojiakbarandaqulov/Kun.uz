@@ -81,14 +81,30 @@ public class SecurityConfig {
                     .requestMatchers("types/language").permitAll()
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
                     /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
+<<<<<<< HEAD
                     .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
                     /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
+=======
+=======
+<<<<<<< HEAD
+                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/changeByStatus/**").permitAll()
+=======
+                    .requestMatchers("/api/history/*").permitAll()
+                    /* .requestMatchers("/api/create/*").hasRole("MODERATOR")*/
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
                     .requestMatchers("email/adm/**").permitAll()
                     .anyRequest()
                     .authenticated();

@@ -2,12 +2,30 @@ package dasturlash.uz.service;
 
 
 import dasturlash.uz.dto.article.ArticleRequestDTO;
+<<<<<<< HEAD
 import dasturlash.uz.dto.article.ArticleStatusDTO;
 
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+<<<<<<< HEAD
+import dasturlash.uz.dto.article.ArticleStatusDTO;
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ArticleStatus;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.*;
 import dasturlash.uz.util.SecurityUtil;
@@ -15,12 +33,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static java.nio.file.Paths.get;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+=======
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 import dasturlash.uz.repository.ArticleRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+import java.util.Optional;
+import java.util.UUID;
+<<<<<<< HEAD
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 
 @Service
 public class ArticleService {
@@ -59,11 +94,21 @@ public class ArticleService {
         articleDTO.setDescription(entity.getDescription());
         articleDTO.setContent(entity.getContent());
         articleDTO.setImageId(entity.getImageId());
+<<<<<<< HEAD
         return articleDTO;
     }
 
     /*public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
+=======
+<<<<<<< HEAD
+        return articleDTO;
+    }
+
+    public ArticleEntity updateArticle(String id, ArticleRequestDTO articleUpdateDTO) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(UUID.fromString(id));
+=======
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
         articleDTO.setRegionId(entity.getRegionId());
         articleDTO.setCategoryId(entity.getCategoryId());
         articleDTO.setArticleType(entity.getArticleType());
@@ -98,6 +143,7 @@ public class ArticleService {
         return dto;
     }
 
+<<<<<<< HEAD
     @Transactional
     public void deleteArticle(String id) {
 //        articleTypesRepository.deleteById(Integer.valueOf(id));
@@ -124,6 +170,46 @@ public class ArticleService {
             list.add(dto);
         }
         return list;
+=======
+    public ArticleEntity updateArticle(UUID id,ArticleRequestDTO articleUpdateDTO) {
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+        if (optionalArticle.isEmpty()) {
+            throw new IllegalArgumentException("Article does not exists");
+        }
+
+        ArticleEntity article = optionalArticle.get();
+
+        if (!categoryRepository.existsById(articleUpdateDTO.getCategoryId())) {
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        article.setTitle(articleUpdateDTO.getTitle());
+        article.setDescription(articleUpdateDTO.getDescription());
+        article.setContent(articleUpdateDTO.getContent());
+        article.setSharedCount(articleUpdateDTO.getSharedCount());
+        article.setImageId(articleUpdateDTO.getImageId());
+        article.setRegionId(articleUpdateDTO.getRegionId());
+        article.setCategoryId(articleUpdateDTO.getCategoryId());
+        article.setStatus(ArticleStatus.NOT_PUBLISHED);
+        return articleRepository.save(article);
+    }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+
+    public void deleteArticle(UUID id) {
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if (optionalArticle.isEmpty()) {
+            throw new IllegalArgumentException("Article does not exists");
+        }
+        ArticleEntity article = optionalArticle.get();
+        if (!categoryRepository.existsById(article.getCategoryId())) {
+            throw new IllegalArgumentException("Category does not exist");
+        }
+        articleRepository.delete(article);
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
     }
 
 
@@ -131,7 +217,15 @@ public class ArticleService {
 //        return articleRepository.findTypeIdOrder(type);
 //    }
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+=======
+>>>>>>> 513d4ac3166946f1a193142457d5ea66b31a38a9
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
    /* public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
@@ -163,5 +257,9 @@ public class ArticleService {
     public void deleteArticle(UUID id) {
         articleRepository.deleteById(id);
     }*/
+<<<<<<< HEAD
+=======
+>>>>>>> 4d235e882bdc6797ede9322bd0f35f5138c42c49
+>>>>>>> 2e61bf5e2689c94a813a385e9a9afc0767de9c34
 
 
