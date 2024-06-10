@@ -8,10 +8,7 @@ import java.util.UUID;
 
 @SpringBootApplication
 public class Application {
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-		String key = UUID.randomUUID().toString();
-		System.out.println(key);
 	}
 }

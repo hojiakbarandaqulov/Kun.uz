@@ -29,11 +29,15 @@ import java.util.UUID;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private CustomUserDetailService customUserDetailService;
+    private final CustomUserDetailService customUserDetailService;
+
+    private final JwtTokenFilter jwtTokenFilter;
 
     @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+    public SecurityConfig(CustomUserDetailService customUserDetailService, JwtTokenFilter jwtTokenFilter) {
+        this.customUserDetailService = customUserDetailService;
+        this.jwtTokenFilter = jwtTokenFilter;
+    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -82,15 +86,15 @@ public class SecurityConfig {
                     .requestMatchers("category/adm/**").hasRole("ADMIN")
                     .requestMatchers("category/language").permitAll()
 
-                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/moderator", "/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
 
-                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/moderator", "/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
 
-                    .requestMatchers("/api/moderator","/api/moderator/**").hasRole("MODERATOR")
+                    .requestMatchers("/api/moderator", "/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
                     .requestMatchers("email/adm/**").permitAll()
