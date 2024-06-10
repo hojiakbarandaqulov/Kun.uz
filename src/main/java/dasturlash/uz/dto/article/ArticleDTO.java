@@ -25,7 +25,7 @@ public class ArticleDTO {
     @Column(columnDefinition = "text")
     private String content;
     private int sharedCount;
-    private Integer imageId;
+    private String imageId;
     private Integer regionId;
     private Integer categoryId;
     private Integer moderatorId;

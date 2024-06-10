@@ -17,8 +17,11 @@ import java.util.Optional;
 @Service
 public class RegionService {
 
+    private final RegionRepository regionRepository;
     @Autowired
-    private RegionRepository regionRepository;
+    public RegionService(RegionRepository regionRepository) {
+        this.regionRepository = regionRepository;
+    }
 
     public RegionDTO create(RegionCreateDTO dto) {
         RegionEntity entity = new RegionEntity();

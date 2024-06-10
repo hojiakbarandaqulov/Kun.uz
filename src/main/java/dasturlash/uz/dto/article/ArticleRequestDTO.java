@@ -44,7 +44,7 @@ public class ArticleRequestDTO {
     @Column(name = "shared_count")
     private Integer sharedCount = 0;
     @NotNull(message = "Image ID cannot be null")
-    private Integer imageId;
+    private String imageId;
 
     @NotNull(message = "Region ID cannot be null")
     private Integer regionId;

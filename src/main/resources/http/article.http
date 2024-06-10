@@ -7,21 +7,20 @@ POST http://localhost:8080/article/moderator
 
 
 ###
-POST http://localhost:8080/api/mdr/create
+POST http://localhost:8080/article/moderator
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc3NDY3ODYsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzgzMzE4NiwiaXNzIjoiS3VuVXpUZXN0In0.7wdoV3pR_8n7bWJ9pQJQ5LbKgCcVkk9SvPN9pA7zdjl9F_JUkZf4KvjWaQURKpppYd700KJUWWDtrHhuUubhBw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxMTkwNTYsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODIwNTQ1NiwiaXNzIjoiS3VuVXpUZXN0In0.XsD27WWWShWQa_ituHL37LDST1k-HNfDqijH7L5Rn7G5RCFJF9Nj0nOXmM3d2orUAagCsKuvrpw2UCAMOa8qxg
 
 {
   "title": "Sample Title 3",
   "description": "Sample Description 3",
   "content": "Sample Content 3",
-  "sharedCount": 1,
-  "imageId": 1,
+  "imageId": "b7e0b5f7-8b85-4a1c-81ac-a3eeface401b.jpg",
   "regionId": 5,
   "categoryId": 2,
   "role": "ROLE_MODERATOR",
   "status": "NOT_PUBLISHED",
-  "articleType": [1,8]
+  "articleType": [1,9]
 }
 
 ###
@@ -41,16 +40,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST
 }
 
 #### Article update to example
-PUT http://localhost:8080/api/update/012b3539-d3ca-4aab-8321-ddebd5603782
+PUT http://localhost:8080/article/moderator/c4853fcc-5bca-4d06-be22-96fdb6ebeca2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxOTM1MjcsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODI3OTkyNywiaXNzIjoiS3VuVXpUZXN0In0.L40sf6U2CcuCsoFNIVabVJFRagcweJoNqsvOcKHmssQkMtmdpN6SvGnG21y8YaXVGqKAW3kHoBqjs429hUeTEQ
 
 {
   "title": "Title",
   "description": "Description",
   "content": "Content",
   "sharedCount": 1,
-  "imageId": 2,
+  "imageId": "b7e0b5f7-8b85-4a1c-81ac-a3eeface401b.jpg",
   "regionId": 5,
   "categoryId": 2,
   "articleType": [1,2]
@@ -61,10 +60,59 @@ DELETE http://localhost:8080/article/moderator/6b9b00a2-10f0-46fc-8843-b00d74b12
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc4NTExMDQsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzkzNzUwNCwiaXNzIjoiS3VuVXpUZXN0In0.3fWzEz9qiOYWIDCnQ--BIDEEiHPtEixw_RaLeQp1-Erk2Fr2wuZ9zw4GfUHW7Zq6L_0pluS_vp96bE08LxIV2A
 
 ###
-PUT http://localhost:8080/article/changeByStatus/6b9b00a2-10f0-46fc-8843-b00d74b12144
+PUT http://localhost:8080/article/changeByStatus/e2af627f-af5f-49e8-9d84-63af29d03651
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc4MjU1MTAsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzkxMTkxMCwiaXNzIjoiS3VuVXpUZXN0In0.csPhiCDceBjljft034w4OR7zuBkP4_ZYJd2znwHPEkwU7RL4Ksqqt5HmV1isPX9esGLnOvuFeZw8_NiVJ8-z7Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxOTI0MTUsImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjc4ODE1LCJpc3MiOiJLdW5VelRlc3QifQ.58zk-Yzurm3jqHjCeJGEvwTrJqE9b-RzV2-EAmpuwi5fBzcSOiamuouZyaPRcj9C9fwXnnasoXViS--2S2l-Pg
 
 {
   "status": "PUBLISHED"
 }
+
+
+### types 5
+GET http://localhost:8080/article/types/14
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgyNTM1NDMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODMzOTk0MywiaXNzIjoiS3VuVXpUZXN0In0.u34LvTf8aahp_TjzcdEjPmXbHQRzrn17R-5-7AZ4Ucmva8lRA2USqCGOeU5M0qe7jpS9NLre6T3JvP4lBwV0Xw
+
+
+### types 3
+GET http://localhost:8080/article/types/3/16
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxNjQyMDksImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4MjUwNjA5LCJpc3MiOiJLdW5VelRlc3QifQ.fuZ14GvBUsLdhBqZCuPTTvAFBsICh274P7vIeeTbLnhMBgLR43oqv2Z6Ou_EfAdWNn0229n4Ljffd6TzJundsw
+
+### types
+GET http://localhost:8080/article/article/4/17
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxNjQyMDksImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4MjUwNjA5LCJpc3MiOiJLdW5VelRlc3QifQ.fuZ14GvBUsLdhBqZCuPTTvAFBsICh274P7vIeeTbLnhMBgLR43oqv2Z6Ou_EfAdWNn0229n4Ljffd6TzJundsw
+
+
+### articles read 4
+GET http://localhost:8080/article/article/read/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxNjQyMDksImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4MjUwNjA5LCJpc3MiOiJLdW5VelRlc3QifQ.fuZ14GvBUsLdhBqZCuPTTvAFBsICh274P7vIeeTbLnhMBgLR43oqv2Z6Ou_EfAdWNn0229n4Ljffd6TzJundsw
+
+
+
+### article 11 a must
+GET http://localhost:8080/article/article/tagName/Technology
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxNjQyMDksImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4MjUwNjA5LCJpc3MiOiJLdW5VelRlc3QifQ.fuZ14GvBUsLdhBqZCuPTTvAFBsICh274P7vIeeTbLnhMBgLR43oqv2Z6Ou_EfAdWNn0229n4Ljffd6TzJundsw
+
+
+
+### article 12 a must
+GET http://localhost:8080/article/article/list?types=14&regionId=5
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgyNTM1NDMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODMzOTk0MywiaXNzIjoiS3VuVXpUZXN0In0.u34LvTf8aahp_TjzcdEjPmXbHQRzrn17R-5-7AZ4Ucmva8lRA2USqCGOeU5M0qe7jpS9NLre6T3JvP4lBwV0Xw
+
+
+### article 13 a must
+GET http://localhost:8080/article/article/regionId/10?page=1&size=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgyNTM1NDMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODMzOTk0MywiaXNzIjoiS3VuVXpUZXN0In0.u34LvTf8aahp_TjzcdEjPmXbHQRzrn17R-5-7AZ4Ucmva8lRA2USqCGOeU5M0qe7jpS9NLre6T3JvP4lBwV0Xw
+
+
+
+### article a must 14
+GET http://localhost:8080/article/article/category/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgyNTM1NDMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODMzOTk0MywiaXNzIjoiS3VuVXpUZXN0In0.u34LvTf8aahp_TjzcdEjPmXbHQRzrn17R-5-7AZ4Ucmva8lRA2USqCGOeU5M0qe7jpS9NLre6T3JvP4lBwV0Xw
+
+### article a must 15
+GET http://localhost:8080/article/by-category?categoryId=5&page=5&size=10
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgyNTM1NDMsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODMzOTk0MywiaXNzIjoiS3VuVXpUZXN0In0.u34LvTf8aahp_TjzcdEjPmXbHQRzrn17R-5-7AZ4Ucmva8lRA2USqCGOeU5M0qe7jpS9NLre6T3JvP4lBwV0Xw
+
+
+

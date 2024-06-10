@@ -25,5 +25,6 @@ public interface ArticleLikeRepository extends JpaRepository<ArticleLikeEntity, 
     @Modifying
     @Transactional
     @Query("delete from ArticleLikeEntity where articleId=:articleId and profileId=:profileId")
-    int delete(String articleId, Integer profileId);
+    int delete(@Param("articleId") String articleId,
+               @Param("profileId") Integer profileId);
 }

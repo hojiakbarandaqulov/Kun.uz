@@ -21,12 +21,13 @@ public class ArticleLikeController {
     }
 
     @PreAuthorize("permitAll()")
-    @PostMapping("/private/like/{id}")
+    @PostMapping("/like/{id}")
     public ResponseEntity<Boolean> like(@PathVariable("id") String articleId,
                                         HttpServletRequest request) {
         Integer id = (Integer)  request.getAttribute("id");
         return ResponseEntity.ok(articleLikeService.like(articleId, id));
     }
+
     @PreAuthorize("permitAll()")
     @GetMapping("/dislike/{id}")
     public ResponseEntity<Boolean> dislike(@PathVariable("id") String articleId,
@@ -34,6 +35,7 @@ public class ArticleLikeController {
         JwtDTO jwt = JwtUtil.getJwtDTO(authorization);
         return ResponseEntity.ok(articleLikeService.dislike(articleId, jwt.getId()));
     }
+
     @PreAuthorize("permitAll()")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String articleId,

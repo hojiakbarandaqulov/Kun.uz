@@ -19,7 +19,7 @@ public class ArticleCreateDTO {
     @NotNull(message = "content cannot be null ")
     private String content;
     @NotNull(message = "imageId cannot be null ")
-    private Integer imageId;
+    private String imageId;
     @NotNull(message = "regionId cannot be null ")
     private Integer regionId;
     @NotNull(message = "categoryId cannot be null ")

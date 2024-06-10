@@ -15,20 +15,21 @@ POST http://localhost:8080/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="file.jpg"
+Content-Disposition: form-data; name="file"; filename="messi.jpg"
 
 < C:\Users\Hp victus\Pictures\Screenshots\messi.jpg
 
 ### attach get id
 GET http://localhost:8080/attach/open/7de066d3-b7bb-44b3-a97e-e352a8e69803.jpg
 
+
 ### attach general to example
-GET http://localhost:8080/attach/open_general/file.jpg
+GET http://localhost:8080/attach/open_general/8d49f40f-0226-4b8d-b91c-60cf76cb75ee.jpg
 
 
 
 ### attach download
-GET http://localhost:8080/attach/download/file.jpg
+GET http://localhost:8080/attach/download/b7e0b5f7-8b85-4a1c-81ac-a3eeface401b.jpg
 
 
 ### attach pagination

@@ -6,10 +6,14 @@ import dasturlash.uz.entity.AttachEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.AttachRepository;
 import dasturlash.uz.util.MD5Util;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +30,9 @@ import java.util.*;
 
 @Service
 public class AttachService {
+
+    @Value("${server.url}")
+    private String serverUrl;
 
     private final AttachRepository attachRepository;
 
@@ -90,23 +97,37 @@ public class AttachService {
             return new byte[0];
         }
     }
-        public byte[] general_image(String attachName) {
-            String[] lastIndex = attachName.split("\\.");
-            Optional<AttachEntity> entity = attachRepository.findById(lastIndex[0]);
-            byte[] data;
-            if (entity.isEmpty()) {
-                return new byte[0];
-            }
 
-            try {
-                Path path = Paths.get("attaches/" + entity.get().getPath() + "/" + attachName);
-                data = Files.readAllBytes(path);
-               return data;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return new byte[0];
+    //        public byte[] general_image(String attachName) {
+//            String[] lastIndex = attachName.split("\\.");
+//            Optional<AttachEntity> entity = attachRepository.findById(lastIndex[0]);
+//            byte[] data;
+//            if (entity.isEmpty()) {
+//                return new byte[0];
+//            }
+//
+//            try {
+//                Path path = Paths.get("attaches/" + entity.get().getPath() + "/" + attachName);
+//                data = Files.readAllBytes(path);
+//               return data;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return new byte[0];
+//        }
+    public byte[] open_general(String attachId) {
+        byte[] data;
+        try {
+            AttachEntity entity = get(attachId);
+            String path = entity.getPath() + "/" + attachId;
+            Path file = Paths.get("uploads/" + path);
+            data = Files.readAllBytes(file);
+            return data;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return new byte[0];
+    }
 
 
     public String getYmDString() {
@@ -160,7 +181,7 @@ public class AttachService {
         dto.setExtension(entity.getExtension());
         dto.setSize(entity.getSize());
         dto.setOriginalName(entity.getOriginalName());
-        // url?
+        dto.setUrl(serverUrl + "/attach/open/" + entity.getId());
         return dto;
     }
 
@@ -170,28 +191,28 @@ public class AttachService {
         });
     }
 
-    public Resource download(String fileName) {
+    public ResponseEntity download(String attachId) {
         try {
-            int lastIndex = fileName.lastIndexOf(".");
-            String id = fileName.substring(0, lastIndex);
-            AttachEntity attachEntity = get(id);
-
-            Path file = Paths.get("attaches/" + attachEntity.getPath() + "/" + fileName);
+            AttachEntity entity = get(attachId);
+            String path = entity.getPath() + "/" + attachId;
+            Path file = Paths.get("uploads/" + path);
             Resource resource = new UrlResource(file.toUri());
+
             if (resource.exists() || resource.isReadable()) {
-                return resource;
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + entity.getOriginalName() + "\"").body(resource);
             } else {
                 throw new RuntimeException("Could not read the file!");
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException("Error: " + e.getMessage());
         }
-
     }
 
+
     public PageImpl<AttachDTO> getAttachPagination(Integer page, Integer size) {
-       Sort sort=Sort.by(Sort.Order.desc("createdData"));
-        Pageable pageable= PageRequest.of(page, size, sort);
+        Sort sort = Sort.by(Sort.Order.desc("createdData"));
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<AttachEntity> pageObj = attachRepository.findAll(pageable);
         List<AttachDTO> list = new LinkedList<>();
         for (AttachEntity entity : pageObj.getContent()) {
@@ -203,7 +224,7 @@ public class AttachService {
     }
 
     public Boolean delete(String id) {
-        AttachEntity entity=get(id);
+        AttachEntity entity = get(id);
         if (id.equals(entity.getId())) {
             attachRepository.deleteById(entity.getId());
             return true;

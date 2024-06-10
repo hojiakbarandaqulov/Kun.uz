@@ -12,19 +12,20 @@ import java.time.LocalDateTime;
 @Table(name = "comment")
 public class CommentEntity {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "comment")
     private String comment;
 //    private String articleId;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private ArticleEntity article;
     private LocalDateTime createdDate=LocalDateTime.now();
     private LocalDateTime updatedDate;
-//    private ProfileEntity profileId;
-    @ManyToOne(fetch = FetchType.LAZY)
+//    private String profileId;
+    @ManyToOne()
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
     private String replyId;
-    private Boolean visible;
+    private Boolean visible=Boolean.TRUE;
 }

@@ -2,6 +2,8 @@ package dasturlash.uz.config;
 
 import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.enums.ProfileStatus;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +12,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+@Getter
 public class CustomUserDetail implements UserDetails {
 
-    private ProfileEntity profile;
+    private final ProfileEntity profile;
 
     public CustomUserDetail(ProfileEntity profile) {
         this.profile = profile;
@@ -55,7 +58,4 @@ public class CustomUserDetail implements UserDetails {
         return profile.getVisible();
     }
 
-    public ProfileEntity getProfile() {
-        return profile;
-    }
 }

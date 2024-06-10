@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -32,5 +33,5 @@ public class CategoryEntity {
     private Boolean visible;
 
     @Column(name = "created_date")
-    private LocalDate createdDate;
+    private LocalDateTime createdDate=LocalDateTime.now();
 }

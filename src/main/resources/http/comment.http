@@ -1,0 +1,30 @@
+###
+POST http://localhost:8080/comment/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgwODYyODUsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODE3MjY4NSwiaXNzIjoiS3VuVXpUZXN0In0.AWCr7aUy0I808Im_R1szJ-nVlVkgyXIu9bHoRF6EF2HWc3H9u0gcmZTqyg8qitLEfZ3YkG0PVih2HisibfbUGw
+
+{
+  "comment": "Java zor",
+  "articleId": "f50bec20-7de6-46c1-92d2-3941849f33b5",
+  "replyId": "6"
+}
+
+
+### comment update
+PUT http://localhost:8080/comment/update/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgwODYyODUsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODE3MjY4NSwiaXNzIjoiS3VuVXpUZXN0In0.AWCr7aUy0I808Im_R1szJ-nVlVkgyXIu9bHoRF6EF2HWc3H9u0gcmZTqyg8qitLEfZ3YkG0PVih2HisibfbUGw
+
+{
+  "comment": "Bekorlarni 5 tasini yebsanda mazgi Java zor,  JAVA ",
+  "articleId": "c4853fcc-5bca-4d06-be22-96fdb6ebeca2"
+}
+
+
+### comment delete
+DELETE http://localhost:8080/comment/delete/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgwODYyODUsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODE3MjY4NSwiaXNzIjoiS3VuVXpUZXN0In0.AWCr7aUy0I808Im_R1szJ-nVlVkgyXIu9bHoRF6EF2HWc3H9u0gcmZTqyg8qitLEfZ3YkG0PVih2HisibfbUGw
+
+###
+GET http://localhost:8080/comment/list/dbc747c5-dfbf-4abf-9170-a36b7364b313
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxNTYzMDgsImlkIjo1MSwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Imhvamlha2JhcmFuZGFxdWxvdjVAZ21haWwuY29tIiwiZXhwIjoxNzE4MjQyNzA4LCJpc3MiOiJLdW5VelRlc3QifQ.B3_pC75uHaszlxn9Rr2nHr-_uGb0ToIIEWg4kx3cJH-vZaQs504-qZya_9fEMH0L2NLTsW8SxCqaPU43nBi2IQ

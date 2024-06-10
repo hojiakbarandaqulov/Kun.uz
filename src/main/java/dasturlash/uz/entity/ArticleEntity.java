@@ -3,16 +3,12 @@ package dasturlash.uz.entity;
 //import dasturlash.uz.dto.CategoryDTO;
 
 import dasturlash.uz.enums.ArticleStatus;
-import dasturlash.uz.enums.ProfileRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.mapping.Array;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -33,16 +29,17 @@ public class ArticleEntity {
     @Column(columnDefinition = "text")
     private String content;
 
-    @Column(name = "shared_count")
-    private Integer sharedCount;
-
     @Column(name = "view_count")
     private Integer viewCount;
     @Column(name = "image_id")
-    private Integer imageId;
+    private String imageId;
+
+    @ManyToOne
+    @JoinColumn(name = "image_id", insertable = false, updatable = false)
+    private AttachEntity attach;
 
     @Column(name = "create_date")
-    private LocalDateTime createDate = LocalDateTime.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @Column(name = "published_date")
     private LocalDateTime publishedDate;
@@ -74,10 +71,21 @@ public class ArticleEntity {
     @JoinColumn(name = "publisher_id", insertable = false, updatable = false)
     private ProfileEntity publisher;
 
-   /* @OneToMany
+    @OneToMany
     @JoinColumn(name = "articleTypes")
-    private List<ArticleTypeEntity> articleType;*/
+    private List<ArticleTypesEntity> articleTypes;
 
+    @ManyToOne
+    @JoinColumn(name = "types_id")
+    private TypesEntity types;
+
+    @ManyToMany
+    @JoinTable(
+            name = "article_tag",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<TagEntity> tags;
     @Enumerated(EnumType.STRING)
     private ArticleStatus status = ArticleStatus.NOT_PUBLISHED;
 }

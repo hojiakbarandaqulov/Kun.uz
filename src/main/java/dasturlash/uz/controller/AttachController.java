@@ -1,23 +1,15 @@
 package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.AttachDTO;
-import dasturlash.uz.entity.AttachEntity;
 import dasturlash.uz.service.AttachService;
-import io.jsonwebtoken.Header;
-import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import static org.springframework.security.authorization.AuthorityReactiveAuthorizationManager.hasRole;
 
 @EnableMethodSecurity(prePostEnabled = true)
 @RestController
@@ -47,16 +39,14 @@ public class AttachController {
     }
 
     @GetMapping(value = "/open_general/{fileName}", produces = MediaType.ALL_VALUE)
-    public byte[] openGeneral(@PathVariable("fileName") String fileName) {
-        return this.attachService.general_image(fileName);
+    public byte[] open_general(@PathVariable("fileName") String fileName) {
+        return attachService.open_general(fileName);
     }
 
-    @GetMapping(value = "/download/{fileName}")
-    public ResponseEntity<Resource> download(@PathVariable("fileName") String fileName) {
-        Resource resource = attachService.download(fileName);
-        return ResponseEntity.ok().header(
-                HttpHeaders.CONTENT_DISPOSITION, "attach, filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
+
+    @GetMapping("/download/{fineName}")
+    public ResponseEntity download(@PathVariable("fineName") String fileName) {
+        return attachService.download(fileName);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -67,7 +57,7 @@ public class AttachController {
         return ResponseEntity.ok().body(response);
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         Boolean delete = attachService.delete(id);
