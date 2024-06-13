@@ -10,7 +10,9 @@ import dasturlash.uz.dto.article.ArticleRequestDTO;
 import dasturlash.uz.entity.*;
 import dasturlash.uz.enums.ArticleStatus;
 
+import dasturlash.uz.enums.Language;
 import dasturlash.uz.exp.AppBadException;
+import dasturlash.uz.mapper.ArticleShortInfoMapper;
 import dasturlash.uz.repository.*;
 import dasturlash.uz.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
@@ -33,13 +34,18 @@ public class ArticleService {
     private final ArticleTypesService articleTypesService;
     private final RegionRepository regionRepository;
     private final CategoryRepository categoryRepository;
+    private final AttachService attachService;
+    private final CategoryService categoryService;
+    private final ArticleLikeRepository articleLikeRepository;
 
-    @Autowired
-    public ArticleService(ArticleTypesRepository articleTypesRepository, ArticleTypesService articleTypesService, ArticleRepository articleRepository, RegionRepository regionRepository, CategoryRepository categoryRepository) {
+    public ArticleService(ArticleTypesRepository articleTypesRepository, ArticleTypesService articleTypesService, ArticleRepository articleRepository, RegionRepository regionRepository, CategoryRepository categoryRepository, AttachService attachService, CategoryService categoryService, ArticleLikeRepository articleLikeRepository) {
         this.articleTypesService = articleTypesService;
         this.articleRepository = articleRepository;
         this.regionRepository = regionRepository;
         this.categoryRepository = categoryRepository;
+        this.attachService = attachService;
+        this.categoryService = categoryService;
+        this.articleLikeRepository = articleLikeRepository;
     }
 
     public ArticleRequestDTO createArticle(ArticleCreateDTO createDto) {
@@ -109,17 +115,21 @@ public class ArticleService {
         articleRepository.save(entity);
     }
 
-    public List<ArticleRequestDTO> getLast5ByTypes(Integer typeId) {
-        List<ArticleEntity> entity = articleRepository.getLast5ByTypesId(typeId);
-        if (entity==null){
-            throw new AppBadException("Article 5 not found");
+    public List<ArticleRequestDTO> getLast5ByTypes(Integer typesId) {
+            List<ArticleShortInfoMapper> mapperList = articleRepository.getByTypesId(typesId,5);
+            List<ArticleRequestDTO> dtoList = new LinkedList<>();
+            for (ArticleShortInfoMapper mapper : mapperList) {
+                ArticleRequestDTO dto = new ArticleRequestDTO();
+                dto.setId(mapper.getId());
+                dto.setTitle(mapper.getTitle());
+                dto.setDescription(mapper.getDescription());
+                dto.setPublishDate(mapper.getPublishedDate());
+                dto.setImage(attachService.getDTOWithURL(mapper.getImageId()));
+                dtoList.add(dto);
+            }
+            return dtoList;
         }
-        List<ArticleRequestDTO> dtoList = new LinkedList<>();
-        for (ArticleEntity articleEntity : entity) {
-            dtoList.add(toDTO(articleEntity));
-        }
-        return dtoList;
-    }
+
 
     public ArticleEntity get(String id) {
         return (ArticleEntity) articleRepository.findByIdAndVisibleTrue(id).orElseThrow(() -> {
@@ -127,14 +137,27 @@ public class ArticleService {
         });
     }
 
-    public List<ArticleRequestDTO> getLast3ByTypes(Integer id) {
-        articleRepository.getLast3ByTypesId(id);
-        return null;
+    public List<ArticleRequestDTO> getLast3ByTypes(Integer typesId) {
+        List<ArticleShortInfoMapper> mapperList = articleRepository.getByTypesId(typesId, 3);
+        return mapperList.stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public List<ArticleRequestDTO> getLast8ByTypes(Integer id) {
-        articleRepository.getLast8ByTypesId(id);
-        return null;
+
+    public ArticleRequestDTO toDTO(ArticleShortInfoMapper mapper) {
+        ArticleRequestDTO dto = new ArticleRequestDTO();
+        dto.setId(mapper.getId());
+        dto.setTitle(mapper.getTitle());
+        dto.setDescription(mapper.getDescription());
+        dto.setPublishDate(mapper.getPublishedDate());
+        dto.setImage(attachService.getDTOWithURL(mapper.getImageId()));
+        return dto;
+    }
+
+    public List<ArticleRequestDTO> getLast8ByTypes(List<String> id) {
+        List<ArticleShortInfoMapper> mapperList = articleRepository.getLast8(id);
+        return mapperList.stream().map(this:: toDTO).collect(Collectors.toList());
     }
 
     public List<ArticleRequestDTO> getArticleByTypes(String id) {
@@ -203,7 +226,8 @@ public class ArticleService {
         return byId;
     }
 
-    public Page<CategoryDTO> findByCategoryId(Integer page, Integer size, Integer categoryId) {
+
+   /* public Page<CategoryDTO> findByCategoryId(Integer page, Integer size, Integer categoryId) {
         Page<ArticleEntity> byId = articleRepository.findByCategoryId(categoryId);
         if (byId.isEmpty()){
             throw new AppBadException("Article not found");
@@ -224,8 +248,7 @@ public class ArticleService {
             list.add(dto);
         }
         Long total = all.getTotalElements();
-        return new PageImpl<CategoryDTO>(list, pageable,total);
-    }
+        return new PageImpl<CategoryDTO>(list, pageable,total);*/
 
  /*   public ArticleFullInfo getArticleByIdAndLang(Long id, String lang) {
         Article article = articleRepository.findByIdAndLang(id, lang)

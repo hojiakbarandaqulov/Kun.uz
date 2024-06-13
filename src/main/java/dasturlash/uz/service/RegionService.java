@@ -87,6 +87,19 @@ public class RegionService {
         return dtoList;
     }
 
+
+    public RegionDTO getRegion(Integer id, Language lang) {
+        RegionEntity region = get(id);
+        RegionDTO dto = new RegionDTO();
+        dto.setId(region.getId());
+        switch (lang) {
+            case UZ -> dto.setName(region.getNameUz());
+            case RU -> dto.setName(region.getNameRu());
+            default -> dto.setName(region.getNameEn());
+        }
+        return dto;
+    }
+
     public RegionEntity getId(Integer id) {
         Optional<RegionEntity> optional = regionRepository.findById(id);
         if (optional.isEmpty()) {
@@ -94,4 +107,5 @@ public class RegionService {
         }
         return optional.get();
     }
+
 }

@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ArticleDTO {
     @Id
     @GeneratedValue
-    private UUID id;
+    private String id;
     @Column(columnDefinition = "text")
     private String title;
     @Column(columnDefinition = "text")
@@ -36,6 +36,7 @@ public class ArticleDTO {
     private LocalDateTime publishedDate;
     private boolean visible;
     private int viewCount;
+    private String image;
     private List<Integer> type;
 
 }

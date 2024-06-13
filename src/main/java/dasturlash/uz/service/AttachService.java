@@ -1,12 +1,9 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.dto.AttachDTO;
-import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.AttachEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.AttachRepository;
-import dasturlash.uz.util.MD5Util;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -230,5 +227,12 @@ public class AttachService {
             return true;
         }
         return false;
+    }
+
+    public AttachDTO getDTOWithURL(String imageId) {
+        AttachDTO dto = new AttachDTO();
+        dto.setId(imageId);
+        dto.setUrl(serverUrl + "/attach/open/" + imageId);
+        return dto;
     }
 }

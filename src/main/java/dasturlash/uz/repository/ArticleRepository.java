@@ -3,6 +3,7 @@ package dasturlash.uz.repository;
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.entity.TypesEntity;
+import dasturlash.uz.mapper.ArticleShortInfoMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,28 +28,32 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, UUID> {
                      /
 
      */
-    @Query(value = "select a from ArticleEntity as a " +
+    @Query(value = "SELECT a.id,a.title,a.description,a.imageId,a.publishedDate " +
+            "from ArticleEntity as a " +
             "inner join a.articleTypes as ats " +
             "where ats.typesId= ?1 and a.visible = true and a.status = 'PUBLISHED' " +
             "order by a.createdDate desc " +
-            " limit 5 ")
-    List<ArticleEntity> getLast5ByTypesId(Integer typesId);
+            " limit ?2 ")
+    List<ArticleShortInfoMapper> getByTypesId(Integer typesId, int limit);
 
-    @Query(value = "select a from ArticleEntity as a " +
+    /*@Query(value = "select a from ArticleEntity as a " +
             "inner join a.articleTypes as ats " +
             "where ats.typesId= ?1 and a.visible = true and a.status = 'PUBLISHED' " +
             "order by a.createdDate desc " +
             " limit 3 ")
-    void getLast3ByTypesId(Integer typesId);
+    void getLast3ByTypesId(Integer typesId);*/
 
-    @Query(value = "select a from ArticleEntity as a " +
-            "inner join a.articleTypes as ats " +
-            "where ats.typesId= ?1 and a.visible = true and a.status = 'NOT_PUBLISHED' " +
-            "order by a.createdDate desc " +
-            " limit 3 ")
-    void getLast8ByTypesId(Integer typesId);
+    // 7. Get Last 8  Articles witch id not included in given list.
+    @Query(value = " SELECT a.id,a.title,a.description,a.imageId,a.publishedDate " +
+            " from ArticleEntity as a " +
+            " where a.visible = true and a.status = 'PUBLISHED' " +
+            " and a.id not in ?1 " +
+            " order by a.createdDate desc " +
+            " limit 8 ")
+    List<ArticleShortInfoMapper> getLast8(List<String> id);
 
-  /*  @Query("SELECT a.id, a.title, a.description, a.createdDate " +
+
+    /*  @Query("SELECT a.id, a.title, a.description, a.createdDate " +
             "FROM ArticleEntity a JOIN a.types at WHERE at.name = :typeName AND a.id <> :articleId " +
             "ORDER BY a.createdDate DESC")*/
     @Query(value = "select a.id, a.title, a.description, a.createdDate from ArticleEntity as a" +
@@ -73,8 +78,9 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, UUID> {
     void findLast5ByTypesAndRegionKey(@Param("types") TypesEntity types, @Param("regionId") Integer regionId);
 
 
-    @Query("SELECT a FROM ArticleEntity a WHERE a.category.id = :categoryId")
-    Page<ArticleEntity> findByCategoryId(@Param("categoryId") Integer categoryId);
+
+  /*  @Query("SELECT a FROM ArticleEntity a WHERE a.category.id = :categoryId")
+    Page<ArticleEntity> findByCategoryId(@Param("categoryId") Integer categoryId);*/
 
 //    List<ArticleEntity> findById(String id);
 }

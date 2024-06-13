@@ -15,6 +15,8 @@ public interface ArticleLikeRepository extends JpaRepository<ArticleLikeEntity, 
             "where a.id=:articleId and a.profileId=:profileId")*/
     Optional<ArticleLikeEntity> findByArticleIdAndProfileId( String articleId,Integer profileId);
 
+
+
     @Modifying
     @Transactional
     @Query("update ArticleLikeEntity  set status =:status where articleId=:articleId and profileId=:profileId")
@@ -27,4 +29,8 @@ public interface ArticleLikeRepository extends JpaRepository<ArticleLikeEntity, 
     @Query("delete from ArticleLikeEntity where articleId=:articleId and profileId=:profileId")
     int delete(@Param("articleId") String articleId,
                @Param("profileId") Integer profileId);
+
+ @Query("select count(a) from  ArticleLikeEntity a where a.articleId =?1 and a.status ='LIKE' ")
+ Long getArticleLikeCount(String articleId);
+
 }

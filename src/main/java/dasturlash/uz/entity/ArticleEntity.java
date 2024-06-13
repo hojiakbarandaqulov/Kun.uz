@@ -31,6 +31,14 @@ public class ArticleEntity {
 
     @Column(name = "view_count")
     private Integer viewCount;
+
+
+    @Column(name = "like_count")
+    private Long likeCount;
+
+    @Column(name = "dislike_count")
+    private Long dislikeCount;
+
     @Column(name = "image_id")
     private String imageId;
 

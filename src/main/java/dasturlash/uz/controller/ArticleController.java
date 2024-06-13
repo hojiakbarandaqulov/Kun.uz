@@ -74,9 +74,9 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getLast3ByTypes(id));
     }
 
-    @PreAuthorize("hasRole('MODERATOR')")
-    @GetMapping("/types/8/{id}")
-    public ResponseEntity<List<ArticleRequestDTO>> getLast8ArticlesByType(@PathVariable("id") Integer id) {
+//    @PreAuthorize("hasRole('MODERATOR')")
+    @PostMapping("/last/eight")
+    public ResponseEntity<List<ArticleRequestDTO>> getLast8ArticlesByType(@RequestBody List<String> id) {
         return ResponseEntity.ok(articleService.getLast8ByTypes(id));
     }
 

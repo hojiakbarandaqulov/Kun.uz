@@ -1,6 +1,9 @@
 package dasturlash.uz.dto.article;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import dasturlash.uz.dto.AttachDTO;
+import dasturlash.uz.dto.CategoryDTO;
+import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
 
@@ -23,6 +26,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +35,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleRequestDTO {
 
+    private String id;
     @NotNull(message = "Title cannot be null")
     @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
     private String title;
@@ -58,6 +63,14 @@ public class ArticleRequestDTO {
     @NotNull(message = "Article cannot be null")
     private ArticleStatus status;
 
+    private RegionDTO region;                   // BU yangilik qayer(region) da sodir bo'ldi
+
+    private Long likeCount;
+    private Long commentCount;
+
+    private CategoryDTO category;
+    private LocalDateTime publishDate;
+    private AttachDTO image;
     private List<Integer> articleType;
 
 }

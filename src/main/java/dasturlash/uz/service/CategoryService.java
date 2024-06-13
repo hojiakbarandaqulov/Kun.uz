@@ -1,9 +1,11 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.dto.CategoryDTO;
+import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.create.CategoryCreateDTO;
 //import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.entity.CategoryEntity;
+import dasturlash.uz.entity.RegionEntity;
 import dasturlash.uz.enums.Language;
 import dasturlash.uz.mapper.CategoryMapper;
 import dasturlash.uz.repository.CategoryRepository;
@@ -86,5 +88,16 @@ public class CategoryService {
             throw new IllegalArgumentException("Category not found");
         }
         return optional.get();
+    }
+    public RegionDTO getRegion(Integer id, Language lang){
+        CategoryEntity region=get(id);
+        RegionDTO dto = new RegionDTO();
+        dto.setId(region.getId());
+        switch (lang){
+            case UZ -> dto.setNameUz(region.getNameUz());
+            case RU -> dto.setNameRu(region.getNameRu());
+            default -> dto.setNameEn(region.getNameEn());
+        }
+        return dto;
     }
 }
