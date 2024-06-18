@@ -15,8 +15,11 @@ import java.util.List;
 
 @Service
 public class TypesService {
-    @Autowired
-    private TypesRepository typesRepository;
+    private final TypesRepository typesRepository;
+
+    public TypesService(TypesRepository typesRepository) {
+        this.typesRepository = typesRepository;
+    }
 
     public TypesDTO create(TypesCreatedDto typesDTO) {
         TypesEntity typesEntity = new TypesEntity();

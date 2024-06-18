@@ -5,6 +5,8 @@ import dasturlash.uz.dto.create.CommentCreateDTO;
 import dasturlash.uz.dto.update.CommentUpdateDTO;
 import dasturlash.uz.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -50,5 +52,13 @@ public class CommentController {
     public ResponseEntity<List<CommentDTO>> getCommentsByArticleId(@PathVariable("articleId") String articleId) {
         List<CommentDTO> comment = commentService.getCommentsByArticleId(articleId);
         return ResponseEntity.ok(comment);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/pagination")
+    public ResponseEntity<PageImpl<CommentDTO>> getCommentsArticlePagination(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                                             @RequestParam(value = "size", defaultValue = "10")int size) {
+        PageImpl<CommentDTO> comment = commentService.getPagination(page-1, size);
+        return ResponseEntity.ok().body(comment);
     }
 }

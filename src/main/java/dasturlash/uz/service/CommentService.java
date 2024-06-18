@@ -10,6 +10,7 @@ import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ArticleRepository;
 import dasturlash.uz.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Comment;
 
@@ -49,6 +50,16 @@ public class CommentService {
         return commentCreateDTO;
     }
 
+    private CommentDTO toDTOComment(CommentEntity commentEntity) {
+        CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setComment(commentEntity.getComment());
+        commentDTO.setArticleId(String.valueOf(commentEntity.getArticle()));
+        commentDTO.setReplyId(commentEntity.getReplyId());
+        commentDTO.setComment(commentEntity.getComment());
+        commentDTO.setProfileId(commentEntity.getProfile());
+        return commentDTO;
+    }
+
     public ArticleEntity get(String id) {
         return (ArticleEntity) articleRepository.findByIdAndVisibleTrue(id).orElseThrow(() -> {
             throw new AppBadException("Article not found");
@@ -70,7 +81,7 @@ public class CommentService {
     }
 
     public Boolean delete(Integer id) {
-        CommentEntity commentEntity=getComment(id);
+        CommentEntity commentEntity = getComment(id);
         commentRepository.delete(commentEntity);
         return true;
     }
@@ -101,5 +112,18 @@ public class CommentService {
         commentDto.setProfile(profileDto);
 
         return commentDto;
+    }
+
+    public PageImpl<CommentDTO> getPagination(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<CommentEntity> comments = commentRepository.findAll(pageable);
+
+        List<CommentDTO> commentDto = new LinkedList<>();
+        for (CommentEntity comment : comments) {
+            CommentDTO dto = toDTOComment(comment);
+            commentDto.add(dto);
+        }
+        return new PageImpl<>(commentDto, pageable, comments.getTotalElements());
     }
 }

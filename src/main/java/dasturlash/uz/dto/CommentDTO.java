@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private String id;
     private String comment;
-    //    private String articleId;
+    private String articleId;
     private ArticleEntity article;
-    private LocalDateTime createdDate=LocalDateTime.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime updatedDate;
-    //    private ProfileEntity profileId;
+    private ProfileEntity profileId;
     private ProfileDTO profile;
     private String replyId;
     private Boolean visible;

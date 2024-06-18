@@ -22,14 +22,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-//@PreAuthorize("hasRole('MODERATOR')")
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
 
     private final ArticleService articleService;
 
-    @Autowired
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
