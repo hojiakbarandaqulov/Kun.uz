@@ -13,32 +13,35 @@ import java.util.Optional;
 public class CommentLikeService {
 
     private final CommentLikeRepository commentLikeRepository;
-    
+
     public CommentLikeService(CommentLikeRepository commentLikeRepository) {
         this.commentLikeRepository = commentLikeRepository;
     }
 
-    public boolean like(String commentId, Integer profileId) {
+    public boolean like(Integer commentId, Integer profileId) {
         makeEmotion(commentId, profileId, EmotionStatus.LIKE);
         return true;
     }
 
-    public boolean dislike(String commentId, Integer profileId) {
+    public boolean dislike(Integer commentId, Integer profileId) {
         makeEmotion(commentId, profileId, EmotionStatus.DISLIKE);
         return true;
     }
 
-    public boolean delete(String commentId, Integer profileId) {
-        commentLikeRepository.delete(commentId, profileId);
+    public boolean delete(Integer commentId, Integer profileId) {
+        int delete = commentLikeRepository.delete(commentId, profileId);
+        if (delete==0){
+            return false;
+        }
         return true;
     }
 
-    private void makeEmotion(String commentId, Integer profileId, EmotionStatus status) {
+    private void makeEmotion(Integer commentId, Integer profileId, EmotionStatus status) {
         Optional<CommentLikeEntity> optional = commentLikeRepository.findByCommentIdAndProfileId(commentId, profileId);
         if (optional.isEmpty()) {
             CommentLikeEntity commentLikeEntity = new CommentLikeEntity();
             commentLikeEntity.setCommentId(commentId);
-//            commentLikeEntity.setProfileId(profileId);
+            commentLikeEntity.setProfileId(profileId);
             commentLikeEntity.setStatus(status);
             commentLikeEntity.setCreatedDate(LocalDateTime.now());
             commentLikeRepository.save(commentLikeEntity);

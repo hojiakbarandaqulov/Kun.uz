@@ -20,15 +20,15 @@ public class CommentLikeController {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/like/{id}")
-    public ResponseEntity<Boolean> like(@PathVariable("id") String commentId,
+    public ResponseEntity<Boolean> like(@PathVariable("id") Integer commentId,
                                         HttpServletRequest request) {
-        Integer id = (Integer)  request.getAttribute("id");
+        Integer id = (Integer) request.getAttribute("id");
         return ResponseEntity.ok(commentLikeService.like(commentId, id));
     }
 
     @PreAuthorize("permitAll()")
     @GetMapping("/dislike/{id}")
-    public ResponseEntity<Boolean> dislike(@PathVariable("id") String commentId,
+    public ResponseEntity<Boolean> dislike(@PathVariable("id") Integer commentId,
                                            @RequestHeader("Authorization") String authorization) {
         JwtDTO jwt = JwtUtil.getJwtDTO(authorization);
         return ResponseEntity.ok(commentLikeService.dislike(commentId, jwt.getId()));
@@ -36,7 +36,7 @@ public class CommentLikeController {
 
     @PreAuthorize("permitAll()")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable("id") String commentId,
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Integer commentId,
                                           @RequestHeader("Authorization") String authorization) {
         JwtDTO jwt = JwtUtil.getJwtDTO(authorization);
         return ResponseEntity.ok(commentLikeService.delete(commentId, jwt.getId()));

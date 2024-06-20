@@ -1,5 +1,6 @@
 package dasturlash.uz.service;
 
+import dasturlash.uz.controller.AuthController;
 import dasturlash.uz.dto.*;
 import dasturlash.uz.dto.create.ProfileCreateDTO;
 import dasturlash.uz.dto.filter.ProfileFilterDTO;
@@ -9,19 +10,23 @@ import dasturlash.uz.entity.ProfileEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.customRepository.ProfileCustomRepository;
 import dasturlash.uz.repository.ProfileRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-
+@Slf4j
 @Service
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
 
     private final ProfileCustomRepository profileCustomRepository;
+
 
     public ProfileService(ProfileRepository profileRepository, ProfileCustomRepository profileCustomRepository) {
         this.profileRepository = profileRepository;
@@ -78,10 +83,10 @@ public class ProfileService {
 
     public ProfileEntity get(Integer id) {
         return profileRepository.findById(id).orElseThrow(() -> {
+            log.error("Profile not found id = {}", id);
             throw new AppBadException("Profile not found");
         });
     }
-
 
     public PageImpl<ProfileDTO> getAllPagination(int page, int size) {
         Sort sort = Sort.by(Sort.Order.desc("createdDate"));

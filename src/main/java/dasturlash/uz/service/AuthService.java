@@ -1,5 +1,6 @@
 package dasturlash.uz.service;
 
+import dasturlash.uz.controller.AuthController;
 import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
@@ -14,6 +15,8 @@ import dasturlash.uz.service.history.SmsHistoryService;
 import dasturlash.uz.util.JwtUtil;
 import dasturlash.uz.util.MD5Util;
 import dasturlash.uz.util.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +41,13 @@ public class AuthService {
     @Autowired
     private SmsHistoryService smsHistoryService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
+
     public String registration(RegistrationDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
 //        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(dto.getPhone());
         if (optional.isPresent()) {
+            LOGGER.warn("Email already exists email => {}", dto.getEmail());
             throw new AppBadException("Email already exists");
         }
 

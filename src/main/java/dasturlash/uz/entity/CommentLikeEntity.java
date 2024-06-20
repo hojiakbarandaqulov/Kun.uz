@@ -21,7 +21,7 @@ public class CommentLikeEntity {
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
     @Column(name = "comment_id")
-    private String commentId;
+    private Integer commentId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id", insertable = false, updatable = false)
     private CommentEntity comment;

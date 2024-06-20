@@ -11,10 +11,13 @@ import dasturlash.uz.util.HttpRequestUtil;
 import dasturlash.uz.util.SecurityUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -25,6 +28,7 @@ public class AuthController {
         this.authService = authService;
     }
 
+
     /* @PostMapping("/registration")
          public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto) {
              String body = authService.registration(dto);
@@ -33,6 +37,12 @@ public class AuthController {
     @PostMapping("/registration")
     public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto) {
         String body = authService.registration(dto);
+//        LOGGER.trace("for tracing purpose: registration");
+//        LOGGER.debug("for debugging purpose: registration");
+          log .info("Registration name = {} email = {}",dto.getName(), dto.getEmail());
+//        LOGGER.warn("for warning purpose: registration");
+//        LOGGER.error("for logging errors: registration");
+
         return ResponseEntity.ok().body(body);
     }
 

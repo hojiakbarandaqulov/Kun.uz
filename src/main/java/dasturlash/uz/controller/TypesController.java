@@ -20,8 +20,11 @@ import java.util.List;
 @RestController
 public class TypesController {
 
-    @Autowired
-    private TypesService typesService;
+    private final TypesService typesService;
+
+    public TypesController(TypesService typesService) {
+        this.typesService = typesService;
+    }
 
     @PostMapping("/adm/create")
     public ResponseEntity<TypesDTO> create(@Valid @RequestBody TypesCreatedDto dto) {
