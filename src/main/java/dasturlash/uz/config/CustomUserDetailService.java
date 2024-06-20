@@ -15,7 +15,6 @@ public class CustomUserDetailService implements UserDetailsService {
 
     private final ProfileRepository repository;
 
-    @Autowired
     public CustomUserDetailService(ProfileRepository repository) {
         this.repository = repository;
     }

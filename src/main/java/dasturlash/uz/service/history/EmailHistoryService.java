@@ -19,11 +19,14 @@ import java.util.Optional;
 
 @Service
 public class EmailHistoryService {
-    @Autowired
-    private EmailHistoryRepository emailHistoryRepository;
+    private final EmailHistoryRepository emailHistoryRepository;
 
-    @Autowired
-    private SmsService smsService;
+    private final SmsService smsService;
+
+    public EmailHistoryService(EmailHistoryRepository emailHistoryRepository, SmsService smsService) {
+        this.emailHistoryRepository = emailHistoryRepository;
+        this.smsService = smsService;
+    }
 
     public String crete(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();

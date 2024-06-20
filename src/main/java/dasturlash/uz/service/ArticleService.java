@@ -1,21 +1,17 @@
 package dasturlash.uz.service;
 
 
-import dasturlash.uz.dto.CategoryDTO;
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.article.ArticleCreateDTO;
-import dasturlash.uz.dto.article.ArticleDTO;
 import dasturlash.uz.dto.article.ArticleRequestDTO;
 
 import dasturlash.uz.entity.*;
 import dasturlash.uz.enums.ArticleStatus;
 
-import dasturlash.uz.enums.Language;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.mapper.ArticleShortInfoMapper;
 import dasturlash.uz.repository.*;
 import dasturlash.uz.util.SecurityUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 

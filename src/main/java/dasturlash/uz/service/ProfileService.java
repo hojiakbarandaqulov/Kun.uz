@@ -19,11 +19,14 @@ import java.util.List;
 @Service
 public class ProfileService {
 
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
 
-    @Autowired
-    private ProfileCustomRepository profileCustomRepository;
+    private final ProfileCustomRepository profileCustomRepository;
+
+    public ProfileService(ProfileRepository profileRepository, ProfileCustomRepository profileCustomRepository) {
+        this.profileRepository = profileRepository;
+        this.profileCustomRepository = profileCustomRepository;
+    }
 
     public ProfileDTO create(ProfileCreateDTO profileDTO) {
         ProfileEntity entity = new ProfileEntity();

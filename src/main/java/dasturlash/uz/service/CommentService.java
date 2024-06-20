@@ -3,12 +3,15 @@ package dasturlash.uz.service;
 import dasturlash.uz.dto.CommentDTO;
 import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.create.CommentCreateDTO;
+import dasturlash.uz.dto.filter.CommentFilterDTO;
+import dasturlash.uz.dto.response.FilterResponseDTO;
 import dasturlash.uz.dto.update.CommentUpdateDTO;
 import dasturlash.uz.entity.ArticleEntity;
 import dasturlash.uz.entity.CommentEntity;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ArticleRepository;
 import dasturlash.uz.repository.CommentRepository;
+import dasturlash.uz.repository.customRepository.CommentCustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -25,11 +28,12 @@ import static java.nio.file.Paths.get;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final ArticleRepository articleRepository;
-
+    private final CommentCustomRepository commentCustomRepository;
     @Autowired
-    public CommentService(CommentRepository commentRepository, ArticleRepository articleRepository) {
+    public CommentService(CommentRepository commentRepository, ArticleRepository articleRepository, CommentCustomRepository commentCustomRepository) {
         this.commentRepository = commentRepository;
         this.articleRepository = articleRepository;
+        this.commentCustomRepository = commentCustomRepository;
     }
 
     public CommentCreateDTO create(CommentCreateDTO comment) {
@@ -125,5 +129,15 @@ public class CommentService {
             commentDto.add(dto);
         }
         return new PageImpl<>(commentDto, pageable, comments.getTotalElements());
+    }
+
+    public PageImpl<CommentDTO> filter(CommentFilterDTO commentFilterDTO, int page, int size) {
+        FilterResponseDTO<CommentEntity> filter = commentCustomRepository.filter(commentFilterDTO, page, size);
+        List<CommentDTO> commentList= new LinkedList<>();
+        for (CommentEntity entity: filter.getContent()){
+            CommentDTO dto = toDTOComment(entity);
+            commentList.add(dto);
+        }
+        return new PageImpl<CommentDTO>(commentList, PageRequest.of(page,size), filter.getTotalCount());
     }
 }

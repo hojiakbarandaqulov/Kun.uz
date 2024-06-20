@@ -12,7 +12,6 @@ public class TagEntity {
     private Integer id;
     @Column(name = "name")
     private String name;
-
     @ManyToMany(mappedBy = "tags")
     private List<ArticleEntity> articles;
 }

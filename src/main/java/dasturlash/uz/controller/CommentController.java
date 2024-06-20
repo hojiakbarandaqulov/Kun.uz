@@ -2,7 +2,9 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.CommentDTO;
 import dasturlash.uz.dto.create.CommentCreateDTO;
+import dasturlash.uz.dto.filter.CommentFilterDTO;
 import dasturlash.uz.dto.update.CommentUpdateDTO;
+import dasturlash.uz.repository.customRepository.CommentCustomRepository;
 import dasturlash.uz.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +22,6 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    @Autowired
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
@@ -60,5 +61,14 @@ public class CommentController {
                                                                              @RequestParam(value = "size", defaultValue = "10")int size) {
         PageImpl<CommentDTO> comment = commentService.getPagination(page-1, size);
         return ResponseEntity.ok().body(comment);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/filter")
+    public ResponseEntity<PageImpl<CommentDTO>> filter(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                       @RequestParam(value = "size", defaultValue = "10") int size,
+                                                       CommentFilterDTO commentFilterDTO) {
+        PageImpl<CommentDTO> filter = commentService.filter(commentFilterDTO, page - 1, size);
+        return ResponseEntity.ok().body(filter);
     }
 }

@@ -7,20 +7,7 @@ import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.enums.ProfileRole;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import dasturlash.uz.enums.ArticleStatus;
-import dasturlash.uz.enums.ProfileRole;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import dasturlash.uz.enums.ArticleStatus;
-import dasturlash.uz.enums.ProfileRole;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import dasturlash.uz.enums.ArticleStatus;
-import dasturlash.uz.enums.ProfileRole;
-
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -28,7 +15,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter

@@ -16,19 +16,14 @@ public class TypesEntity {
     private Integer id;
     @Column(name = "order_number")
     private Integer orderNumber;
-
     @Column(name = "name_uz",columnDefinition = "text")
     private String nameUz;
-
     @Column(name = "name_ru",columnDefinition = "text")
     private String nameRu;
-
     @Column(name = "name_en", columnDefinition = "text")
     private String nameEn;
-
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
-
     @Column(name = "created_date")
     private LocalDate createdDate=LocalDate.now();
 }

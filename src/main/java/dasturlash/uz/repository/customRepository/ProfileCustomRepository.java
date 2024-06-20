@@ -15,8 +15,12 @@ import java.util.Map;
 
 @Repository
 public class ProfileCustomRepository {
-    @Autowired
-    private EntityManager entityManager;
+
+    private  final EntityManager entityManager;
+
+    public ProfileCustomRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public FilterResponseDTO<ProfileEntity> filter(ProfileFilterDTO filter, int page, int size) {
         Map<String, Object> params = new HashMap<>();
@@ -27,8 +31,8 @@ public class ProfileCustomRepository {
         }
         if (filter.getSurname() != null) {
             query.append(" and s.surname=:surname ");
-            params.put("surname", filter.getSurname());
         }
+        params.put("surname", filter.getSurname());
         if (filter.getPhone() != null) {
             query.append(" and s.phone=:phone ");
             params.put("phone", filter.getPhone());
