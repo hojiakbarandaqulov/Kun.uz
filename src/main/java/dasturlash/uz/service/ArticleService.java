@@ -11,7 +11,7 @@ import dasturlash.uz.enums.ArticleStatus;
 import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.mapper.ArticleShortInfoMapper;
 import dasturlash.uz.repository.*;
-import dasturlash.uz.util.SecurityUtil;
+import dasturlash.uz.utils.SecurityUtil;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -195,8 +195,8 @@ public class ArticleService {
         if (byId.isEmpty()) {
             throw new AppBadException("Region  id not found");
         }
-        Sort sort=Sort.by(Sort.Direction.DESC, "createdDate");
-        Pageable pageable= PageRequest.of(page,size,sort);
+        //Sort sort=Sort.by(Sort.Direction.DESC, "createdDate");Pageable
+        Pageable pageable= PageRequest.of(page,size, Sort.by("createdDate").descending());
         Page<RegionEntity> all = regionRepository.findAll(pageable);
         List<RegionDTO>list=new LinkedList<>();
         for (RegionEntity entity:all.getContent()){

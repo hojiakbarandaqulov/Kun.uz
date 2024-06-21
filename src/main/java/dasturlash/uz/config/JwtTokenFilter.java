@@ -1,7 +1,7 @@
 package dasturlash.uz.config;
 
 import dasturlash.uz.dto.auth.JwtDTO;
-import dasturlash.uz.util.JwtUtil;
+import dasturlash.uz.utils.JwtUtil;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -57,6 +57,5 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             return;
         }
-
     }
 }

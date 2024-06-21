@@ -17,6 +17,7 @@ public class CommentEntity {
     @Column(name = "comment")
     private String comment;
 //    private String articleId;
+
     @ManyToOne()
     @JoinColumn(name = "article_id", insertable = false, updatable = false)
     private ArticleEntity article;

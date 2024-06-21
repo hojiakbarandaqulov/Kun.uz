@@ -1,27 +1,19 @@
 package dasturlash.uz.config;
 
-import dasturlash.uz.util.MD5Util;
+import dasturlash.uz.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
@@ -33,7 +25,6 @@ public class SecurityConfig {
 
     private final JwtTokenFilter jwtTokenFilter;
 
-    @Autowired
     public SecurityConfig(CustomUserDetailService customUserDetailService, JwtTokenFilter jwtTokenFilter) {
         this.customUserDetailService = customUserDetailService;
         this.jwtTokenFilter = jwtTokenFilter;
@@ -70,6 +61,18 @@ public class SecurityConfig {
         // authorization
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             authorizationManagerRequestMatcherRegistry
+
+                    .requestMatchers("/v2/api-docs").permitAll()
+                    .requestMatchers("/v3/api-docs").permitAll()
+                    .requestMatchers("/v3/api-docs/**").permitAll()
+                    .requestMatchers("/swagger-resources").permitAll()
+                    .requestMatchers("/swagger-resources/**").permitAll()
+                    .requestMatchers("/configuration/ui").permitAll()
+                    .requestMatchers("/configuration/security").permitAll()
+                    .requestMatchers("/swagger-ui/**").permitAll()
+                    .requestMatchers("/webjars/**").permitAll()
+                    .requestMatchers("/swagger-ui.html").permitAll()
+
                     .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/auth/registration").hasRole("USER")
                     .requestMatchers("/auth/login").permitAll()

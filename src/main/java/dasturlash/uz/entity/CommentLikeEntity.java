@@ -15,16 +15,21 @@ public class CommentLikeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "profile_id")
     private Integer profileId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
+
     @Column(name = "comment_id")
     private Integer commentId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id", insertable = false, updatable = false)
     private CommentEntity comment;
+
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
+    @Column(name = "status")
     private EmotionStatus status;
 }

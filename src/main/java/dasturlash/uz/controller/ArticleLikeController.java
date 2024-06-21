@@ -2,12 +2,11 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.service.ArticleLikeService;
-import dasturlash.uz.util.JwtUtil;
+import dasturlash.uz.utils.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 @EnableMethodSecurity(prePostEnabled = true)
 @RestController

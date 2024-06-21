@@ -6,21 +6,23 @@ import dasturlash.uz.dto.filter.ProfileFilterDTO;
 import dasturlash.uz.dto.update.ProfileUpdateDTO;
 import dasturlash.uz.service.ProfileService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@AllArgsConstructor(onConstructor_ = {@Autowired})
 @RequestMapping("/profile")
 @RestController
 public class ProfileController {
 
-    private final ProfileService profileService;
+    private  ProfileService profileService;
 
-    @Autowired
-    public ProfileController(ProfileService profileService) {
-        this.profileService = profileService;
-    }
+//    @Autowired
+//    public ProfileController(ProfileService profileService) {
+//        this.profileService = profileService;
+//    }
 
     @PostMapping("/adm/create")
     public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profileDTO) {

@@ -1,7 +1,6 @@
 package dasturlash.uz.service;
 
 import dasturlash.uz.controller.AuthController;
-import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
@@ -12,42 +11,40 @@ import dasturlash.uz.exp.AppBadException;
 import dasturlash.uz.repository.ProfileRepository;
 import dasturlash.uz.service.history.EmailHistoryService;
 import dasturlash.uz.service.history.SmsHistoryService;
-import dasturlash.uz.util.JwtUtil;
-import dasturlash.uz.util.MD5Util;
-import dasturlash.uz.util.RandomUtil;
+import dasturlash.uz.utils.JwtUtil;
+import dasturlash.uz.utils.MD5Util;
+import dasturlash.uz.utils.RandomUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
-
+@Slf4j
 @Service
 public class AuthService {
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
 
-    @Autowired
-    private MailSenderService mailSenderService;
+    private final MailSenderService mailSenderService;
 
-    @Autowired
-    private EmailHistoryService emailHistoryService;
+    private final EmailHistoryService emailHistoryService;
 
-    @Autowired
-    private SmsService smsService;
+    private final SmsHistoryService smsHistoryService;
 
-    @Autowired
-    private SmsHistoryService smsHistoryService;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
+    public AuthService(ProfileRepository profileRepository, MailSenderService mailSenderService, EmailHistoryService emailHistoryService, SmsService smsService, SmsHistoryService smsHistoryService) {
+        this.profileRepository = profileRepository;
+        this.mailSenderService = mailSenderService;
+        this.emailHistoryService = emailHistoryService;
+        this.smsHistoryService = smsHistoryService;
+    }
 
     public String registration(RegistrationDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
 //        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(dto.getPhone());
         if (optional.isPresent()) {
-            LOGGER.warn("Email already exists email => {}", dto.getEmail());
+            log.warn("Email already exists email => {}", dto.getEmail());
             throw new AppBadException("Email already exists");
         }
 
@@ -92,6 +89,10 @@ public class AuthService {
         }
 
         ProfileEntity entity = optional.get();
+        if (entity.getPassword().equals(MD5Util.getMD5(dto.getPassword()))) {
+            throw new AppBadException("password does not match");
+        }
+
         if (!entity.getStatus().equals(ProfileStatus.ACTIVE)) {
             throw new AppBadException("Wrong status");
         }
@@ -126,6 +127,7 @@ public class AuthService {
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), responseDTO.getRole()));
         return responseDTO;
     }*/
+
     // phone resend
     public String registrationResendPhone(String phone) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);

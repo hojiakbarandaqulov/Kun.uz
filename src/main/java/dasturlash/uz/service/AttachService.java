@@ -33,20 +33,22 @@ public class AttachService {
 
     private final AttachRepository attachRepository;
 
-    @Autowired
+    @Value("${attach.upload.url}")
+    public String attachUrl;
+
     public AttachService(AttachRepository attachRepository) {
         this.attachRepository = attachRepository;
     }
 
     public String saveToSystem(MultipartFile file) {
         try {
-            File folder = new File("attaches");
+            File folder = new File( "uploads/");
             if (!folder.exists()) {
                 folder.mkdir();
             }
 
             byte[] bytes = file.getBytes();
-            Path path = Paths.get("attaches/" + file.getOriginalFilename()); // attaches/zari.jpg
+            Path path = Paths.get("uploads/" + file.getOriginalFilename()); // uploads/zari.jpg
             Files.write(path, bytes);
             return file.getOriginalFilename();
         } catch (IOException e) {
@@ -58,7 +60,7 @@ public class AttachService {
     public byte[] loadImage(String fileName) {
         BufferedImage originalImage;
         try {
-            originalImage = ImageIO.read(new File("attaches/" + fileName));
+            originalImage = ImageIO.read(new File("uploads/" + fileName));
         } catch (Exception e) {
             return new byte[0];
         }
@@ -104,7 +106,7 @@ public class AttachService {
 //            }
 //
 //            try {
-//                Path path = Paths.get("attaches/" + entity.get().getPath() + "/" + attachName);
+//                Path path = Paths.get("uploads/" + entity.get().getPath() + "/" + attachName);
 //                data = Files.readAllBytes(path);
 //               return data;
 //            } catch (IOException e) {

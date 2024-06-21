@@ -1,20 +1,12 @@
 package dasturlash.uz.service;
 
-import dasturlash.uz.entity.history.SmsHistoryEntity;
-import dasturlash.uz.exp.AppBadException;
-import dasturlash.uz.repository.ProfileRepository;
-import dasturlash.uz.repository.SmsHistoryRepository;
-import dasturlash.uz.util.RandomUtil;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import dasturlash.uz.utils.RandomUtil;
 import okhttp3.*;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @Service
 public class SmsService {

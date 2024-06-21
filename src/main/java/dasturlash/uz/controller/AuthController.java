@@ -1,29 +1,23 @@
 package dasturlash.uz.controller;
 
-import dasturlash.uz.dto.ProfileDTO;
 import dasturlash.uz.dto.auth.AuthResponseDTO;
-import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.dto.auth.LoginDTO;
 import dasturlash.uz.dto.auth.RegistrationDTO;
-import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.AuthService;
-import dasturlash.uz.util.HttpRequestUtil;
-import dasturlash.uz.util.SecurityUtil;
-import jakarta.servlet.http.HttpServletRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Auth Controller", description = "Api list for authorization, registration and other ... ")
 public class AuthController {
     private final AuthService authService;
 
-    @Autowired
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
@@ -34,15 +28,12 @@ public class AuthController {
              String body = authService.registration(dto);
              return ResponseEntity.ok().body(body);
          }*/
+
     @PostMapping("/registration")
+    @Operation( summary = "Registration", description = "Api for profile registration")
     public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto) {
         String body = authService.registration(dto);
-//        LOGGER.trace("for tracing purpose: registration");
-//        LOGGER.debug("for debugging purpose: registration");
           log .info("Registration name = {} email = {}",dto.getName(), dto.getEmail());
-//        LOGGER.warn("for warning purpose: registration");
-//        LOGGER.error("for logging errors: registration");
-
         return ResponseEntity.ok().body(body);
     }
 

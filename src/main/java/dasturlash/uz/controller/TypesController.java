@@ -2,14 +2,9 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.create.TypesCreatedDto;
 import dasturlash.uz.dto.TypesDTO;
-import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.enums.Language;
-import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.TypesService;
-import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +50,7 @@ public class TypesController {
     public List<TypesDTO> getByLanguage(@RequestHeader(value = "Accept-Language", defaultValue = "UZ") Language language) {
         return typesService.getAllByLang(language);
     }
+
    /* @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(

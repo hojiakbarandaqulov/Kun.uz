@@ -2,7 +2,7 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.service.CommentLikeService;
-import dasturlash.uz.util.JwtUtil;
+import dasturlash.uz.utils.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

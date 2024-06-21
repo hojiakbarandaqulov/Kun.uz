@@ -2,11 +2,8 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.create.CategoryCreateDTO;
 import dasturlash.uz.dto.CategoryDTO;
-import dasturlash.uz.dto.auth.JwtDTO;
 import dasturlash.uz.enums.Language;
-import dasturlash.uz.enums.ProfileRole;
 import dasturlash.uz.service.CategoryService;
-import dasturlash.uz.util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequestMapping("/category")
+
 @RestController
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }

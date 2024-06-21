@@ -20,7 +20,9 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxMTkwNTYsImlkIjo1MSwic
   "categoryId": 2,
   "role": "ROLE_MODERATOR",
   "status": "NOT_PUBLISHED",
-  "articleType": [1,9]
+  "articleType": [1,9],
+  "tagList": ["#lavozim","#daxshat","#mazgi"]
+
 }
 
 ###

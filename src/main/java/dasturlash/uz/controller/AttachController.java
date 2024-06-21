@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AttachController {
     private final AttachService attachService;
 
-    @Autowired
     public AttachController(AttachService attachService) {
         this.attachService = attachService;
     }
@@ -52,7 +51,7 @@ public class AttachController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/pagination")
     public ResponseEntity<PageImpl<AttachDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                                          @RequestParam(value = "size", defaultValue = "10")Integer size){
+                                                          @RequestParam(value = "size", defaultValue = "10") Integer size) {
         PageImpl<AttachDTO> response = attachService.getAttachPagination(page - 1, size);
         return ResponseEntity.ok().body(response);
     }

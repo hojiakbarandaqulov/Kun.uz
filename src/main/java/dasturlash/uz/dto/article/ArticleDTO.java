@@ -1,5 +1,6 @@
 package dasturlash.uz.dto.article;
 
+import dasturlash.uz.dto.AttachDTO;
 import dasturlash.uz.enums.ArticleStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -35,4 +36,6 @@ public class ArticleDTO {
     private String image;
     private List<Integer> type;
 
+    public ArticleDTO(String id, String title, String description, AttachDTO attachDTO) {
+    }
 }

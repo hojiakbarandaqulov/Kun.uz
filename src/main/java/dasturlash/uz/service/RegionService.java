@@ -18,7 +18,6 @@ import java.util.Optional;
 public class RegionService {
 
     private final RegionRepository regionRepository;
-    @Autowired
     public RegionService(RegionRepository regionRepository) {
         this.regionRepository = regionRepository;
     }
@@ -29,7 +28,6 @@ public class RegionService {
         entity.setNameUz(dto.getNameUz());
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
-
         regionRepository.save(entity);
         return regionToDTO(entity);
     }

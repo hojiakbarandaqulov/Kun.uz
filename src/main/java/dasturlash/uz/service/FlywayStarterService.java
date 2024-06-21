@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 
 @Service
 public class FlywayStarterService implements CommandLineRunner {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     public FlywayStarterService(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -18,5 +18,6 @@ public class FlywayStarterService implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("FlywayStarterService");
         Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
+
     }
 }
