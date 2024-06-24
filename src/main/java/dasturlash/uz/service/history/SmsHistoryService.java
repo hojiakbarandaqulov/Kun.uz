@@ -19,12 +19,11 @@ import java.util.Optional;
 
 @Service
 public class SmsHistoryService {
+    private final SmsHistoryRepository smsHistoryRepository;
 
-    @Autowired
-    private SmsHistoryRepository smsHistoryRepository;
-
-    @Autowired
-    private SmsService smsService;
+    public SmsHistoryService(SmsHistoryRepository smsHistoryRepository, SmsService smsService) {
+        this.smsHistoryRepository = smsHistoryRepository;
+    }
 
     public String crete(String toPhone, String text) {
         SmsHistoryEntity smsHistoryEntity=new SmsHistoryEntity();

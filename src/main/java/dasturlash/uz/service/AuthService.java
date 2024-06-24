@@ -26,11 +26,8 @@ import java.util.Optional;
 @Service
 public class AuthService {
     private final ProfileRepository profileRepository;
-
     private final MailSenderService mailSenderService;
-
     private final EmailHistoryService emailHistoryService;
-
     private final SmsHistoryService smsHistoryService;
 
     public AuthService(ProfileRepository profileRepository, MailSenderService mailSenderService, EmailHistoryService emailHistoryService, SmsService smsService, SmsHistoryService smsHistoryService) {

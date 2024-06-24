@@ -16,17 +16,16 @@ import java.util.List;
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
                 contact = @io.swagger.v3.oas.annotations.info.Contact(
-                        name = "Kitabu mazgi",
+                        name = "Kun.uz ",
                         email = "something@gmal.com",
                         url = "https://kitabu.uz/"
                 ),
                 description = "This API exposes endpoints to manage tutorials.",
-                title = "Kitabu uz Management API",
+                title = "Kun.uz Management API",
                 version = "1.0",
                 license = @License(
                         name = "Videohub",
                         url = "https://kitabu.uz/"
-
                 ),
                 termsOfService = "Savol javob guruhi: https://t.me/code_uz_group"
         ),
@@ -59,7 +58,7 @@ public class OpenAPIConfig {
     public OpenAPI myOpenAPI() {
         Server devServer = new Server();
         devServer.setUrl(url);
-        devServer.setDescription("Kun uz mazgi test project");
+        devServer.setDescription("Kun uz test project");
 
         Contact contact = new Contact();
         contact.setEmail("kun.uz");
@@ -68,7 +67,7 @@ public class OpenAPIConfig {
 
 
         Info info = new Info()
-                .title("Kun uz Management API")
+                .title("Kun.uz Management API")
                 .version("1.0")
                 .contact(contact)
                 .description("This API exposes endpoints to manage tutorials.")
