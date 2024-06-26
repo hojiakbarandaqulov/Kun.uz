@@ -2,12 +2,12 @@ POST http://localhost:8080/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="file.jpg"
+Content-Disposition: form-data; name="messi"; filename="messi.jpg"
 
-< C:\file.webp
+< D:\messi.jpg
 
 ###
-GET localhost:8080/attach/open/file.webp
+GET localhost:8080/attach/open/b7e0b5f7-8b85-4a1c-81ac-a3eeface401b.jpg
 
 
 ###

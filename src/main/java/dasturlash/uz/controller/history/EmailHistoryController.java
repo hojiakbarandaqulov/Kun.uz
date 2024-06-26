@@ -15,10 +15,13 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/email")
 public class EmailHistoryController {
-    @Autowired
-    private AuthService authService;
-    @Autowired
-    private EmailHistoryService emailHistoryService;
+    private final AuthService authService;
+    private final EmailHistoryService emailHistoryService;
+
+    public EmailHistoryController(AuthService authService, EmailHistoryService emailHistoryService) {
+        this.authService = authService;
+        this.emailHistoryService = emailHistoryService;
+    }
 
     @GetMapping("/adm/{email}")
     public ResponseEntity<String> registrationResend(@PathVariable("email") String email) {

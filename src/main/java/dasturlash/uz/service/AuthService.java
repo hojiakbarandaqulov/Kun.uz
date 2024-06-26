@@ -151,11 +151,10 @@ public class AuthService {
         }
 
         ProfileEntity entity = optional.get();
-        emailHistoryService.isNotExpiredEmail(entity.getEmail());// check for expireation date
+        emailHistoryService.isNotExpiredEmail(entity.getEmail()); // check for expireation date
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             throw new AppBadException("Registration not completed");
         }
-
         emailHistoryService.checkEmailLimit(email);
         sendRegistrationRandomCodeEmail(entity.getId(), email);
         return "To complete your registration please verify your email.";

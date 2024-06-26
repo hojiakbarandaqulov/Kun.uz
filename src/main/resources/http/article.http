@@ -1,12 +1,4 @@
 ### Article create to example
-
-POST http://localhost:8080/api/mdr/create
-
-###
-POST http://localhost:8080/article/moderator
-
-
-###
 POST http://localhost:8080/article/moderator
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTgxMTkwNTYsImlkIjo1MSwicm9sZSI6IlJPTEVfTU9ERVJBVE9SIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxODIwNTQ1NiwiaXNzIjoiS3VuVXpUZXN0In0.XsD27WWWShWQa_ituHL37LDST1k-HNfDqijH7L5Rn7G5RCFJF9Nj0nOXmM3d2orUAagCsKuvrpw2UCAMOa8qxg

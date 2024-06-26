@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
                 contact = @io.swagger.v3.oas.annotations.info.Contact(
@@ -30,7 +31,7 @@ import java.util.List;
                 termsOfService = "Savol javob guruhi: https://t.me/code_uz_group"
         ),
         servers = {
-                @io.swagger.v3.oas.annotations.servers.Server (
+                @io.swagger.v3.oas.annotations.servers.Server(
                         description = "Local ENV",
                         url = "http://localhost:8080"
                 ),
@@ -76,5 +77,4 @@ public class OpenAPIConfig {
 
         return new OpenAPI().info(info).servers(List.of(devServer));
     }
-
 }

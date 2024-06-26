@@ -82,6 +82,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/history/*").permitAll()
                     .requestMatchers("email/adm/**").permitAll()
                     .requestMatchers("/attach/**").permitAll()
+                    .requestMatchers("attach/").permitAll()
                     .anyRequest()
                     .authenticated();
         });

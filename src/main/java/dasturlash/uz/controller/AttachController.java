@@ -21,12 +21,12 @@ public class AttachController {
         this.attachService = attachService;
     }
 
-    @PreAuthorize("permitAll()")
     @PostMapping("/upload")
     public ResponseEntity<AttachDTO> upload(@RequestParam("file") MultipartFile file) {
         AttachDTO attachDTO = attachService.saveAttach(file);
         return ResponseEntity.ok().body(attachDTO);
     }
+
     /*@GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] open(@PathVariable("fileName") String fileName) {
         return this.attachService.loadImage(fileName);
@@ -43,8 +43,8 @@ public class AttachController {
     }
 
 
-    @GetMapping("/download/{fineName}")
-    public ResponseEntity download(@PathVariable("fineName") String fileName) {
+    @GetMapping("/download/{fileName}")
+    public ResponseEntity download(@PathVariable("fileName") String fileName) {
         return attachService.download(fileName);
     }
 
@@ -62,5 +62,4 @@ public class AttachController {
         Boolean delete = attachService.delete(id);
         return ResponseEntity.ok().body(delete);
     }
-
 }

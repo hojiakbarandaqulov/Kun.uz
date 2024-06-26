@@ -40,7 +40,5 @@ public class MailSenderService {
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 }

@@ -33,7 +33,7 @@ public class AuthController {
     @Operation( summary = "Registration", description = "Api for profile registration")
     public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto) {
         String body = authService.registration(dto);
-          log .info("Registration name = {} email = {}",dto.getName(), dto.getEmail());
+            log .info("Registration name = {} email = {}",dto.getName(), dto.getEmail());
         return ResponseEntity.ok().body(body);
     }
 

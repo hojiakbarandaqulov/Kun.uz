@@ -23,5 +23,4 @@ public class MigrationConfiguration {
         dataSourceBuilder.password(dataSourcePassword);
         return dataSourceBuilder.build();
     }
-
 }

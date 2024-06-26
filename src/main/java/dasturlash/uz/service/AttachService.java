@@ -42,7 +42,7 @@ public class AttachService {
 
     public String saveToSystem(MultipartFile file) {
         try {
-            File folder = new File( "uploads/");
+            File folder = new File("uploads/");
             if (!folder.exists()) {
                 folder.mkdir();
             }
@@ -128,7 +128,6 @@ public class AttachService {
         return new byte[0];
     }
 
-
     public String getYmDString() {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -138,7 +137,6 @@ public class AttachService {
     }
 
     public String getExtension(String fileName) { // mp3/jpg/npg/mp4.....
-        // zari.mazgi.jpg
         int lastIndex = fileName.lastIndexOf(".");
         return fileName.substring(lastIndex + 1);
     }
@@ -152,7 +150,7 @@ public class AttachService {
             }
 
             String key = UUID.randomUUID().toString(); // dasdasd-dasdasda-asdasda-asdasd
-            String extension = getExtension(file.getOriginalFilename()); // dasda.asdas.dasd.jpg
+            String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename())); // dasda.asdas.dasd.jpg
             // save to system
             byte[] bytes = file.getBytes();
             Path path = Paths.get("uploads/" + pathFolder + "/" + key + "." + extension);
@@ -178,6 +176,7 @@ public class AttachService {
         dto.setId(entity.getId());
         dto.setCreatedData(entity.getCreatedData());
         dto.setExtension(entity.getExtension());
+        dto.setPath(entity.getPath());
         dto.setSize(entity.getSize());
         dto.setOriginalName(entity.getOriginalName());
         dto.setUrl(serverUrl + "/attach/open/" + entity.getId());
@@ -207,7 +206,6 @@ public class AttachService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
-
 
     public PageImpl<AttachDTO> getAttachPagination(Integer page, Integer size) {
         Sort sort = Sort.by(Sort.Order.desc("createdData"));

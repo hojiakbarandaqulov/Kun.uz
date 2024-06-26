@@ -23,6 +23,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTg4OTYxODEsImlkIjo1MSwic
 #  "password": "1234",
 #  "role": "ROLE_ADMIN"
 #}
+
 ###
 GET http://localhost:8080/auth/verification/15
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTczNDY4NTUsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3Y1QGdtYWlsLmNvbSIsImV4cCI6MTcxNzQzMzI1NSwiaXNzIjoiS3VuVXpUZXN0In0.D8wxzFyMsHJWhW5DlkO4m-98yvbOEwnhZW5nDiiuoiEl1-H2H8eNI3q30ypmacruDBXBfTLRYdkcNMDQcL4DAQ

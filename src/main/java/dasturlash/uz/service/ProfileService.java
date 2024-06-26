@@ -107,25 +107,6 @@ public class ProfileService {
         return true;
     }
 
-   /* public PageImpl<ProfileDTO> paginationWithName(ProfileFilterDTO filterDTO, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        FilterResponseDTO<ProfileEntity> filterResponseDTO = profileCustomRepository.filter(filterDTO,page,size);
-        List<ProfileDTO> dtoList = new LinkedList<>();
-        for (ProfileEntity entity : filterResponseDTO.getContent()) {
-            ProfileDTO dto = new ProfileDTO();
-            dto.setName(entity.getName());
-            dto.setSurname(entity.getSurname());
-            dto.setPhone(entity.getPhone());
-            dto.setRole(entity.getRole());
-            dto.setCreatedDate(entity.getCreatedDate());
-            dtoList.add(dto);
-        }
-
-        Long totalCount = filterResponseDTO.getTotalCount();
-
-        return new PageImpl<ProfileDTO>(dtoList,pageable,totalCount);
-    }*/
-
     public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
         FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
 
@@ -141,18 +122,6 @@ public class ProfileService {
         }
         return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
     }
-
-/*    public Boolean updateRole(ProfileRole role, ProfileCreateDTO dto) {
-        ProfileEntity entity=profileRepository.findByRole(role.name());
-        entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
-        entity.setEmail(dto.getEmail());
-        entity.setPhone(dto.getPhone());
-        entity.setPassword(dto.getPassword());
-        entity.setStatus(dto.getStatus());
-        profileRepository.save(entity);
-        return true;
-    }*/
 
 }
 
