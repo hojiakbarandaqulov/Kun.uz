@@ -15,7 +15,7 @@ public interface RegionRepository extends JpaRepository<RegionEntity, Integer> {
     List<RegionEntity> findByLanguage(Object language);
 
     @Query(value = "select id," +
-            "  CASE :language " +
+            "  CASE     :language " +
             "   WHEN 'UZ' THEN name_uz " +
             "   WHEN 'EN' THEN name_en " +
             "   WHEN 'RU' THEN name_ru " +

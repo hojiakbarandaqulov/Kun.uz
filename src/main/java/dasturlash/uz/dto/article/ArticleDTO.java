@@ -38,4 +38,7 @@ public class ArticleDTO {
 
     public ArticleDTO(String id, String title, String description, AttachDTO attachDTO) {
     }
+
+    public ArticleDTO() {
+    }
 }

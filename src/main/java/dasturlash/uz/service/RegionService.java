@@ -54,7 +54,7 @@ public class RegionService {
         return regionDTO;
     }
 
-    private RegionEntity get(Integer id) {
+    public RegionEntity get(Integer id) {
         return regionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Region not found"));
     }
 
@@ -98,12 +98,5 @@ public class RegionService {
         return dto;
     }
 
-    public RegionEntity getId(Integer id) {
-        Optional<RegionEntity> optional = regionRepository.findById(id);
-        if (optional.isEmpty()) {
-            throw new AppBadException("Region not found: " + id);
-        }
-        return optional.get();
-    }
 
 }

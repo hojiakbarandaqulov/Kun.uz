@@ -2,6 +2,7 @@ package dasturlash.uz.controller;
 
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.article.ArticleCreateDTO;
+import dasturlash.uz.dto.article.ArticleDTO;
 import dasturlash.uz.dto.article.ArticleRequestDTO;
 
 //import dasturlash.uz.service.ArticleService;
@@ -32,12 +33,14 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    //1
     @PostMapping("/moderator")
     public ResponseEntity<ArticleRequestDTO> createArticle(@RequestBody ArticleCreateDTO create) {
         ArticleRequestDTO article = articleService.createArticle(create);
         return ResponseEntity.ok().body(article);
     }
 
+    //2
     @PreAuthorize("hasRole('MODERATOR')")
     @PutMapping("/moderator/{id}")
     public ResponseEntity<ArticleRequestDTO> update(@Valid @RequestBody ArticleCreateDTO createDto,
@@ -45,6 +48,7 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.update(id, createDto));
     }
 
+    //3
     @PreAuthorize("hasAnyRole('MODERATOR','PUBLISHER')")
     @PutMapping("/v1/moderator/{id}")
     public ResponseEntity<Boolean> deleteArticle(@PathVariable("id") String id) {
@@ -52,6 +56,7 @@ public class ArticleController {
         return ResponseEntity.ok().body(true);
     }
 
+    //4
     @PreAuthorize("hasRole('MODERATOR')")
     @PutMapping("/changeByStatus/{id}")
     public ResponseEntity<Boolean> changeByStatus(@PathVariable("id") String id) {
@@ -59,6 +64,7 @@ public class ArticleController {
         return ResponseEntity.ok().body(true);
     }
 
+    //5
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/types/{id}")
     public ResponseEntity<List<ArticleRequestDTO>> getLast5ArticlesByType(@PathVariable("id") Integer id) {
@@ -66,24 +72,28 @@ public class ArticleController {
         return ResponseEntity.ok().body(last5ByTypes);
     }
 
+    //6
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/types/3/{id}")
     public ResponseEntity<List<ArticleRequestDTO>> getLast3ArticlesByType(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(articleService.getLast3ByTypes(id));
     }
 
+    //7
 //    @PreAuthorize("hasRole('MODERATOR')")
     @PostMapping("/last/eight")
     public ResponseEntity<List<ArticleRequestDTO>> getLast8ArticlesByType(@RequestBody List<String> id) {
         return ResponseEntity.ok(articleService.getLast8ByTypes(id));
     }
 
+    //8
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/article/{id}")
     public ResponseEntity<List<ArticleRequestDTO>> getArticlesByType(@PathVariable("id") String id) {
         return ResponseEntity.ok(articleService.getArticleByTypes(id));
     }
 
+    //9
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/article/read/4")
     public ResponseEntity<List<ArticleEntity>> getRead4Articles() {
@@ -91,6 +101,7 @@ public class ArticleController {
         return ResponseEntity.ok(read4Articles);
     }
 
+    //10
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/article/tagName/{name}")
     public ResponseEntity<List<ArticleEntity>> getRead4Articles(@PathVariable("name") String name) {
@@ -98,22 +109,26 @@ public class ArticleController {
         return ResponseEntity.ok(read4Articles);
     }
 
+    //11
     @PreAuthorize("hasRole('MODERATOR')")
+
     @GetMapping("/article/list")
     public ResponseEntity<List<ArticleEntity>> getArticleByTypeAndRegionId(@RequestParam("types") TypesEntity types,
                                                                            @RequestParam("regionId") Integer regionId) {
         return ResponseEntity.ok(articleService.findLast5ByTypesAndRegionKey(types, regionId));
     }
 
+    //12
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/article/regionId/{id}")
-    public ResponseEntity<PageImpl<RegionDTO>> getRegionId(@PathVariable("id") Integer regionId,
+    public ResponseEntity<PageImpl<ArticleDTO>> getRegionId(@PathVariable("id") Integer regionId,
                                                            @RequestParam(name = "page", defaultValue = "1") Integer page,
                                                            @RequestParam(name = "size", defaultValue = "10") Integer size) {
-        PageImpl<RegionDTO> read4Articles = articleService.findRegionId(regionId, page-1,size);
+        PageImpl<ArticleDTO> read4Articles = articleService.findRegionId(regionId, page-1,size);
         return ResponseEntity.ok(read4Articles);
     }
 
+    //13
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/article/category/{id}")
     public ResponseEntity<Optional<CategoryEntity>> getCategoryList(@PathVariable("id") Integer id){

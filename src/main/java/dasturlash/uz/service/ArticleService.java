@@ -3,6 +3,7 @@ package dasturlash.uz.service;
 
 import dasturlash.uz.dto.RegionDTO;
 import dasturlash.uz.dto.article.ArticleCreateDTO;
+import dasturlash.uz.dto.article.ArticleDTO;
 import dasturlash.uz.dto.article.ArticleRequestDTO;
 
 import dasturlash.uz.entity.*;
@@ -28,19 +29,19 @@ import java.util.stream.Collectors;
 public class ArticleService {
     private final ArticleRepository articleRepository;
     private final ArticleTypesService articleTypesService;
-    private final RegionRepository regionRepository;
     private final CategoryRepository categoryRepository;
     private final AttachService attachService;
     private final CategoryService categoryService;
+    private final RegionService regionService;
     private final ArticleLikeRepository articleLikeRepository;
 
-    public ArticleService(ArticleTypesRepository articleTypesRepository, ArticleTypesService articleTypesService, ArticleRepository articleRepository, RegionRepository regionRepository, CategoryRepository categoryRepository, AttachService attachService, CategoryService categoryService, ArticleLikeRepository articleLikeRepository) {
+    public ArticleService(ArticleTypesRepository articleTypesRepository, ArticleTypesService articleTypesService, ArticleRepository articleRepository, RegionRepository regionRepository, CategoryRepository categoryRepository, AttachService attachService, CategoryService categoryService, RegionService regionService, ArticleLikeRepository articleLikeRepository) {
         this.articleTypesService = articleTypesService;
         this.articleRepository = articleRepository;
-        this.regionRepository = regionRepository;
         this.categoryRepository = categoryRepository;
         this.attachService = attachService;
         this.categoryService = categoryService;
+        this.regionService = regionService;
         this.articleLikeRepository = articleLikeRepository;
     }
 
@@ -190,28 +191,27 @@ public class ArticleService {
         return null;
     }
 
-    public PageImpl<RegionDTO> findRegionId(Integer regionId, Integer page, Integer size) {
-        Optional<RegionEntity> byId = regionRepository.findById(regionId);
-        if (byId.isEmpty()) {
-            throw new AppBadException("Region  id not found");
+    public PageImpl<ArticleDTO> findRegionId(Integer regionId, Integer page, Integer size) {
+        RegionEntity entity1 = regionService.get(regionId);
+        if (entity1 == null) {
+            throw new AppBadException("Region not found");
         }
-        //Sort sort=Sort.by(Sort.Direction.DESC, "createdDate");Pageable
         Pageable pageable= PageRequest.of(page,size, Sort.by("createdDate").descending());
-        Page<RegionEntity> all = regionRepository.findAll(pageable);
-        List<RegionDTO>list=new LinkedList<>();
-        for (RegionEntity entity:all.getContent()){
-            RegionDTO dto=new RegionDTO();
+        Page<ArticleEntity> all = articleRepository.findAll(pageable);
+        List<ArticleDTO>list=new LinkedList<>();
+        for (ArticleEntity entity:all.getContent()){
+            ArticleDTO dto=new ArticleDTO();
             dto.setId(entity.getId());
             dto.setCreatedDate(entity.getCreatedDate());
-            dto.setNameUz(entity.getNameUz());
-            dto.setNameEn(entity.getNameEn());
-            dto.setNameRu(entity.getNameRu());
-            dto.setOrderNumber(entity.getOrderNumber());
+            dto.setTitle(entity.getTitle());
+            dto.setDescription(entity.getDescription());
+            dto.setContent(entity.getContent());
+            dto.setContent(entity.getContent());
             dto.setVisible(entity.getVisible());
             list.add(dto);
         }
         Long total = all.getTotalElements();
-        return new PageImpl<RegionDTO>(list, pageable,total);
+        return new PageImpl<ArticleDTO>(list, pageable,total);
     }
 
     public Optional<CategoryEntity> getCategoryId(Integer id) {
@@ -221,7 +221,6 @@ public class ArticleService {
         }
         return byId;
     }
-
 
    /* public Page<CategoryDTO> findByCategoryId(Integer page, Integer size, Integer categoryId) {
         Page<ArticleEntity> byId = articleRepository.findByCategoryId(categoryId);
