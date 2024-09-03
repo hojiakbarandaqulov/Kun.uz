@@ -22,6 +22,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     /* @Query(value = "select * from profile where email = :email and visible = true",nativeQuery = true)
      Optional<ProfileEntity> findByEmailAndVisibleTrue(@Param("email") String email);*/
 //   Optional<ProfileEntity> findByEmailAndPasswordAndVisible(String email);
+
     Optional<ProfileEntity> findByPhoneAndPasswordAndVisibleIsTrue(String phone, String password);
 
     Optional<ProfileEntity> findByPhoneAndVisibleTrue(String phone);

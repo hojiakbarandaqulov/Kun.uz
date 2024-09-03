@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfileUpdateDTO {
-    @NotBlank
+    @NotBlank(message = "name required")
     private String name;
-    @NotBlank
+    @NotBlank(message = "surname required")
     private String surname;
 }
