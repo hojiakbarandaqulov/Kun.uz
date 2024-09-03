@@ -80,7 +80,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/moderator", "/api/moderator/**").hasRole("MODERATOR")
                     .requestMatchers("/api/changeByStatus/**").permitAll()
                     .requestMatchers("/api/history/*").permitAll()
-                    .requestMatchers("email/adm/**").permitAll()
+                    .requestMatchers("/email/adm/**").permitAll()
                     .requestMatchers("/attach/**").permitAll()
                     .requestMatchers("attach/").permitAll()
                     .anyRequest()

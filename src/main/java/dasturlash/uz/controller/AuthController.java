@@ -22,7 +22,6 @@ public class AuthController {
         this.authService = authService;
     }
 
-
     /* @PostMapping("/registration")
          public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto) {
              String body = authService.registration(dto);
