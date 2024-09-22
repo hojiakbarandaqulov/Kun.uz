@@ -1,6 +1,7 @@
 package dasturlash.uz.repository;
 
 import dasturlash.uz.entity.history.EmailHistoryEntity;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -23,5 +24,6 @@ public interface EmailHistoryRepository extends JpaRepository<EmailHistoryEntity
 
     Optional<EmailHistoryEntity> findByCreatedDate(LocalDateTime createdDate);
 
+    @NotNull
     Page<EmailHistoryEntity> findAll(Pageable pageable);
 }

@@ -3,6 +3,7 @@ package dasturlash.uz.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,8 @@ import java.time.LocalDateTime;
 @Table(name = "attach")
 public class AttachEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid-hibernate-generator")
+    @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "original_name")
